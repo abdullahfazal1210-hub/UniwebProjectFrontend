@@ -1,9 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import "tailwindcss";
-@import "tw-animate-css";
 
+/* @tailwind base;
+@tailwind components; */
+
+/* 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -121,4 +121,4 @@
     @apply bg-background text-foreground;
   }
 }
-
+ */
