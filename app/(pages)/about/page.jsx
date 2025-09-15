@@ -62,54 +62,106 @@ function About() {
       desc: "We'll help you negotiate the best terms and prepare your offer. Our goal is to secure the property at the right price and on favorable terms.",
     },
   ];
+  const achievements = [
+  {
+    title: "3+ Years of Excellence",
+    desc: "With over 3 years in the industry, we've amassed a wealth of knowledge and experience.",
+  },
+  {
+    title: "Happy Clients",
+    desc: "Our greatest achievement is the satisfaction of our clients. Their success stories fuel our passion for what we do.",
+  },
+  {
+    title: "Industry Recognition",
+    desc: "We've earned the respect of our peers and industry leaders, with accolades and awards that reflect our commitment to excellence.",
+  },
+];
+const team = [
+  {
+    img: "/img/founder.jpg",
+    name: "Max Mitchell",
+    designation: "Founder",
+  },
+  {
+    img: "/img/team 1.webp",
+    name: "Sarah Johnson",
+    designation: "Chief Real Estate Officer",
+  },
+  {
+    img: "/img/team 2.png",
+    name: "David Brown",
+    designation: "Head of Property Management",
+  },
+  {
+    img: "/img/team3.jpeg",
+    name: "Michael Turner",
+    designation: "Legal Counsel",
+  },
+];
+
 
   return (
     <div className="bg-[#141414]">
       <div className="main-container  ">
-        <div className="sec-one flex ">
-          <div className="left w-[50%] border h-[80vh] p-6 flex justify-center items-center ">
-            <div className="w-[90%]  h-[60%] ">
-              <h1 className="text-3xl  font-bold  tracking- text-white">
-                Our Journey
-              </h1>
-              <p className="mt-6 text-[#939393]">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam,
-                doloremque at eum dignissimos voluptates ratione esse. Quidem
-                sit dignissimos sunt corporis quia dolorum? Est quibusdam fugit,
-                eos ex perspiciatis iusto?
-              </p>
-              <div className="little-cards mt-9 flex gap-2.5 ">
-                <div className="card-one p-6 py-7 border bg-[#1A1A1A] rounded-[10px] ">
-                  <h1 className="text-2xl text-white  font-bold ">2000+</h1>{" "}
-                  <p className="text-[#939393]">Happy Customers</p>
-                </div>
-                <div className="card-two p-6 py-7 border bg-[#1A1A1A] rounded-[10px] ">
-                  <h1 className="text-2xl  text-white font-bold">10k+</h1>{" "}
-                  <p className="text-[#939393]">Properties For Clients</p>
-                </div>
-                <div className="card-three p-6 py-7 border bg-[#1A1A1A] rounded-[10px] ">
-                  <h1 className="text-2xl text-white  font-bold">16+</h1>{" "}
-                  <p className="text-[#939393]">Year of Experience</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="right w-full md:w-[50%] md:flex md:items-center">
-            <div className="main w-full pos md:w-[80%] border rounded-[10px] border-[#939393]">
-              <img
-                className="w-full h-full rounded-[10px]"
-                src="/img/sec-one.png"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
 
-        <div className="sec-two w-[100%] h-[75vh] gap-16 flex items-center  ">
-          <div className="left w-[35%]   flex justify-center items-center">
-            <div className=" w-[80%]">
-              <h1 className="text-4xl p-5 bold text-white">Our Values</h1>
-              <p className="text-[#828282]">
+
+     <div className="sec-one flex flex-col-reverse md:flex-row border-8">
+  {/* Left Content Section */}
+  <div className="left md:w-[50%] relative border md:h-[80vh] p-6 flex justify-center items-center">
+    <div className="md:w-[90%] md:h-[60%]">
+      <h1 className="md:text-4xl text-2xl font-bold text-white">Our Journey</h1>
+      <p className="mt-6 text-[14px] text-[#939393]">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam,
+        doloremque at eum dignissimos voluptates ratione esse. Quidem sit
+        dignissimos sunt corporis quia dolorum? Est quibusdam fugit, eos ex
+        perspiciatis iusto?
+      </p>
+
+      {/* Stats Cards */}
+      <div className="little-cards text-center md:text-left  mt-9 flex flex-wrap gap-2.5">
+        <div className="card-one p-3 py-7 border bg-[#1A1A1A] rounded-[10px]">
+          <h1 className="md:text-2xl text-white text-xl  font-bold">2000+</h1>
+          <p className="text-[#939393] text-[14px]">Happy Customers</p>
+        </div>
+        <div className="card-two p-1 py-7 border bg-[#1A1A1A] rounded-[10px]">
+          <h1 className="md:text-2xl text-white  text-xl font-bold">10k+</h1>
+          <p className="text-[#939393] text-[14px]">Properties For Clients</p>
+        </div>
+        <div className="card-three p-6 w-full md:w-[25%] py-7 border bg-[#1A1A1A] rounded-[10px]">
+          <h1 className="md:text-2xl text-xl text-white font-bold">16+</h1>
+          <p className="text-[#939393] text-[14px]">Years of Experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Right Image Section */}
+  <div className="right flex items-center justify-center w-full md:w-[50%]">
+    <div className="main w-[80%] border rounded-[10px] border-[#939393]">
+      <img
+        className="w-full h-full rounded-[10px] object-cover"
+        src="/img/sec-one.png"
+        alt="Section Image"
+      />
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        <div className="sec-two p-2 w-[100%] md:h-[75vh] gap-16 md:flex md:items-center  ">
+          <div className="left  w-full  md:w-[35%]   flex justify-center items-center">
+            <div className=" w-[80%] me-3  border ">
+              <h1 className="md:text-4xl text-2xl p-1  font-bold  text-white">Our Values</h1>
+              <p className="text-[#828282] text-[14px]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Deserunt rem aut aperiam, dolorem iste dolore modi sed doloribus
                 veniam eveniet doloremque at, rerum corrupti ut neque animi
@@ -118,100 +170,92 @@ function About() {
             </div>
           </div>
 
-          <div className="text-[#828282] grid grid-cols-2 gap-3 w-[50%] p-6 rounded-xl border border-gray-700 bg-[#111] shadow-[0_0_0_1px_rgba(255,255,255,0.05),_0_0_15px_rgba(255,255,255,0.1)]">
+          <div className="text-[#828282] mt-3 md:grid md:grid-cols-2 gap-3 md:w-[50%] p-6 rounded-xl border border-gray-700 bg-[#111] md:shadow-[0_0_0_1px_rgba(255,255,255,0.05),_0_0_15px_rgba(255,255,255,0.1)]">
             {card.map((des, index) => (
               <div
                 key={index}
-                className={`card p-10 h-40 ${
+                className={`card mt-3 md:p-10 md:h-40 ${
                   des.key === 2 || des.key === 4
-                    ? "border-l-1 border-gray-700"
+                    ? "md:border-l-1 md:border-gray-700"
                     : "" >= des.key === 2 || des.key === 2
-                    ? "border-b-1  border-gray-700"
+                    ? "md:border-b-1  md:border-gray-700"
                     : ""
-                }`}
+                } border-gray-700 border-b-1 md:border-0 `}
               >
                 <div className="upper-sec flex gap-3">
-                  <div className="icon border w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                  <div className="icon  w-12 h-12 bg-blue-600 rounded-full flex items-center text-amber-50 justify-center">
                     {des.icon}
                   </div>
-                  <div className="Heading flex items-center justify-center">
+                  <div className="Heading flex text-amber-50 items-center justify-center">
                     {des.heading}
                   </div>
                 </div>
                 <div className="description mt-4 text-sm">{des.desc}</div>
                 <div
-                  className={`${
+                  className={` ${
                     des.key === 1
-                      ? " border-b-1  border-gray-700  w-100"
-                      : "hidden"
-                  }  w-[230%] mt-5`}
+                      ? " md:border-b-1  border-gray-700  w-100"
+                      : "md:hidden"
+                  }  md:w-[230%] mt-5`}
                 ></div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="sec-three  text-amber-50  h-[70vh]">
-          <h1 className="text-4xl ms-18">Our Achievements</h1>
-          <p className="text-[#828282] ms-18">
+        <div className="sec-three mt-8 text-amber-50  md:h-[70vh]">
+          <div className=" md:ms-18 ms-5">
+
+          <h1 className="md:text-4xl text-2xl font-bold  ">Our Achievements</h1>
+          <p className="text-[#828282] text-[14px] ">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
             laborum delectus nam.
           </p>
 
-          <div className="achiv-card flex  w-full justify-evenly  ">
-            <div className="card  p-8  w-[30%] ">
-              <div className=" p-10  text-[#fcfafa] rounded-xl border border-gray-700 bg-[#111] shadow-[0_0_0_1px_rgba(255,255,255,0.05),_0_0_15px_rgba(255,255,255,0.1)]  w-[100%]">
-                <h1 className="text-2xl font-bold">Year Experience</h1>
-                <p className="text-[#828282] mt-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-                  a perspiciatis ipsam commodi officiis similique inventore.
-                </p>
+          </div>
+          <div className="achiv-card md:flex p-3 w-full justify-evenly  ">
+            {achievements.map((card,ind)=>(
+
+              <div key={ind} className="card mt-3 md:p-8  md:w-[30%] ">
+                <div className=" md:p-10 p-5  text-[#fcfafa] rounded-xl border border-gray-700 bg-[#111] shadow-[0_0_0_1px_rgba(255,255,255,0.05),_0_0_15px_rgba(255,255,255,0.1)]  w-[100%]">
+                  <h1 className=" ">{card.title}</h1>
+                  <p className="text-[#828282] text-[14px] mt-2">
+                   {card.desc}</p>
+                </div>
               </div>
-            </div>
-            <div className="card  p-8  w-[30%] ">
-              <div className=" p-10 text-[#fcfafa] rounded-xl border border-gray-700 bg-[#111] shadow-[0_0_0_1px_rgba(255,255,255,0.05),_0_0_15px_rgba(255,255,255,0.1)]  w-[100%]">
-                <h1 className="text-2xl font-bold">Year Experience</h1>
-                <p className="text-[#828282] mt-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-                  a perspiciatis ipsam commodi officiis similique inventore.
-                </p>
-              </div>
-            </div>
-            <div className="card  p-8  w-[30%] ">
-              <div className=" p-10  text-[#fcfafa] rounded-xl border border-gray-700 bg-[#111] shadow-[0_0_0_1px_rgba(255,255,255,0.05),_0_0_15px_rgba(255,255,255,0.1)]  w-[100%]">
-                <h1 className="text-2xl font-bold">Year Experience</h1>
-                <p className="text-[#828282] mt-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-                  a perspiciatis ipsam commodi officiis similique inventore.
-                </p>
-              </div>
+              
+            ))}
             </div>
           </div>
-        </div>
+          
 
-        <div className="sec-four text-amber-50 w-full min-h-screen">
-          <h1 className="text-4xl ms-12">Our Achievements</h1>
-          <p className="ms-12 text-[#828282]">
+        <div className="sec-four mt-8 text-amber-50 w-full md:min-h-screen">
+          <h1 className="text-2xl font-bold md:text-4xl ms-5 md:ms-12">Navigating the Estatein Experience </h1>
+          <p className="md:ms-12 ms-5 text-[14px] text-[#828282]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
             laborum delectus nam.
           </p>
 
           <div className="achiv-card mt-5 grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4 md:px-12">
-            {achiveCard.map((card,index) => (
-              <div key={index} className="card w-full rounded-xl p-[1px] bg-gradient-to-b from-[#6B46C1] via-purple-500 to-transparent">
+            {achiveCard.map((card, index) => (
+              <div
+                key={index}
+                className={`card w-full ${index>2 ?`hidden md:block`:""} rounded-xl p-[1px] bg-gradient-to-b from-[#6B46C1] via-purple-500 to-transparent`}
+              >
+                
                 <div className="bg-[#111] rounded-xl h-full w-full">
                   <div className="relative px-6 py-3 text-white text-sm font-medium border-b border-gray-700">
-                     {card.step}
+                    {card.step}
                     <div className="absolute top-0 right-0 h-full   rounded" />
                   </div>
 
                   <div className="relative p-6">
                     <div className="absolute top-0 left-0 w-full h-full rounded-xl pointer-events-none" />
-                    <h1 className="text-xl font-semibold text-white">
-                     {card.title}
+                    <h1 className="text-xl  text-white">
+                      {card.title}
                     </h1>
                     <p className="text-[#9ca3af] mt-3 text-sm leading-relaxed">
-                     {card.desc}
+                      {card.desc}
                     </p>
                   </div>
                 </div>
@@ -220,57 +264,66 @@ function About() {
           </div>
         </div>
 
-<div className="sec-five  text-amber-50 w-full min-h-screen">
-    <div className="ms-12">
-        <h1 className="text-4xl font-bold">Meet the Estain Team</h1>
-        <p className="text-gray-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim quas voluptates error laudantium iusto harum sed similique .</p>
-    </div>
+        <div className="sec-five  text-amber-50 w-full md:min-h-screen">
+          <div className="md:ms-16 ms-5">
+            <h1 className="md:text-4xl text-2xl font-bold">Meet the Estain Team</h1>
+            <p className="text-gray-500 text-[14px]">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim
+              quas voluptates error laudantium iusto harum sed similique .
+            </p>
+          </div>
 
-<div className="TeamCards w-[100%] border ">
-   <div className="card w-full  md:w-[20%] bg-[#111] rounded-xl border border-[#2c2c2c] p-6 flex flex-col items-center relative text-white">
+          <div className="TeamCards p-8  md:flex items-center justify-evenly w-[100%]  mt-20 ">
 
-  <div className="img w-full flex justify-center">
+{team.map((card,ind)=>(
+
+ <div
+  key={ind}
+  className="card mt-4 w-full md:w-[20%] h-[500px] bg-[#111] rounded-xl border border-[#2c2c2c] p-6 flex flex-col items-center relative text-white"
+>
+  {/* Fixed-height image section */}
+  <div className="img w-full h-[250px] overflow-hidden flex justify-center items-center">
     <img
-      src="/img/founder.jpg"
-      alt="Founder"
-      className="rounded-xl  w-full object-cover"
+      src={card.img}
+      alt={card.name}
+      className="rounded-xl w-full h-full object-cover"
     />
   </div>
 
-
-  <div className="absolute -bottom-6 flex justify-center w-full">
-    <div className="bg-[#7c3aed] w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg">
-      <i className="fab fa-twitter"></i> 
-    </div>
+  {/* Twitter icon */}
+  <div className="twitter-icon py-3 p-2 px-5 rounded-full absolute top-[220px] left-1/2 transform -translate-x-1/2 border bg-blue-600 z-10">
+    X
   </div>
 
+  {/* Text and input */}
+  <div className="text-center mt-10">
+    <h1 className="text-lg font-semibold">{card.name}</h1>
+    <p className="text-[#939393] text-[14px]">{card.designation}</p>
 
-  <div className="mt-10 text-center">
-    <h1 className="text-lg font-semibold">Max Mitchell</h1>
-    <p className="text-sm text-gray-400 mt-1">Founder</p>
-  </div>
-
-
-  <div className="w-full mt-6">
-    <div className="flex items-center justify-between bg-[#1c1c1c] rounded-full px-4 py-2">
+    <div className="inp relative mt-3">
       <input
         type="text"
         placeholder="Say Hello 👋"
-        className="bg-transparent outline-none text-white placeholder:text-gray-400 w-full"
+        className="p-3 pl-3 border border-gray-700 rounded-2xl w-full"
       />
-      <div className="bg-[#7c3aed] w-8 h-8 rounded-full flex items-center justify-center text-white ml-3">
-        <i className="fas fa-paper-plane text-sm"></i> 
-      </div>
+      {/* Optional send button */}
+      <button className="border bg-blue-600 px-2.5 py-0.5 me-1 rounded-full absolute top-[8px] right-1.5">
+        X
+      </button> 
     </div>
   </div>
 </div>
 
-</div>
 
 
+))}
 
-</div>
+           
 
+          
+          
+          </div>
+        </div>
       </div>
     </div>
   );
