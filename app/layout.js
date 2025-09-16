@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import "../app/styles/globals.css";
 import { Open_Sans } from "next/font/google";
 // import { getServerSession } from "next-auth";
@@ -28,7 +29,7 @@ export default function RootLayout({ children }) {
           <TanstackProvider>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>*/}
         {children}
-
+        <Toaster richColors position="top-right" />
         {/*   </ThemeProvider>
           </TanstackProvider>
         </NextAuthSessionProvider> */}
