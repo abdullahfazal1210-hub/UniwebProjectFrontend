@@ -69,10 +69,10 @@ export default function Header() {
           <div className='w-1/4 flex items-center justify-end'>
             <Button asChild>
               <Link 
-                href="/about"
+                href="/contact"
                 style={pathname === "/about" ? activeButton : inactiveButton}
                 className='text-sm text-white px-5 rounded-b-md font-medium'
-              >Contact</Link>
+              >Contact Us</Link>
             </Button>
           </div>
         </nav>
