@@ -240,26 +240,25 @@ const team = [
             {achiveCard.map((card, index) => (
               <div
                 key={index}
-                className={`card w-full ${index>2 ?`hidden md:block`:""} rounded-xl p-[1px] bg-gradient-to-b from-[#6B46C1] via-purple-500 to-transparent`}
-              >
-                
-                <div className="bg-[#111] rounded-xl h-full w-full">
-                  <div className="relative px-6 py-3 text-white text-sm font-medium border-b border-gray-700">
-                    {card.step}
-                    <div className="absolute top-0 right-0 h-full   rounded" />
-                  </div>
 
-                  <div className="relative p-6">
-                    <div className="absolute top-0 left-0 w-full h-full rounded-xl pointer-events-none" />
-                    <h1 className="text-xl  text-white">
-                      {card.title}
-                    </h1>
-                    <p className="text-[#9ca3af] mt-3 text-sm leading-relaxed">
-                      {card.desc}
-                    </p>
+                className=" p-5  ${} rounded "
+               >
+                <div className="gradient-border p-3 ">
+                  <div className="step">
+
+                  Step one
                   </div>
                 </div>
-              </div>
+                <div className="gradient-content    ">
+
+                
+                <div className="content p-6   ">
+              <h1 className="text-2xl">Discover a world of posibility </h1>
+              <p className="text-[14px] text-gray-500 mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti rem, odio consectetur laudantium quos eveniet explicabo itaque unde at adipisci temporibus dicta minima aut iusto vel, debitis qui, iste quas!</p>
+                </div>
+                </div>
+                
+               </div>
             ))}
           </div>
         </div>
@@ -325,6 +324,7 @@ const team = [
           </div>
         </div>
       </div>
+      
     </div>
   );
 }
