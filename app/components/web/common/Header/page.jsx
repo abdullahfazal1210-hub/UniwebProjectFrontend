@@ -32,7 +32,12 @@ export default function Header() {
         border: '1px solid #703bf7'
     };
 
-
+    const links = [
+      { href: "/", label: "Home" },
+      { href: "/about", label: "About Us" },
+      { href: "/properties", label: "Properties" },
+      { href: "/service", label: "Services" },
+    ];
 
   return (
     <>
@@ -43,43 +48,24 @@ export default function Header() {
             <Cancel />
           </div>
         </div>
-        <nav className='w-full flex px-8 py-4 bg-[rgba(20,20,20,1)] text-white'>
+        <nav className='w-full flex px-16 py-4 bg-[rgba(26,26,26,1)] text-white'>
           <div className='w-1/4 flex items-center justify-start'>
             <Logo />
           </div>
-          <div className='w-1/2 flex items-center gap-5 justify-center'>
-            <Link
-        href="/"
-        style={pathname === "/" ? activeStyle : inactiveStyle}
-        className="text-sm text-white px-5 py-3 rounded-lg font-medium"
-      >
-        Home
-      </Link>
-
-      <Link
-        href="/about"
-        style={pathname === "/about" ? activeStyle : inactiveStyle}
-        className="text-sm text-white px-5 py-3 rounded-lg font-medium"
-      >
-        About Us
-      </Link>
-
-      <Link
-        href="/properties"
-        style={pathname === "/properties" ? activeStyle : inactiveStyle}
-        className="text-sm text-white px-5 py-3 rounded-lg font-medium"
-      >
-        Properties
-      </Link>
-
-      <Link
-        href="/service"
-        style={pathname === "/service" ? activeStyle : inactiveStyle}
-        className="text-sm text-white px-5 py-3 rounded-lg font-medium"
-      >
-        Services
-      </Link>
-          </div>
+          <ul className='w-1/2 flex items-center gap-5 justify-center'>
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-sm text-white px-5 py-3 rounded-lg font-medium"
+                  style={pathname === link.href ? activeStyle : inactiveStyle
+                  }
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
           <div className='w-1/4 flex items-center justify-end'>
             <Button asChild>
               <Link 
