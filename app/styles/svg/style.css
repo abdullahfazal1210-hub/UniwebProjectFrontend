@@ -1,0 +1,110 @@
+.main-Logo {
+    width: 160px;
+    height: 48px;
+}
+
+.home-icon,
+.capture-icon,
+.property-icon,
+.location-icon,
+.phone-icon,
+.social-icon,
+.email-icon,
+.sunrise-icon,
+.pie-chart-icon,
+.chart-icon,
+.balance-icon,
+.alert-icon,
+.sparkling-icon,
+.tenant-icon,
+.maintenance-icon,
+.strategies-icon,
+.roi-icon,
+.market-icon {
+    width: 82px;
+    height: 82px;
+}
+
+.villa-icon,
+.bathroom-icon,
+.bedroom-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+@media (min-width: 800px) and (max-width: 1440px) {
+
+    .main-Logo {
+        width: 113.33px;
+        height: 34px;
+    }
+
+    .home-icon,
+    .capture-icon,
+    .property-icon,
+    .location-icon,
+    .phone-icon,
+    .social-icon,
+    .email-icon,
+    .sunrise-icon,
+    .pie-chart-icon,
+    .chart-icon,
+    .balance-icon,
+    .alert-icon,
+    .sparkling-icon,
+    .tenant-icon,
+    .maintenance-icon,
+    .strategies-icon,
+    .roi-icon,
+    .market-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .villa-icon,
+    .bathroom-icon,
+    .bedroom-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+}
+
+@media (max-width: 799px) {
+
+    .main-Logo {
+        width: 93.33px;
+        height: 28px;
+    }
+
+    .home-icon,
+    .capture-icon,
+    .property-icon,
+    .location-icon,
+    .phone-icon,
+    .social-icon,
+    .email-icon,
+    .sunrise-icon,
+    .pie-chart-icon,
+    .chart-icon,
+    .balance-icon,
+    .alert-icon,
+    .sparkling-icon,
+    .tenant-icon,
+    .maintenance-icon,
+    .strategies-icon,
+    .roi-icon,
+    .market-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .villa-icon,
+    .bathroom-icon,
+    .bedroom-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+}
