@@ -9,7 +9,7 @@ import Logo from '@/app/styles/svg/Logo.jsx';
 import Cancel from '../../../../styles/svg/Cancel.jsx'
 
 // shadcn comps
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
     const pathname = usePathname();
@@ -70,7 +70,7 @@ export default function Header() {
             <Button asChild>
               <Link 
                 href="/contact"
-                style={pathname === "/about" ? activeButton : inactiveButton}
+                style={pathname === "/contact" ? activeButton : inactiveButton}
                 className='text-sm text-white px-5 rounded-b-md font-medium'
               >Contact Us</Link>
             </Button>

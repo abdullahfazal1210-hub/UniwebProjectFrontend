@@ -131,7 +131,7 @@
 
 /* Scroller CSS */
 body {
-  /* font-family: "Urbanist", sans-serif; */
+  font-family: "Urbanist";
   font-style: normal;
   scroll-behavior: smooth;
 }
@@ -177,4 +177,15 @@ body::-webkit-scrollbar-thumb {
   background-repeat: no-repeat;
   background-size: contain;
   transform: scaleX(-1);
+}
+
+.hero-image {
+  background: rgba(26, 26, 26, 1);
+  background-image: 
+    linear-gradient(238.21deg, #2A213F 8.76%, rgba(25, 25, 25, 0) 50.09%),
+    url('/abstract-design.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
 }
