@@ -1,0 +1,181 @@
+/* Logos */
+.message-logo,
+.send-logo,
+.facebook-logo,
+.twitter-logo,
+.linkedIn-logo,
+.youtube-logo {
+  width: 24px;
+  height: 24px;
+}
+
+/* Cancel Button */
+.cancel-button {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  background-color: #4d4d4d;
+  border-radius: 75px;
+  padding: 2px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* Main Menu */
+.main-Menu {
+  width: 28px;
+  height: 28px;
+  display: none;
+}
+
+/* Main Logo */
+.main-Logo {
+  width: 160px;
+  height: 48px;
+}
+
+/* Big Icons */
+.home-icon,
+.capture-icon,
+.property-icon,
+.location-icon,
+.phone-icon,
+.social-icon,
+.email-icon,
+.sunrise-icon,
+.pie-chart-icon,
+.chart-icon,
+.balance-icon,
+.alert-icon,
+.sparkling-icon,
+.tenant-icon,
+.maintenance-icon,
+.strategies-icon,
+.roi-icon,
+.market-icon {
+  width: 82px;
+  height: 82px;
+}
+
+/* Small Icons */
+.villa-icon,
+.bathroom-icon,
+.bedroom-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+/* ----------- MEDIA QUERIES ----------- */
+@media (min-width: 800px) and (max-width: 1440px) {
+  /* Logos */
+  .message-logo,
+  .send-logo,
+  .facebook-logo,
+  .twitter-logo,
+  .linkedIn-logo,
+  .youtube-logo {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Cancel Button */
+  .cancel-button {
+    top: 8px;
+    right: 15px;
+  }
+
+  /* Main Logo */
+  .main-Logo {
+    width: 113.33px;
+    height: 34px;
+  }
+
+  /* Big Icons */
+  .home-icon,
+  .capture-icon,
+  .property-icon,
+  .location-icon,
+  .phone-icon,
+  .social-icon,
+  .email-icon,
+  .sunrise-icon,
+  .pie-chart-icon,
+  .chart-icon,
+  .balance-icon,
+  .alert-icon,
+  .sparkling-icon,
+  .tenant-icon,
+  .maintenance-icon,
+  .strategies-icon,
+  .roi-icon,
+  .market-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Small Icons */
+  .villa-icon,
+  .bathroom-icon,
+  .bedroom-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 799px) {
+  /* Logos */
+  .send-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Cancel Button */
+  .cancel-button {
+    right: 8px;
+  }
+
+  /* Main Menu */
+  .main-Menu {
+    display: block;
+  }
+
+  /* Main Logo */
+  .main-Logo {
+    width: 93.33px;
+    height: 28px;
+  }
+
+  /* Big Icons */
+  .home-icon,
+  .capture-icon,
+  .property-icon,
+  .location-icon,
+  .phone-icon,
+  .social-icon,
+  .email-icon,
+  .sunrise-icon,
+  .pie-chart-icon,
+  .chart-icon,
+  .balance-icon,
+  .alert-icon,
+  .sparkling-icon,
+  .tenant-icon,
+  .maintenance-icon,
+  .strategies-icon,
+  .roi-icon,
+  .market-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Small Icons */
+  .villa-icon,
+  .bathroom-icon,
+  .bedroom-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
