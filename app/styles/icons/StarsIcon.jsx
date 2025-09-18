@@ -1,7 +1,7 @@
 
 function StarsIcon() {
   return (
-    <svg width="69" height="30" viewBox="0 0 69 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="59" height="80" viewBox="0 -10 69 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_75_930)">
       <path d="M15 30.0166C23.2843 30.0166 30 23.3009 30 15.0166C30 6.73233 23.2843 0.0166836 15 0.0166836C6.71573 0.0166836 0 6.73233 0 15.0166C0 23.3009 6.71573 30.0166 15 30.0166Z" fill="#666666"/>
       <path d="M0 45C8.28427 45 15 38.2843 15 30C15 21.7157 8.28427 15 0 15C-8.28427 15 -15 21.7157 -15 30C-15 38.2843 -8.28427 45 0 45Z" fill="#141414"/>

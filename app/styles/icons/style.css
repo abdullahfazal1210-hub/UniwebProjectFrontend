@@ -115,8 +115,8 @@
 }
 
 .send-logo {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
 }
 
 .facebook-logo {
@@ -147,8 +147,8 @@
     }
     
     .send-logo {
-        width: 24px;
-        height: 24px;
+        width: 14px;
+        height: 14px;
     }
     
     .facebook-logo {
@@ -176,8 +176,8 @@
 @media (max-width: 799px) {
 
     .send-logo {
-        height: 24px;
-        width: 24px;
+        height: 14px;
+        width: 14px;
     }
 
 }
