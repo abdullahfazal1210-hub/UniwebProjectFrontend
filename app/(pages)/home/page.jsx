@@ -27,6 +27,7 @@ import Slider from '@/app/components/web/common/Slider/page';
 import getProperty from '@/app/action/getProperty.js';
 import getBlog from '@/app/action/getBlogs.js';
 import getReview from '@/app/action/getReview.js';
+
 export default function Home() {
 
   const [customer, setCustomer] = useState(0);
