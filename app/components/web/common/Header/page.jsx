@@ -37,6 +37,7 @@ export default function Header() {
       { href: "/about", label: "About Us" },
       { href: "/properties", label: "Properties" },
       { href: "/service", label: "Services" },
+      { href: "/contact", label: "Contact Us" },
     ];
 
   return (
@@ -70,9 +71,9 @@ export default function Header() {
             <Button asChild>
               <Link 
                 href="/contact"
-                style={pathname === "/contact" ? activeButton : inactiveButton}
+                style={pathname === "/Login" ? activeButton : inactiveButton}
                 className='text-sm text-white px-5 rounded-b-md font-medium'
-              >Contact Us</Link>
+              >Sign In</Link>
             </Button>
           </div>
         </nav>

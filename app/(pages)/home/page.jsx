@@ -1,5 +1,5 @@
 "use client";
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from "next/link";
 import Image from 'next/image';
 
@@ -14,28 +14,71 @@ import HomeIcon from '@/app/styles/svg/HomeIcon.jsx';
 import CaptureIcon from '@/app/styles/svg/CaptureIcon.jsx';
 import PropertyIcon from '@/app/styles/svg/PropertyIcon.jsx';
 import SunriseIcon from '@/app/styles/svg/SunriseIcon.jsx';
+import StarIcon from '@/app/styles/svg/StarsIcon.jsx';
 
 // import image
 import HomeBanner from '@/public/img/home-banner.png';
 import BannerTag from '@/app/styles/svg/BannerTag.jsx';
 
+// import slider
+import Slider from '@/app/components/web/common/Slider/page';
+
+// fetch data
+import getProperty from '@/app/action/getProperty.js';
+import getBlog from '@/app/action/getBlogs.js';
+import getReview from '@/app/action/getReview.js';
+import { StarsIcon } from 'lucide-react';
 export default function Home() {
 
-  const stats = [
-  {
-    value: "200+",
-    label: "Happy Customers",
-  },
-  {
-    value: "10k+",
-    label: "Properties For Clients",
-  },
-  {
-    value: "16+",
-    label: "Years of Experience",
-  },
-];
+  const [customer, setCustomer] = useState(0);
+  const [propertyData, setPropertyData] = useState([]);
+  const [blogData, setBlogData] = useState([]);
+  const [reviewData, setReviewData] = useState([]);
 
+
+  const content = [
+    { 
+      title: "Featured Properties", 
+      desc: "Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional homes and investments available through Estatein. Click 'View Details' for more information.",
+      button: "View All Properties",
+      type: "property",
+      data: propertyData
+    },
+    { 
+      title: "What Our Clients Say", 
+      desc: "Read the success stories and heartfelt testimonials from our valued clients. Discover why they chose Estatein for their real estate needs.",
+      button: "View All Testimonials",
+      type: "review",
+      data: reviewData
+    },
+    { 
+      title: "Frequently Asked Questions", 
+      desc: "Find answers to common questions about Estatein’s services, property listings, and the real estate process. We're here to provide clarity and assist you every step of the way.",
+      button: "View All FAQ's",
+      type: "blog",
+      data: blogData
+    },
+  ];
+
+  const stats = [
+    {
+      key: "customer", // give it a key
+      value: 200, // target value
+      label: "Happy Customers",
+    },
+    {
+      key: "properties",
+      value: "10k",
+      label: "Properties For Clients",
+    },
+    {
+      key: "experience",
+      value: 16,
+      label: "Years of Experience",
+    },
+  ];
+  
+  
   const services = [
     {
       title: "Find Your Dream Home",
@@ -54,10 +97,36 @@ export default function Home() {
       icon: <SunriseIcon />,
     },
   ];
+  
+  useEffect(() => {
+    if (customer < 200) {
+      const timer = setTimeout(() => setCustomer(customer + 1), 20);
+      return () => clearTimeout(timer);
+    }
+  }, [customer]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resProperty = await getProperty();
+        setPropertyData(resProperty.data || resProperty);
+        
+        const resReview = await getReview();
+        setReviewData(resReview.data || resReview);
+
+        const resBlog = await getBlog(); // 👈 make sure you have this API function
+        setBlogData(resBlog.data || resBlog);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
       <>
-        <main id='page-1'>
+        <main id='page-1' className='bg-[#141414] grid'>
           <section >
             {/* Banner Tag */}
             <div className='w-32 h-32 absolute top-48 left-1/2 z-10'>
@@ -100,7 +169,7 @@ export default function Home() {
                       className="grid gap-0.5 px-3 py-3.5 bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] rounded-lg"
                     >
                       <h6 className="font-bold text-[30px] leading-[150%] tracking-normal">
-                        {stat.value}
+                        {stat.key === "customer" ? customer : stat.value}+
                       </h6>
                       <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
                         {stat.label}
@@ -130,6 +199,38 @@ export default function Home() {
           })}
           </section>
 
+          {content.map((section, idx) => (
+              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-1 px-16 py-10">
+                {/* Header */}
+                <StarIcon />
+                <div className="w-full flex items-center justify-between">
+                  <aside className="grid gap-2 max-w-5xl">
+                    <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white">
+                      {section.title}
+                    </h1>
+                    <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                      {section.desc}
+                    </p>
+                  </aside>
+
+                  <aside className="flex items-center gap-3">
+                    <Button asChild>
+                      <Link
+                        href="/about"
+                        className="border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal"
+                      >
+                        {section.button}
+                      </Link>
+                    </Button>
+                  </aside>
+                </div>
+
+                {/* Slider */}
+                <div className="w-full grid grid-cols-3">
+                  <Slider type={section.type} data={section.data} />
+                </div>
+              </section>
+          ))}
         
 
         </main>
