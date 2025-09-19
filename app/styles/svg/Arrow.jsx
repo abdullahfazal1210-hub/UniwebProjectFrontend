@@ -3,7 +3,7 @@ import './style.css';
 export default function Arrow() {
   return (
      <svg
-  className="text-[#4d4d4d]"
+  className="text-[#4d4d4d] hover:text-[#703bf7] hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer hover:rotate-180"
   width="25"
   height="24"
   viewBox="0 0 25 24"
