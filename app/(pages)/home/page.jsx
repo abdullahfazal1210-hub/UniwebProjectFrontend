@@ -207,10 +207,10 @@ export default function Home() {
           </section>
 
           {content.map((section, idx) => (
-              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-1 px-16 py-10">
+              <section key={idx} className="w-full  grid  bg-[rgb(20,20,20)] gap-1 px-16 py-10">
                 {/* Header */}
                 <StarIcon />
-                <div className="w-full flex items-center justify-between">
+                <div className="w-full  flex items-center justify-between">
                   <aside className="grid gap-2 max-w-5xl">
                     <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white">
                       {section.title}

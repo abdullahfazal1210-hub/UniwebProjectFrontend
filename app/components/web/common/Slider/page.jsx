@@ -19,7 +19,7 @@ export default function Slider({ type, data }) {
       navigation={true} 
       loop={true}
       spaceBetween={20}
-      className="w-full"
+      className="w-[90vw]  "
       modules={[Navigation, Pagination]}
     >
       {data?.map((item, idx) => (
