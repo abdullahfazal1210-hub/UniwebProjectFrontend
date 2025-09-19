@@ -1,39 +1,49 @@
+'use client';
+import { useState, useEffect } from "react";
+
 {/* Final about page  */}
 import Card from "@/app/components/web/common/Card";
 import StatsCard from "@/app/components/web/common/StatsCard";
-import Message from "@/app/styles/icons/Message";
-import Send from "@/app/styles/icons/Send";
-import StarsIcon from "@/app/styles/icons/StarsIcon";
-import Twitter from "@/app/styles/icons/Twitter";
+import Message from "@/app/styles/svg/Message.jsx";
+import Send from "@/app/styles/svg/Send";
+import StarsIcon from "@/app/styles/svg/StarsIcon";
+import Twitter from "@/app/styles/svg/Twitter";
 import Sparkling from "@/app/styles/svg/Sparkling";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 
+import StarIcon from "@/app/styles/svg/StarIcon.jsx";
+import ExcelenceIcon from "@/app/styles/svg/ExcelenceIcon";
+import ClientIcon from "@/app/styles/svg/ClientIcon";
+
 function About() {
+
+  const [customer, setCustomer] = useState(0);
+  
   const card = [
     {
-      icon: "X",
+      icon: <StarIcon />,
       key: 1,
       heading: "Trust",
       desc: "Trust is the cornerstone of every successful real estate transaction.",
     },
 
     {
-      icon: "X",
+      icon: <ExcelenceIcon/>,
       key: 2,
       heading: "Excellence",
       desc: "We set the bar high for ourselves. From the properties we list to the services we provide.",
     },
 
     {
-      icon: "X",
+      icon: <ClientIcon/>,
       key: 3,
       heading: "Client-Centric",
       desc: "Your dreams and needs are at the center of our universe. We listen, understand.",
     },
 
     {
-      icon: "X",
+      icon: <StarIcon />,
       key: 4,
       heading: "Our Commitment",
       desc: "We are dedicated to providing you with the highest level of service, professionalism, and support.",
@@ -109,30 +119,40 @@ function About() {
   ];
   const stats = [
     {
-      value: "200+",
+      key: "customer", // give it a key
+      value: 200, // target value
       label: "Happy Customers",
     },
     {
-      value: "10k+",
+      key: "properties",
+      value: "10k",
       label: "Properties For Clients",
     },
     {
-      value: "16+",
+      key: "experience",
+      value: 16,
       label: "Years of Experience",
     },
   ];
+
+  useEffect(() => {
+      if (customer < 200) {
+        const timer = setTimeout(() => setCustomer(customer + 1), 20);
+        return () => clearTimeout(timer);
+      }
+    }, [customer]);
 
   return (
     <div className="bg-[#141414]">
       <div className="main-container  ">
  <div className="sec-one grid grid-cols-1 px-4 lg:grid-cols-2 md:grid-cols-2">
   <div className="left  relative md:h-[80vh]  flex justify-center items-center order-2 md:order-1">
-    <div className="md:w-[90%] md:h-[60%]">
+    <div className="grid gap-4 md:w-[90%] md:h-[60%]">
         <StarsIcon />
       <h1 className="md:text-4xl ms-2 md:ms-3 text-2xl font-semibold text-white">
         Our Journey
       </h1>
-      <p className="mt-6 md:ms-3 ms-2 text-[15px] text-[#939393]">
+      <p className="md:ms-3 ms-2 font-medium text-base leading-[150%] tracking-normal text-[#999999]">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam,
         doloremque at eum dignissimos voluptates ratione esse. Quidem sit
         dignissimos sunt corporis quia dolorum? Est quibusdam fugit, eos ex
@@ -140,12 +160,21 @@ function About() {
       </p>
 
       {/* Stats Cards */}
-      <div className="little-cards md:ms-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-9 text-center md:text-left">
-        {stats.map((stat,ind)=>(
-          <StatsCard key={ind} stat = {stat}/>
-
-        ))}
-      </div>
+      <div className='grid grid-cols-3 gap-5 text-white'>
+                  {stats.map((stat, index) => (
+                    <div
+                      key={index}
+                      className="grid gap-0.5 px-3 py-3.5 bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] rounded-lg"
+                    >
+                      <h6 className="font-bold text-[30px] leading-[150%] tracking-normal">
+                        {stat.key === "customer" ? customer : stat.value}+
+                      </h6>
+                      <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
     </div>
   </div>
 
