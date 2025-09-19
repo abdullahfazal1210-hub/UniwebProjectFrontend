@@ -1,3 +1,4 @@
+{/* Final about page  */}
 import Card from "@/app/components/web/common/Card";
 import StatsCard from "@/app/components/web/common/StatsCard";
 import Message from "@/app/styles/icons/Message";
@@ -124,8 +125,7 @@ function About() {
   return (
     <div className="bg-[#141414]">
       <div className="main-container  ">
- <div className="sec-one grid grid-cols-1 px-4 md:grid-cols-2">
-  {/* Left Content Section */}
+ <div className="sec-one grid grid-cols-1 px-4 lg:grid-cols-2 md:grid-cols-2">
   <div className="left  relative md:h-[80vh]  flex justify-center items-center order-2 md:order-1">
     <div className="md:w-[90%] md:h-[60%]">
         <StarsIcon />
@@ -181,13 +181,13 @@ function About() {
   </div>
 
 
-  <div className="text-[#828282] mt-3 col-span-7 md:col-span-4   md:col-start-4 p-1 bg-[#82818113] rounded-xl">
-    <div className="cards px-4 grid rounded-xl border grid-cols-4 border-[#4e4c4c7d] bg-[#111]">
+  <div className="text-[#828282] mt-3 col-span-7 md:col-span-4   md:col-start-4 p-1 md:p-2 bg-[#82818113] rounded-xl">
+    <div className="cards px-3 grid rounded-xl border grid-cols-4 border-[#4e4c4c7d] bg-[#111]">
       {card.map((item, index) => (
         <React.Fragment key={index}>
           <div
-            className={`p-6 md:col-span-2 col-span-4 border-b md:border-b-0 border-b-gray-700 ${
-              index % 2 === 1 ? "md:border-l md:border-l-gray-700 mt-3 mb-3" : ""
+            className={`p-6 md:col-span-2 col-span-4 border-b md:border-b-0 border-b-[#302f2f48] ${
+              index % 2 === 1 ? "md:border-l md:border-l-[#4e4c4c7d] mt-3 mb-3" : ""
             }`}
           >
             <Card
@@ -199,7 +199,7 @@ function About() {
 
           {index % 2 === 1 && index !== card.length - 1 && (
             <div className="col-span-4 my-2">
-              <Separator className="md:bg-gray-700 md:h-[1px] w-full" />
+              <Separator className="md:bg-[#4e4c4c7d] md:h-[1px] w-full" />
             </div>
           )}
         </React.Fragment>
@@ -211,7 +211,7 @@ function About() {
 
 
 
-        <div className="sec-three mt-8 px-3 md:px-10 text-amber-50   md:h-[70vh]">
+        <div className="sec-three mt-8 px-3 md:px-10 text-amber-50   md:h-[60vh]">
           <div className=" ">
               <StarsIcon />
             <h1 className="md:text-4xl ms-2 md:ms-3 text-2xl font-semibold  ">
@@ -251,7 +251,7 @@ function About() {
             {achiveCard.map((card, index) => (
               <div key={index} className={` rounded ${ index > 2 ? "hidden md:block":"block"}`} >
                 <div className="gradient-border  p-3 ">
-                  <div className="step">Step one</div>
+                  <div className="step">{card.step}</div>
                 </div>
                 <div className="gradient-content    ">
                   <div className="content p-6 relative">
@@ -264,13 +264,10 @@ function About() {
                     ></div>
 
                     <h1 className="text-2xl">
-                      Discover a world of possibility
+                      {card.title}
                     </h1>
                     <p className="text-[15px] text-gray-500 mt-4">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Deleniti rem, odio consectetur laudantium quos eveniet
-                      explicabo itaque unde at adipisci temporibus dicta minima
-                      aut iusto vel, debitis qui, iste quas!
+                      {card.desc}
                     </p>
                   </div>
                 </div>

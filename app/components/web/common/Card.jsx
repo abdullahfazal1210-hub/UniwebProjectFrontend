@@ -7,7 +7,7 @@ function Card({icon, heading , desc,}) {
         <div className="icon w-12 h-12 bg-blue-600 rounded-full flex items-center text-amber-50 justify-center">
           {icon}
         </div>
-        <div className="Heading flex text-amber-50 items-center justify-center">
+        <div className="Heading text-xl flex text-amber-50 items-center justify-center">
           {heading}
         </div>
       </div>
