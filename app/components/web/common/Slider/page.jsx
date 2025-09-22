@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules"; 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -15,12 +14,9 @@ export default function Slider({ type, data }) {
       slidesPerView={3}
       centeredSlides={false}
       grabCursor={true}
-      pagination={{ clickable: true }}
-      navigation={true} 
       loop={true}
       spaceBetween={20}
-      className="w-[90vw]  "
-      modules={[Navigation, Pagination]}
+      className="w-[90vw]"
     >
       {data?.map((item, idx) => (
         <SwiperSlide key={idx}>
@@ -38,6 +34,8 @@ export default function Slider({ type, data }) {
             <BlogCard
               {...item}
             />
+          )}
+          {type === "form" && (<div className="w-full h-full">{item}</div>
           )}
         </SwiperSlide>
       ))}

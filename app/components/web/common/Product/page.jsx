@@ -15,17 +15,17 @@ import HouseImage from '@/public/img/house-image.png';
 export default function ProductCard(props) {
   const {
     title,
-    desc,
+    description,
     feature,
     price,
-    id,
+    _id,
     type,
     no_of_bathroom,
     no_of_bedroom,
   } = { ...props };
 
-  // const words = desc.split(" ");
-  // const truncatedText = words.slice(0, 10).join(" ");
+  const words = description?.split(" ") || [];
+  const truncatedText = words.slice(0, 10).join(" ");
 
   return (
     <article className="grid opacity-100 gap-5 rounded-[12px] border border-[#262626] bg-[#141414] p-6">
@@ -39,7 +39,7 @@ export default function ProductCard(props) {
       <div className="grid gap-3">
         <header className="grid gap-1">
           <h5 className="text-white font-semibold text-[20px] leading-[150%]">{title}</h5>
-          <p className="text-[#999999] font-medium text-base leading-[150%]">{desc} <span className="text-white underline cursor-pointer">...Read More</span></p>
+          <p className="text-[#999999] font-medium text-base leading-[150%]">{truncatedText} ...Read More</p>
         </header>
 
         {/* Icons */}
