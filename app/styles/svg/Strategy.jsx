@@ -2,7 +2,7 @@ import './style.css';
 
 export default function Strategy() {
     return (
-        <svg className='strategies-icon' viewBox="0 0 82 83" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className='strategies-icon' viewBox="10 -10 82 110" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="1" width="81" height="81" rx="40.5" stroke="url(#paint0_linear_104_11853)" />
             <rect x="0.5" y="1" width="81" height="81" rx="40.5" stroke="url(#paint1_linear_104_11853)" />
             <rect x="10.5" y="11" width="61" height="61" rx="30.5" stroke="url(#paint2_linear_104_11853)" />

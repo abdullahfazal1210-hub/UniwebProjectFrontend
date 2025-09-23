@@ -2,7 +2,7 @@ import './style.css';
 
 export default function ROI() {
     return (
-        <svg className='roi-icon' viewBox="0 0 83 83" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className='roi-icon' viewBox="10 -10 82 110" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="81" height="81" rx="40.5" stroke="url(#paint0_linear_104_11836)" />
             <rect x="1" y="1" width="81" height="81" rx="40.5" stroke="url(#paint1_linear_104_11836)" />
             <rect x="11" y="11" width="61" height="61" rx="30.5" stroke="url(#paint2_linear_104_11836)" />
