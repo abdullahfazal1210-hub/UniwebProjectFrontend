@@ -1,0 +1,265 @@
+'use client';
+import React, { useState, useEffect } from 'react'
+import Image from "next/image";
+
+// Components
+import Slider from '@/app/components/web/common/Slider/page.jsx';
+
+// Icons
+import StarIcon from '@/app/styles/svg/StarsIcon.jsx';
+import LocationIcon from '@/app/styles/svg/LocationIcon.jsx';
+import BedroomIcon from '@/app/styles/svg/BedroomIcon';
+import BathroomIcon from '@/app/styles/svg/BathroomIcon';
+import AreaIcon from '@/app/styles/svg/Area.jsx';
+import Lightning from '@/app/styles/svg/Lightning.jsx';
+
+// Images
+import houseImage from '@/public/img/house-image.png';
+
+// fetch data
+import getBlog from '@/app/action/getBlogs.js';
+
+export default function Detailed() {
+
+    const [blogData, setBlogData] = useState([]);
+
+    const keys = [
+        { points: "Expansive oceanfront terrace for outdoor entertaining" },
+        { points: "Gourmet kitchen with top-of-the-line appliances" },
+        { points: "Private beach access for morning strolls and sunset views" },
+        { points: "Master suite with a spa-inspired bathroom and ocean-facing balcony" },
+        { points: "Private garage and ample storage space" },
+    ];
+
+    const content = [
+        { 
+        title: "Frequently Asked Questions", 
+        desc: "Find answers to common questions about Estatein’s services, property listings, and the real estate process. We're here to provide clarity and assist you every step of the way.",
+        button: "View All FAQ's",
+        type: "blog",
+        data: blogData
+        },
+    ];
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {    
+            const resBlog = await getBlog(); // 👈 make sure you have this API function
+            setBlogData(resBlog.data || resBlog);
+          } catch (err) {
+            console.error("Error fetching data:", err);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+  return (
+    <main id='page-detailed' className='bg-[#141414]'>
+        <section className='grid gap-5 py-10 px-16'>
+            <div className='grid gap-5'>
+                <header className='flex items-center justify-between gap-12'>
+                    <div className='flex gap-5'>
+                        <h1 className='text-white font-semibold text-[24px] leading-[150%] tracking-[0]'>Seaside Serenity Villa</h1>
+                        <p className='flex items-center gap-2 text-sm text-white border border-[rgba(38,38,38,1)] p-2 rounded-lg'>
+                            <LocationIcon color='white'/>
+                            Malibu, California
+                        </p>
+                    </div>
+                    <div className='grid gap-0.5 text-left'>
+                        <span className='font-medium text-[14px] leading-[150%] tracking-[0] text-[rgba(153,153,153,1)]'>Price</span>
+                        <span className='font-semibold text-[20px] leading-[150%] tracking-[0] text-white'>$1,250,000</span>
+                    </div>
+                </header>
+                <div className='grid grid-cols-2 gap-5'>
+                    <Image src={houseImage} className='w-full rounded-lg'/>
+                    <article className='grid gap-5 border border-[rgba(38,38,38,1)] p-10 rounded-lg h-fit'>
+                    <div className='grid gap-2.5'>
+                        <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0] text-white'>Description</h6>
+                        <p className='font-medium text-[16px] leading-[150%] tracking-[0] text-[rgba(153,153,153,1)]'>Discover your own piece of paradise with the Seaside Serenity Villa. T With an open floor plan, breathtaking ocean views from every room, and direct access to a pristine sandy beach, this property is the epitome of coastal living.</p>
+                    </div>
+                    <div className='border-t border-t-[rgba(38,38,38,1)] pt-4 flex gap-2.5 justify-evenly'>
+                        <div className='grid gap-2 '>
+                            <span className='flex items-center gap-1 text-[rgba(153,153,153,1)] font-medium text-[14px] leading-[150%] tracking-[0]'>
+                                <BedroomIcon color='rgba(153,153,153,1)' /> 
+                                Bedroom
+                            </span>
+                            <p className='text-[rgba(255,255,255,1)] font-semibold text-[20px] leading-[150%] tracking-[0]'>04</p>
+                        </div>
+                        <span className='h-full border border-[rgba(38,38,38,1)]'></span>
+                        <div className='grid gap-2 '>
+                           <span className='flex items-center gap-1 text-[rgba(153,153,153,1)] font-medium text-[14px] leading-[150%] tracking-[0]'>
+                                <BathroomIcon color='rgba(153,153,153,1)' />
+                                Bathroom
+                            </span>
+                            <p className='text-[rgba(255,255,255,1)] font-semibold text-[20px] leading-[150%] tracking-[0]'>03</p>
+                        </div>
+                        <span className='h-full border border-[rgba(38,38,38,1)]'></span>
+                        <div className='grid gap-2 '>
+                            <span className='flex items-center gap-1 text-[rgba(153,153,153,1)] font-medium text-[14px] leading-[150%] tracking-[0]'>
+                                <AreaIcon />
+                                Area
+                            </span>
+                            <p className='text-[rgba(255,255,255,1)] font-semibold text-[20px] leading-[150%] tracking-[0]'>2,500 Square Feet</p>
+                        </div>
+                    </div>
+                </article>
+                </div>
+            </div>
+            <article className='grid gap-5 border border-[rgba(38,38,38,1)] p-10 rounded-lg'>
+                    <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0] text-white'>Key Features and Amenities</h6>
+                    <div className='grid gap-3'>
+                        {keys.map((item, idx) => (
+                            <span
+                            key={idx}
+                            className="flex items-center gap-[10px] border-l border-l-[rgba(112,59,247,1)] pt-[14px] pr-[16px] pb-[14px] pl-[16px] bg-[linear-gradient(90deg,#1A1A1A_0%,rgba(26,26,26,0)_100%)] text-[rgba(153,153,153,1)] font-medium text-[16px] leading-[150%] tracking-[0]"
+                            >
+                            <Lightning />
+                            {item.points}
+                            </span>
+                        ))}
+                    </div>
+            </article>
+        </section>
+
+
+        <section className="w-full grid grid-cols-[40%_1fr] bg-[rgb(20,20,20)] gap-20 px-16 py-10">
+            <div className="w-full grid h-fit">
+                {/* Header */}
+                <StarIcon />
+                <div className="w-full flex items-center justify-between">
+                <aside className="grid gap-1 max-w-5xl">
+                    <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white p">
+                    Inquire About Seaside Serenity Villa
+                    </h1>
+                    <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                    Interested in this property? Fill out the form below, and our real estate experts will get back to you with more details, including scheduling a viewing and answering any questions you may have.
+                    </p>
+                </aside>
+            </div>
+        </div>
+
+        <form 
+            // onSubmit={handleSubmit(onSubmit)}
+            className='grid gap-6 border border-[rgba(38,38,38,1)] p-10 rounded-lg'
+        >
+            {/* Row 1 */}
+            <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-2">
+                <label className="font-semibold text-[16px] text-white">First Name</label>
+                <input
+                    // {...register("firstName")}
+                    type="text"
+                    placeholder="Enter First Name"
+                    required
+                    className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999]"
+                />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                <label className="font-semibold text-[16px] text-white">Last Name</label>
+                <input
+                    // {...register("lastName")}
+                    type="text"
+                    placeholder="Enter Last Name"
+                    required
+                    className="w-full px-3 py-2 rounded-lg border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999] bg-[rgba(26,26,26,1)]"
+                />
+                </div>
+            </div>
+
+            {/* Row 2 */}
+            <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-2">
+                <label className="font-semibold text-[16px] text-white">Email</label>
+                <input
+                    // {...register("email")}
+                    type="email"
+                    placeholder="Enter your Email"
+                    required
+                    className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999]"
+                />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                <label className="font-semibold text-[16px] text-white">Phone Number</label>
+                <input
+                    // {...register("phone")}
+                    type="tel"
+                    placeholder="Enter Phone Number"
+                    required
+                    className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999]"
+                />
+                </div>
+            </div>
+
+            {/* Row 3 - Selected Property */}
+            <div className="flex flex-col gap-2">
+                <label className="font-semibold text-[16px] text-white">Selected Property</label>
+                <span className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(26,26,26,1)] text-gray-200 flex items-center justify-between">
+                Seaside Serenity Villa Malibu, California
+                <LocationIcon color='white' />
+                </span>
+            </div>
+
+            {/* Row 4 - Message */}
+            <div className="flex flex-col gap-2">
+                <label className="font-semibold text-[16px] text-white">Message</label>
+                <textarea
+                // {...register("message")}
+                placeholder="Enter Your Message Here.."
+                rows="4"
+                className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999]"
+                ></textarea>
+            </div>
+
+            {/* Submit */}
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <label className="flex items-center gap-2 text-gray-400 text-sm">
+                          <input
+                            type="checkbox"
+                            required
+                            className="w-4 h-4 rounded border-[#262626] bg-[#141414] accent-[#703bf7]"
+                          />
+                          I agree with <span className="underline">Terms of Use</span> and{" "}
+                          <span className="underline">Privacy Policy</span>
+                        </label>
+                        <button
+                          type="submit"
+                          className="px-6 py-2 rounded-lg bg-[#703bf7] text-white font-medium hover:bg-[#5b2fd6] transition"
+                        >
+                          Send your Message
+                        </button>
+                      </div>
+            </form>
+
+        </section>
+
+
+        {content.map((section, idx) => (
+              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-16 py-10">
+                <div className='w-full grid'>
+
+                {/* Header */}
+                <StarIcon />
+                <div className="w-full  flex items-center justify-between">
+                  <aside className="grid gap-1 max-w-5xl">
+                    <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white">
+                      {section.title}
+                    </h1>
+                    <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                      {section.desc}
+                    </p>
+                  </aside>
+                </div>
+                </div>
+
+                {/* Slider */}
+                <div className="w-full grid grid-cols-3">
+                  <Slider type={section.type} data={section.data} />
+                </div>
+              </section>
+          ))}
+    </main>
+  )
+}

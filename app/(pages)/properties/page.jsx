@@ -364,7 +364,7 @@ export default function Properties() {
                                 type="checkbox"
                                 // checked={selectedMethod === "phone"}
                                 // onChange={() => setSelectedMethod("phone")}
-                                className="appearance-none w-6 h-6 border-2 border-[#B9B8C3] rounded-full cursor-pointer checked:bg-[#3c53c7] checked:border-[#3c53c7] transition duration-300"
+                                className="appearance-none w-4 h-4 border-2 border-[#B9B8C3] rounded-full cursor-pointer checked:bg-[#3c53c7] checked:border-[#3c53c7] transition duration-300"
                               />
                             </div>
 
@@ -379,7 +379,7 @@ export default function Properties() {
                                 type="checkbox"
                                 // checked={selectedMethod === "email"}
                                 // onChange={() => setSelectedMethod("email")}
-                                className="appearance-none w-6 h-6 border-2 border-[#B9B8C3] rounded-full cursor-pointer checked:bg-[#3c53c7] checked:border-[#3c53c7] transition duration-300"
+                                className="appearance-none w-4 h-4 border-2 border-[#B9B8C3] rounded-full cursor-pointer checked:bg-[#3c53c7] checked:border-[#3c53c7] transition duration-300"
                               />
                             </div>
                             </div>
