@@ -234,7 +234,203 @@ export default function Detailed() {
             </form>
 
         </section>
+        
+        <section className='w-full px-16 py-10 grid gap-6'>
+            <div className='w-full'>
+                <StarIcon />
+                <aside className="grid gap-1 max-w-5xl">
+                    <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white">
+                    Comprehensive Pricing Details
+                    </h1>
+                    <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                        At Estatein, transparency is key. We want you to have a clear understanding of all costs associated with your property investment. Below, we break down the pricing for Seaside Serenity Villa to help you make an informed decision
+                    </p>
+                </aside>
+            </div>
 
+            <div className='w-full grid gap-10'>
+
+                <aside className='w-full flex py-5 px-10 border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] rounded-lg items-center gap-5'>
+                    <h6 className='text-white font-semibold text-[20px] leading-[150%] tracking-[0]'>Note</h6>
+                    <span className='h-full border border-[rgba(38,38,38,1)]'></span>
+                    <p className='text-[#999999] font-medium text-[14px] leading-[150%] tracking-[0]'>The figures provided above are estimates and may vary depending on the property, location, and individual circumstances.</p>
+                </aside>
+
+                <section className='w-full flex gap-10'>
+                    <aside className='w-fit h-fit grid gap-0.5'>
+                        <span className='text-[#999999] font-medium text-[16px] leading-[150%] tracking-[0]'>Listing Price</span>
+                        <p className='text-white font-semibold text-[30px] leading-[150%] tracking-[0]'>$1,250,000</p>
+                    </aside>
+                    
+                    <section className='w-full grid gap-10'>
+
+                        <div className='w-full grid gap-7.5 p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
+
+                            <div className='w-full flex items-center justify-between text-white'>
+                                <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0]'>Additional Fees</h6>
+                                <button className='rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] px-4 py-2'>Learn More</button>
+                            </div>
+                            <hr className='border border-[rgba(38,38,38,1)]' />
+                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Property Transfer Tax</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $25,000 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Based on the sale price and local regulations</span>
+                                    </p>
+                                </div>
+                                <div className='grid gap-3'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Legal Fees</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $3,000 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Approximate cost for legal services, including title transfer</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr className='border border-[rgba(38,38,38,1)]' />
+                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Home Inspection</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $500 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Recommended for due diligence</span>
+                                    </p>
+                                </div>
+                                <div className='grid gap-3'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Property Insurance</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $1,200 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Annual cost for comprehensive property insurance</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr className='border border-[rgba(38,38,38,1)]' />
+                            <div className='w-full grid text-[#999999] gap-5'>
+                                <div className='grid gap-3'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Mortage Fees</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        Varies 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>If applicable, consult with your lender for specific details</span>
+                                    </p>
+                                </div>                                
+                            </div>
+
+                        </div>
+                        <div className='w-full grid gap-7.5 p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
+                            <div className='w-full flex items-center justify-between text-white'>
+                                <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0]'>Monthly Costs</h6>
+                                <button className='rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] px-4 py-2'>Learn More</button>
+                            </div>
+                            <hr className='border border-[rgba(38,38,38,1)]' />
+                            <div className='w-full flex items-center justify-between text-[#999999] gap-5'>
+                                <div className='grid gap-3'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Property Taxes</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $1,250 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Approximate monthly property tax based on the sale price and local rates</span>
+                                    </p>
+                                </div>                                
+                            </div>
+                            <hr className='border border-[rgba(38,38,38,1)]' />
+                            <div className='w-full flex items-center justify-between text-[#999999] gap-5'>
+                                <div className='grid gap-3'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Homeowners` Association Fee</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $300 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Monthly fee for common area maintenance and security</span>
+                                    </p>
+                                </div>                                
+                            </div>
+
+                        </div>
+                        <div className='w-full grid gap-7.5 p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
+
+                            <div className='w-full flex items-center justify-between text-white'>
+                                <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0]'>Total Initial Costs</h6>
+                                <button className='rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] px-4 py-2'>Learn More</button>
+                            </div>
+                            <hr className='border border-[rgba(38,38,38,1)]' />
+                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Listing Price</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $1,250,000 
+                                    </p>
+                                </div>
+                                <div className='grid gap-3'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Additional Fees</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $29,700 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Property transfer tax, legal fees, inspection, insurance</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr className='border border-[rgba(38,38,38,1)]' />
+                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Down Payment</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $250,000 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>20%</span>
+                                    </p>
+                                </div>
+                                <div className='grid gap-3'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Mortgage Amount</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $1,000,000 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>If applicable</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className='w-full grid gap-7.5 p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
+
+                            <div className='w-full flex items-center justify-between text-white'>
+                                <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0]'>Monthly Expenses</h6>
+                                <button className='rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] px-4 py-2'>Learn More</button>
+                            </div>
+                            <hr className='border border-[rgba(38,38,38,1)]' />
+                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Property Taxes</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $1,250 
+                                    </p>
+                                </div>
+                                <div className='grid gap-3'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Homeowners` Association Fee</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $300
+                                    </p>
+                                </div>
+                            </div>
+                            <hr className='border border-[rgba(38,38,38,1)]' />
+                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Mortgage Payment</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        Varies based on terms and interest rate
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>If applicable</span>
+                                    </p>
+                                </div>
+                                <div className='grid gap-3 h-fit'>
+                                    <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Property Insurance</span>
+                                    <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
+                                        $100 
+                                        <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Approximate monthly cost</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+                </section>
+
+            </div>
+
+        </section>
 
         {content.map((section, idx) => (
               <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-16 py-10">
