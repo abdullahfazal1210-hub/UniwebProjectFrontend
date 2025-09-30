@@ -111,7 +111,7 @@ export default function Login() {
       </Form>
       <p className="text-center text-normal text-[#fff] text-[0.875rem]">
         {`Don't have an account?`}
-        <a href={"#"} className="text-[#703BF7] font-semibold ml-1">
+        <a href={"/Register"} className="text-[#703BF7] font-semibold ml-1">
           Register Now
         </a>
       </p>

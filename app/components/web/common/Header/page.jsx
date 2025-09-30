@@ -70,7 +70,7 @@ export default function Header() {
           <div className='w-1/4 flex items-center justify-end'>
             <Button asChild>
               <Link 
-                href="/contact"
+                href="/Login"
                 style={pathname === "/Login" ? activeButton : inactiveButton}
                 className='text-sm text-white px-5 rounded-b-md font-medium'
               >Sign In</Link>
