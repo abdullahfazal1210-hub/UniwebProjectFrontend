@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Register() {
   const formSchema = z
@@ -149,9 +150,9 @@ export default function Register() {
       </Form>
       <p className="text-center text-normal text-[#fff] text-[0.875rem]">
         Already have an account?
-        <a href={"Login"} className="text-[#703BF7] font-semibold ml-1">
+        <Link href={"Login"} className="text-[#703BF7] font-semibold ml-1">
           Login Now
-        </a>
+        </Link>
       </p>
     </div>
   );

@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Link from "next/link";
 
 // ✅ Schema for form validation
 const formSchema = z.object({
@@ -111,9 +112,9 @@ export default function Login() {
       </Form>
       <p className="text-center text-normal text-[#fff] text-[0.875rem]">
         {`Don't have an account?`}
-        <a href={"/Register"} className="text-[#703BF7] font-semibold ml-1">
+        <Link href={"/Register"} className="text-[#703BF7] font-semibold ml-1">
           Register Now
-        </a>
+        </Link>
       </p>
     </div>
   );

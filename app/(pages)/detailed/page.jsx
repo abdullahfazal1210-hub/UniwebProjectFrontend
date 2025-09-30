@@ -72,7 +72,7 @@ export default function Detailed() {
                     </div>
                 </header>
                 <div className='grid grid-cols-2 gap-5'>
-                    <Image src={houseImage} className='w-full rounded-lg'/>
+                    <Image src={houseImage} alt='house image' className='w-full rounded-lg'/>
                     <article className='grid gap-5 border border-[rgba(38,38,38,1)] p-10 rounded-lg h-fit'>
                     <div className='grid gap-2.5'>
                         <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0] text-white'>Description</h6>

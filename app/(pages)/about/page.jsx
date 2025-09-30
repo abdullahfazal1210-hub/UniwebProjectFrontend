@@ -15,6 +15,7 @@ import React from "react";
 import StarIcon from "@/app/styles/svg/StarIcon.jsx";
 import ExcelenceIcon from "@/app/styles/svg/ExcelenceIcon";
 import ClientIcon from "@/app/styles/svg/ClientIcon";
+import Image from "next/image";
 
 function About() {
 
@@ -178,7 +179,7 @@ function About() {
     </div>
   </div>
 
-  {/* Right Content Section */}
+
   <div className="right  flex items-center justify-center w-full order-1 md:order-2">
     <div className="main w-[90%] border rounded-[10px] border-[#4e4c4c7d]">
       <img
@@ -323,11 +324,13 @@ function About() {
                 key={ind}
                 className="card  w-full    bg-[#111] rounded-xl border border-[#2c2c2c] p-8  relative text-white"
               >
-                {/* Fixed-height image section */}
+             
                 <div className="img w-full h-[250px] overflow-hidden flex justify-center items-center">
-                  <img
+                  <Image
                     src={card.img}
                     alt={card.name}
+                    width={90}
+                    height={90}
                     className="rounded-xl w-full h-full object-cover"
                   />
                 </div>
@@ -337,7 +340,7 @@ function About() {
                   
                 </div>
 
-                {/* Text and input */}
+              
                 <div className="text-center mt-10">
                   <h1 className="text-lg font-semibold">{card.name}</h1>
                   <p className="text-[#939393] text-[14px]">
@@ -350,7 +353,7 @@ function About() {
                       placeholder="Say Hello 👋"
                       className="p-3 pl-3 border border-gray-700 bg-[#1A1A1A] rounded-4xl w-full"
                     />
-                    {/* Optional send button */}
+                 
                     <button className="border p-1  bg-[#703BF7] me-1 rounded-full absolute top-[12px] md:top-[10px] right-1.5">
                       <Send />
 

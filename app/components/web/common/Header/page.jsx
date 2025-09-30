@@ -1,5 +1,5 @@
 "use client";
-import React from 'react'
+import React, { useState } from 'react'
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,6 +12,14 @@ import Cancel from '../../../../styles/svg/Cancel.jsx'
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
+  const [toggle, settoggle] = useState(true);
+  const handleCancelClick =()=>{
+    settoggle(!toggle)
+// console.log("clicked");
+  }
+
+
+
     const pathname = usePathname();
     const activeStyle = {
         backgroundColor: 'rgba(20, 20, 20, 1)',
@@ -42,13 +50,14 @@ export default function Header() {
 
   return (
     <>
-    <header className='w-full'>
-        <div className='w-full flex items-center justify-center py-4 border-b border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-white'>
+    <header className='w-full'> 
+      {toggle ? <div className='w-full flex items-center justify-center py-4 border-b border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-white'>
           <p>✨Discover Your Dream Property with Estatein <span className='underline'>Learn More</span></p>
           <div className='bg-[rgba(255,255,255,0.1)] rounded-[75px] p-1 cursor-pointer absolute right-4'>
-            <Cancel />
+            <Cancel onClick = {handleCancelClick}/>
           </div>
-        </div>
+        </div> : "" }
+        
         <nav className='w-full flex px-16 py-4 bg-[rgba(26,26,26,1)] text-white'>
           <div className='w-1/4 flex items-center justify-start'>
             <Logo />

@@ -12,20 +12,20 @@ export default function Chart() {
             <path d="M28.25 42.5938C28.25 41.1267 29.4392 39.9375 30.9062 39.9375H31.9688C33.4358 39.9375 34.625 41.1267 34.625 42.5938V52.1562C34.625 53.6233 33.4358 54.8125 31.9688 54.8125H30.9062C29.4392 54.8125 28.25 53.6233 28.25 52.1562V42.5938Z" fill="#A685FA" />
             <defs>
                 <linearGradient id="paint0_linear_104_11410" x1="6.75" y1="86.5" x2="85.75" y2="-5.5" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#A685FA" />
-                    <stop offset="0.323723" stop-color="#A685FA" stop-opacity="0" />
+                    <stop stopColor="#A685FA" />
+                    <stop offset="0.323723" stopColor="#A685FA" stopOpacity="0" />
                 </linearGradient>
                 <linearGradient id="paint1_linear_104_11410" x1="81.75" y1="-10.5" x2="6.75" y2="82" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#A685FA" />
-                    <stop offset="0.576615" stop-color="#A685FA" stop-opacity="0" />
+                    <stop stopColor="#A685FA" />
+                    <stop offset="0.576615" stopColor="#A685FA" stopOpacity="0" />
                 </linearGradient>
                 <linearGradient id="paint2_linear_104_11410" x1="3.25" y1="13.5" x2="71.75" y2="72" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#A685FA" />
-                    <stop offset="0.323723" stop-color="#A685FA" stop-opacity="0" />
+                    <stop stopColor="#A685FA" />
+                    <stop offset="0.323723" stopColor="#A685FA" stopOpacity="0" />
                 </linearGradient>
                 <linearGradient id="paint3_linear_104_11410" x1="84.25" y1="86" x2="12.25" y2="35" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#A685FA" />
-                    <stop offset="0.576615" stop-color="#A685FA" stop-opacity="0" />
+                    <stop stopColor="#A685FA" />
+                    <stop offset="0.576615" stopColor="#A685FA" stopOpacity="0" />
                 </linearGradient>
             </defs>
         </svg>

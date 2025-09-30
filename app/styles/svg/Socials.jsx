@@ -13,20 +13,20 @@ export default function Socials() {
             <path d="M55.5 41C55.5 33.2689 49.2311 27 41.5 27V41H55.5Z" fill="#A685FA" />
             <defs>
                 <linearGradient id="paint0_linear_104_13261" x1="7.25" y1="86.5" x2="86.25" y2="-5.5" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#A685FA" />
-                    <stop offset="0.323723" stop-color="#A685FA" stop-opacity="0" />
+                    <stop stopColor="#A685FA" />
+                    <stop offset="0.323723" stopColor="#A685FA" stopOpacity="0" />
                 </linearGradient>
                 <linearGradient id="paint1_linear_104_13261" x1="82.25" y1="-10.5" x2="7.25" y2="82" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#A685FA" />
-                    <stop offset="0.576615" stop-color="#A685FA" stop-opacity="0" />
+                    <stop stopColor="#A685FA" />
+                    <stop offset="0.576615" stopColor="#A685FA" stopOpacity="0" />
                 </linearGradient>
                 <linearGradient id="paint2_linear_104_13261" x1="3.75" y1="13.5" x2="72.25" y2="72" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#A685FA" />
-                    <stop offset="0.323723" stop-color="#A685FA" stop-opacity="0" />
+                    <stop stopColor="#A685FA" />
+                    <stop offset="0.323723" stopColor="#A685FA" stopOpacity="0" />
                 </linearGradient>
                 <linearGradient id="paint3_linear_104_13261" x1="84.75" y1="86" x2="12.75" y2="35" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#A685FA" />
-                    <stop offset="0.576615" stop-color="#A685FA" stop-opacity="0" />
+                    <stop stopColor="#A685FA" />
+                    <stop offset="0.576615" stopColor="#A685FA" stopOpacity="0" />
                 </linearGradient>
             </defs>
         </svg>

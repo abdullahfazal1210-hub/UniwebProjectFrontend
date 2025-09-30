@@ -18,20 +18,20 @@ export default function SunriseIcon() {
         <path d="M33.487 34.9895C33.902 35.4045 34.5747 35.4045 34.9896 34.9895C35.4046 34.5746 35.4046 33.9019 34.9896 33.4869L32.7357 31.233C32.3208 30.8181 31.6481 30.8181 31.2331 31.233C30.8182 31.648 30.8182 32.3207 31.2331 32.7356L33.487 34.9895Z" fill="#A685FA"/>
         <defs>
         <linearGradient id="paint0_linear_121_1916" x1="6.75" y1="86.5" x2="85.75" y2="-5.5" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#A685FA"/>
-        <stop offset="0.323723" stop-color="#A685FA" stop-opacity="0"/>
+        <stop stopColor="#A685FA"/>
+        <stop offset="0.323723" stopColor="#A685FA" stopOpacity="0"/>
         </linearGradient>
         <linearGradient id="paint1_linear_121_1916" x1="81.75" y1="-10.5" x2="6.75" y2="82" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#A685FA"/>
-        <stop offset="0.576615" stop-color="#A685FA" stop-opacity="0"/>
+        <stop stopColor="#A685FA"/>
+        <stop offset="0.576615" stopColor="#A685FA" stopOpacity="0"/>
         </linearGradient>
         <linearGradient id="paint2_linear_121_1916" x1="3.25" y1="13.5" x2="71.75" y2="72" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#A685FA"/>
-        <stop offset="0.323723" stop-color="#A685FA" stop-opacity="0"/>
+        <stop stopColor="#A685FA"/>
+        <stop offset="0.323723" stopColor="#A685FA" stopOpacity="0"/>
         </linearGradient>
         <linearGradient id="paint3_linear_121_1916" x1="84.25" y1="86" x2="12.25" y2="35" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#A685FA"/>
-        <stop offset="0.576615" stop-color="#A685FA" stop-opacity="0"/>
+        <stop stopColor="#A685FA"/>
+        <stop offset="0.576615" stopColor="#A685FA" stopOpacity="0"/>
         </linearGradient>
         </defs>
     </svg>
