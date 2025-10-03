@@ -7,8 +7,8 @@ export default function HeroSection(props) {
 
   return (
     <>
-        <h1 className='font-semibold text-[38px] leading-[150%] tracking-normal text-white'>{title}</h1>
-        <p className='font-medium text-base leading-6 tracking-normal text-gray-400'>{desc}</p>
+        <h1 className='font-semibold text-[28px] md:text-[38px] leading-[150%] tracking-normal text-white'>{title}</h1>
+        <p className='font-medium text-[14px] md:text-base leading-6 tracking-normal text-gray-400'>{desc}</p>
     </>
   )
 }
