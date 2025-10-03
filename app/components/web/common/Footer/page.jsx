@@ -43,12 +43,12 @@ export default function Footer() {
 
   return (
     <footer>
-      <section className="w-full bg-[rgba(20,20,20)] px-16 py-20 flex relative promotion-section">
-        <div className='w-3/4 text-start grid gap-2'>
-          <h2 className='text-4xl font-semibold text-white'>Start Your Real State Journey Today</h2>
-          <p className='text-[16px] font-medium text-[#999999]'>Your dream property is just a click away. Whether you`re looking for a new home, a strategic investment, or expert real estate advice, Estatein is here to assist you every step of the way. Take the first step towards your real estate goals and explore our available properties or get in touch with our team for personalized assistance.</p>
+      <section className="w-full py-12 px-4 grid bg-[rgba(20,20,20)] md:px-16 md:py-20 md:flex relative promotion-section gap-5 ">
+        <div className='w-full md:w-3/4 text-start grid gap-2 z-10'>
+          <h2 className='text-[28px] md:text-4xl font-semibold text-white'>Start Your Real State Journey Today</h2>
+          <p className='text-[14px] md:text-[16px] font-medium text-[#999999]'>Your dream property is just a click away. Whether you`re looking for a new home, a strategic investment, or expert real estate advice, Estatein is here to assist you every step of the way. Take the first step towards your real estate goals and explore our available properties or get in touch with our team for personalized assistance.</p>
         </div>
-        <div className='w-1/4 flex items-center justify-end'>
+        <div className='w-full md:w-1/4 flex items-center justify-center md:justify-end'>
           <Button asChild >
               <Link 
                 href="/properties"
@@ -57,23 +57,23 @@ export default function Footer() {
             </Button>
         </div>
       </section>
-      <section className='w-full bg-[rgba(20,20,20)] px-16 py-14 flex justify-between gap-16 border-t border-[rgba(38,38,38,1)] relative'>
+      <section className='w-full grid py-12 px-4 gap-10 bg-[rgba(20,20,20)] md:px-16 md:py-14 md:flex md:justify-between md:gap-16 border-t border-[rgba(38,38,38,1)] relative'>
           <div className="flex flex-col gap-4">
             <div>
               <Logo />
             </div>
             <form className="flex items-center justify-evenly gap-2 rounded-lg px-3.5 py-3 bg-[rgba(20,20,20,1)] border border-[rgba(38,38,38,1)]">
               <Message />
-              <input type="email" placeholder="Enter Your Email" className='w-fit text-[#999999] outline-0'/>
+              <input type="email" placeholder="Enter Your Email" className='w-full text-[#999999] outline-0'/>
               <button type="submit">
                 <Send />
               </button>
             </form>
           </div>
-          <div className='w-full flex justify-between'>
+          <div className='w-full grid grid-cols-2 gap-3 md:flex md:justify-between'>
 
             {footerLinks.map((section) => (
-              <div key={section.title} className='flex-1'>
+              <div key={section.title} className=' md:flex-1'>
                 <h3 className='text-lg mb-2.5 text-[#999999]'>{section.title}</h3>
                 <ul className='list-none p-0'>
                   {section.items.map((item) => (

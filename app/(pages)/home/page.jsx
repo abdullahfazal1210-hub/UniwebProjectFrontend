@@ -127,21 +127,21 @@ export default function Home() {
   return (
       <>
         <main id='page-1' className='bg-[#141414] grid'>
-          <section >
+          <section className='relative'>
             {/* Banner Tag */}
-            <div className='w-32 h-32 absolute top-48 left-1/2 z-10'>
+            <div className='w-28 h-28 md:w-32 md:h-32 absolute top-[25%] md:top-48 left-[7%] md:left-1/2 z-10'>
               <BannerTag />
             </div>
 
           {/* Hero Section */}
-          <div className="w-full grid grid-cols-2 bg-[rgb(20,20,20)] pl-16 gap-14">
+          <div className="w-full flex px-4 py-8 flex-col-reverse md:grid md:grid-cols-2 bg-[rgb(20,20,20)] md:pl-16 gap-14">
             {/* Banner Content Section */}
             <div className="flex flex-col justify-center gap-8">
-              <div className="grid gap-5">
-                <h1 className="font-semibold text-[46px] leading-[120%] tracking-normal text-white">
+              <div className="grid gap-3 md:gap-5">
+                <h1 className="font-semibold text-[28px] md:text-[46px] leading-[120%] tracking-normal text-white">
                   Discover Your Dream Property with Estatein
                 </h1>
-                <p className="font-medium text-base leading-[150%] tracking-normal text-[#999999]">
+                <p className="font-medium text-[14px] md:text-base leading-[150%] tracking-normal text-[#999999]">
                   Your journey to finding the perfect property begins here.
                   Explore our listings to find the home that matches your
                   dreams.
@@ -149,11 +149,11 @@ export default function Home() {
               </div>
 
               {/* Buttons */}
-              <div className="flex items-center gap-3">
+              <div className="grid md:flex items-center gap-3">
                 <Button asChild>
                   <Link
                     href="/about"
-                    className="border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal"
+                    className="border border-[rgba(38,38,38,1)] text-white px-5 py-5 md:py-3.5 font-medium text-sm leading-[150%] tracking-normal"
                   >
                     Learn More
                   </Link>
@@ -161,7 +161,7 @@ export default function Home() {
                 <Button asChild>
                   <Link
                     href="/properties"
-                    className="font-medium text-sm leading-[150%] tracking-normal bg-[#703bf7] border border-[#703bf7] text-white px-5 py-3.5"
+                    className="font-medium text-sm leading-[150%] tracking-normal bg-[#703bf7] border border-[#703bf7] text-white px-5 py-5 md:py-3.5"
                   >
                     Browse Properties
                   </Link>
@@ -169,16 +169,16 @@ export default function Home() {
               </div>
 
                 {/* Features */}
-                <div className='grid grid-cols-3 gap-5 text-white'>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-5 text-white'>
                   {stats.map((stat, index) => (
                     <div
                       key={index}
                       className="grid gap-0.5 px-3 py-3.5 bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] rounded-lg"
                     >
-                      <h6 className="font-bold text-[30px] leading-[150%] tracking-normal">
+                      <h6 className="font-bold text-center text-[30px] leading-[150%] tracking-normal">
                         {stat.key === "customer" ? customer : stat.value}+
                       </h6>
-                      <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                      <p className="text-[#999999] text-center font-medium text-base leading-[150%] tracking-normal">
                         {stat.label}
                       </p>
                     </div>
@@ -188,14 +188,14 @@ export default function Home() {
 
             {/* Banner Image */}
             <div>
-              <div className="hero-image p-[1px]">
+              <div className="rounded-lg w-full hero-image p-[1px]">
                 <Image src={HomeBanner} alt="Banner" />
               </div>
             </div>
           </div>
         </section>
 
-        <section className="w-full grid grid-cols-4 gap-2.5 p-2.5 bg-[#141414] border border-[#262626] shadow-[0_0_0_6px_rgba(25,25,25,1)]">
+        <section className="w-full grid grid-cols-2 md:grid-cols-4 gap-2.5 p-2.5 bg-[#141414] border border-[#262626] shadow-[0_0_0_6px_rgba(25,25,25,1)]">
           {/* Service Section */}
           {services.map((item, idx) => {
             return (
@@ -207,17 +207,17 @@ export default function Home() {
           </section>
 
           {content.map((section, idx) => (
-              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-16 py-10">
+              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-4 md:px-16 py-10">
                 <div className='w-full grid'>
 
                 {/* Header */}
                 <StarIcon />
-                <div className="w-full  flex items-center justify-between">
-                  <aside className="grid gap-1 max-w-5xl">
-                    <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white">
+                <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
+                  <aside className="w-full grid gap-1 md:max-w-5xl">
+                    <h1 className="font-semibold text-[28px] md:text-[38px] leading-[150%] tracking-normal text-white">
                       {section.title}
                     </h1>
-                    <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                    <p className="text-[#999999] font-medium text-[14px] md:text-base leading-[150%] tracking-normal">
                       {section.desc}
                     </p>
                   </aside>
@@ -241,6 +241,7 @@ export default function Home() {
                 </div>
               </section>
           ))}
+          
         
 
         </main>

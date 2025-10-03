@@ -8,7 +8,7 @@ export default function Weblayout({ children }) {
     <>
       <Header />
       <main>{children}</main>
-      <Footer />
+      <Footer />  
     </>
   );
 }

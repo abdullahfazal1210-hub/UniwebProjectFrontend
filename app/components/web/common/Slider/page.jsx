@@ -11,7 +11,17 @@ import BlogCard from "../Blog/page.jsx";
 export default function Slider({ type, data }) {
   return (
     <Swiper
-      slidesPerView={3}
+      breakpoints={{
+        0: { // >= 0px (mobile devices)
+          slidesPerView: 1,
+        },
+        640: { // >= 640px (small tablets, iPads in portrait)
+          slidesPerView: 2,
+        },
+        1024: { // >= 1024px (laptop, desktop)
+          slidesPerView: 3,
+        },
+      }}
       centeredSlides={false}
       grabCursor={true}
       loop={true}

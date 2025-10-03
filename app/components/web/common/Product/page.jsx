@@ -28,7 +28,7 @@ export default function ProductCard(props) {
   const truncatedText = words.slice(0, 10).join(" ");
 
   return (
-    <article className="grid opacity-100 gap-5 rounded-[12px] border border-[#262626] bg-[#141414] p-6">
+    <article className="grid opacity-100 gap-4 md:gap-5 rounded-[12px] border border-[#262626] bg-[#141414] p-6">
       {/* Product Image */}
       <Image
                     className='rounded-[12px]'
@@ -38,12 +38,12 @@ export default function ProductCard(props) {
       {/* Product Content */}
       <div className="grid gap-3">
         <header className="grid gap-1">
-          <h5 className="text-white font-semibold text-[20px] leading-[150%]">{title}</h5>
-          <p className="text-[#999999] font-medium text-base leading-[150%]">{truncatedText} ...Read More</p>
+          <h5 className="text-white font-semibold text-[18px] md:text-[20px] leading-[150%]">{title}</h5>
+          <p className="text-[#999999] font-medium text-[14px] md:text-base leading-[150%]">{truncatedText} ...Read More</p>
         </header>
 
         {/* Icons */}
-        <div className="grid grid-cols-3 gap-1">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
           <span className="border border-[#262626] bg-[#1a1a1a] rounded-[28px] px-2.5 py-2 text-white flex items-center justify-center font-medium text-sm">
             <BedroomIcon /> {no_of_bedroom}-Room
           </span>
@@ -56,12 +56,12 @@ export default function ProductCard(props) {
         </div>
 
         {/* Price + Button */}
-        <footer className="w-full flex flex-row justify-between">
-          <div className="w-[25%] grid gap-0.5">
+        <footer className="w-full grid md:flex flex-row justify-between gap-2 md:gap-0">
+          <div className="w-full md:w-[25%] grid gap-0.5">
             <span className="text-[#999999] font-medium text-sm">Price</span>
             <p className="text-white font-semibold text-[20px]">${price}</p>
           </div>
-          <Button asChild className="w-[65%] h-full">
+          <Button asChild className="w-full md:w-[65%] h-full">
             <Link
               href="/properties"
               className="font-medium text-sm bg-[#703bf7] border border-[#703bf7] text-white"
