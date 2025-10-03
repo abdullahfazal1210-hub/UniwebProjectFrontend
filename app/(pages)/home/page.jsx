@@ -93,7 +93,7 @@ export default function Home() {
       icon: <PropertyIcon />,
     },
     {
-      title: "Smart Investments, Informed Decisions",
+      title: "Smart Investments, Decisions",
       icon: <SunriseIcon />,
     },
   ];
@@ -207,7 +207,7 @@ export default function Home() {
           </section>
 
           {content.map((section, idx) => (
-              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-4 md:px-16 py-10">
+              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-4 py-6 md:px-16 md:py-10">
                 <div className='w-full grid'>
 
                 {/* Header */}

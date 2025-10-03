@@ -28,7 +28,7 @@ export default function ProductCard(props) {
   const truncatedText = words.slice(0, 10).join(" ");
 
   return (
-    <article className="grid opacity-100 gap-4 md:gap-5 rounded-[12px] border border-[#262626] bg-[#141414] p-6">
+    <article className="h-full grid opacity-100 p-4 gap-4 md:gap-5 rounded-[12px] border border-[#262626] bg-[#141414] md:p-6">
       {/* Product Image */}
       <Image
                     className='rounded-[12px]'
@@ -56,15 +56,15 @@ export default function ProductCard(props) {
         </div>
 
         {/* Price + Button */}
-        <footer className="w-full grid md:flex flex-row justify-between gap-2 md:gap-0">
-          <div className="w-full md:w-[25%] grid gap-0.5">
+        <footer className="w-full grid md:flex md:flex-row md:justify-between gap-2 md:gap-0">
+          <div className="w-full md:w-[25%] flex items-center gap-2 md:grid md:grid-cols-1 md:gap-0.5">
             <span className="text-[#999999] font-medium text-sm">Price</span>
             <p className="text-white font-semibold text-[20px]">${price}</p>
           </div>
           <Button asChild className="w-full md:w-[65%] h-full">
             <Link
               href="/properties"
-              className="font-medium text-sm bg-[#703bf7] border border-[#703bf7] text-white"
+              className="w-full font-medium text-sm bg-[#703bf7] border border-[#703bf7] text-white"
             >
               View Properties Details
             </Link>

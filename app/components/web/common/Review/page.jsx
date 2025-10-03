@@ -10,7 +10,7 @@ export default function Reviews(props) {
   const { title, desc, name, city, country, rating } = { ...props };
   
   return (
-    <article className='grid opacity-100 gap-5 rounded-[12px] border border-[#262626] bg-[#141414] p-6'>
+    <article className='h-full grid opacity-100 gap-5 rounded-[12px] border border-[#262626] bg-[#141414] p-6'>
                       {/* Rating */}
                       <div className='flex items-center gap-1'>
                           {Array.from({ length: 5 }, (_, idx) =>

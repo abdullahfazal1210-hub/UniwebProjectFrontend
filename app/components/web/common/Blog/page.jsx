@@ -10,7 +10,7 @@ export default function Blogs(props) {
 
     return (
 
-        <div className="grid opacity-100 gap-5 rounded-[12px] border border-[#262626] bg-[#141414] p-6">
+        <div className="h-full grid opacity-100 gap-5 rounded-[12px] border border-[#262626] bg-[#141414] p-6">
             <h5 className='text-white font-semibold text-[20px] leading-[150%]'>{title}</h5>
             <p className='text-[#999999] font-medium text-base leading-[150%]'>{desc}</p>
             <Button asChild>
