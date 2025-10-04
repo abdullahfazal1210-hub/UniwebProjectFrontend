@@ -144,8 +144,8 @@ function About() {
     }, [customer]);
 
   return (
-    <div className="bg-[#141414]">
-      <div className="main-container  ">
+    <div className="bg-[#141414] ">
+      <div className="main-container">
  <div className="sec-one grid grid-cols-1 px-4 lg:grid-cols-2 md:grid-cols-2">
   <div className="left  relative md:h-[80vh]  flex justify-center items-center order-2 md:order-1">
     <div className="grid gap-4 md:w-[90%] md:h-[60%]">
@@ -161,16 +161,16 @@ function About() {
       </p>
 
       {/* Stats Cards */}
-      <div className='grid grid-cols-3 gap-5 text-white'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-2.5 md:gap-5 text-white'>
                   {stats.map((stat, index) => (
                     <div
                       key={index}
                       className="grid gap-0.5 px-3 py-3.5 bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] rounded-lg"
                     >
-                      <h6 className="font-bold text-[30px] leading-[150%] tracking-normal">
+                      <h6 className="font-bold text-center text-[30px] leading-[150%] tracking-normal">
                         {stat.key === "customer" ? customer : stat.value}+
                       </h6>
-                      <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                      <p className="text-[#999999] text-center font-medium text-base leading-[150%] tracking-normal">
                         {stat.label}
                       </p>
                     </div>

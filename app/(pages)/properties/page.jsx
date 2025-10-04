@@ -177,20 +177,23 @@ export default function Properties() {
   
   return (
     <main id='page-3'>
-      <section className="bg-[#141414] bg-[linear-gradient(95.93deg,#262626_-26.82%,rgba(38,38,38,0)_40.46%)] border-b border-b-[#262626] pr-40 pl-16 pt-24 pb-36 relative">
+      <section className="bg-[#141414] bg-[linear-gradient(95.93deg,#262626_-26.82%,rgba(38,38,38,0)_40.46%)] border-b border-b-[#262626] px-4 pt-6 pb-25 md:pr-40 md:pl-16 md:pt-24 md:pb-36 relative">
           <HeroSection title={content[0].title} desc={content[0].desc} />
-      <aside className="w-full px-16 py-10 grid place-items-center absolute top-full left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="w-2/4 flex items-center rounded-lg overflow-hidden p-4 bg-[#141414] border border-[#262626] shadow-[0_0_0_10px_#191919]">
+      <aside className="w-full px-4 md:px-16 md:py-10 grid place-items-center absolute top-full -translate-y-[15%] left-1/2 -translate-x-[50%] md:top-full md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
+        <div className="w-full md:w-2/4 flex items-center rounded-lg overflow-hidden p-4 bg-[#141414] border border-[#262626] shadow-[0_0_0_10px_#191919]">
           <input type="text" 
                   placeholder="Search For A Property" 
-                  className="w-full text-[#666666] outline-none font-medium text-[20px] leading-[150%] tracking-[0]" />
+                  className="w-full text-[#666666] outline-none font-medium text-[16px] md:text-[20px] leading-[150%] tracking-[0]" />
 
-          <Button className="px-3 bg-[#703bf7] text-white cursor-pointer">
+          <Button className="hidden md:block px-3 bg-[#703bf7] text-white cursor-pointer">
             <SearchIcon />
             Find Property
           </Button>
+          <Button className="md:hidden px-3 bg-[#703bf7] text-white cursor-pointer">
+            <SearchIcon />
+          </Button>
         </div>
-        <div className="w-full grid grid-cols-5 gap-4 p-2.5 rounded-lg bg-[rgba(26,26,26,1)]">
+        <div className="w-full grid md:grid-cols-5 gap-4 p-2.5 rounded-lg bg-[rgba(26,26,26,1)]">
       {normalizedFilter.map((f) => (
         <div
           key={f.title}
@@ -233,8 +236,8 @@ export default function Properties() {
 
 
       {secContent.map((section, idx) => (
-              <section key={idx} className={`w-full grid bg-[rgb(20,20,20)] gap-6 px-16 ${
-                idx === 0 ? "pt-30" : "py-10"
+              <section key={idx} className={`w-full grid bg-[rgb(20,20,20)] gap-6 px-4 md:px-16 ${
+                idx === 0 ? "pt-110 pb-10 md:pt-30" : "py-6 md:py-10"
               }`}>
                 <div className='w-full grid'>
 
@@ -242,10 +245,10 @@ export default function Properties() {
                 <StarIcon />
                 <div className="w-full  flex items-center justify-between">
                   <aside className="grid gap-1 max-w-5xl">
-                    <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white">
+                    <h1 className="font-semibold text-[28px] md:text-[38px] leading-[150%] tracking-normal text-white">
                       {section.title}
                     </h1>
-                    <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                    <p className="text-[#999999] font-medium text-[14px] md:text-base leading-[150%] tracking-normal">
                       {section.desc}
                     </p>
                   </aside>
@@ -261,7 +264,7 @@ export default function Properties() {
                   ) : section.type === "form" ? (
                     <form
                     //   onSubmit={handleSubmit(onSubmit)}
-                      className="w-full mx-auto grid gap-6 p-8 rounded-2xl border border-[#262626] shadow-lg"
+                      className="w-full mx-auto grid gap-6 p-4 md:p-8 rounded-2xl border border-[#262626] shadow-lg"
                     >
                       {/* Row 1 */}
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -351,7 +354,7 @@ export default function Properties() {
                             <label className="font-semibold text-[16px] leading-[150%] tracking-[0px] text-white">
                               Preferred Contact Method
                             </label>
-                          <div className='grid grid-cols-2 gap-2'>  
+                          <div className='grid md:grid-cols-2 gap-2'>  
 
                             {/* Phone Option */}
                             <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#141414] border border-[#262626] text-gray-200">
@@ -398,7 +401,7 @@ export default function Properties() {
 
                       {/* Terms + Submit */}
                       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                        <label className="flex items-center gap-2 text-gray-400 text-sm">
+                        <label className="flex items-center gap-0.5 md:gap-2 text-gray-400 text-[13px] md:text-sm">
                           <input
                             type="checkbox"
                             required
@@ -409,7 +412,7 @@ export default function Properties() {
                         </label>
                         <button
                           type="submit"
-                          className="px-6 py-2 rounded-lg bg-[#703bf7] text-white font-medium hover:bg-[#5b2fd6] transition"
+                          className="w-full md:w-auto px-6 py-2 rounded-lg bg-[#703bf7] text-white font-medium hover:bg-[#5b2fd6] transition"
                         >
                           Send your Message
                         </button>

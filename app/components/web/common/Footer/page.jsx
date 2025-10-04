@@ -52,7 +52,7 @@ export default function Footer() {
           <Button asChild >
               <Link 
                 href="/properties"
-                className='bg-[#703bf7] border border-[#703bf7] text-sm text-white px-5 py-3 rounded-b-md font-medium z-30'
+                className='w-full md:w-auto bg-[#703bf7] border border-[#703bf7] text-sm text-white px-5 py-3 rounded-b-md font-medium z-30'
               >Explore Properties</Link>
             </Button>
         </div>
@@ -70,20 +70,72 @@ export default function Footer() {
               </button>
             </form>
           </div>
-          <div className='w-full grid grid-cols-2 gap-3 md:flex md:justify-between'>
+          <div className='hidden w-full gap-3 md:flex md:justify-between'>
 
             {footerLinks.map((section) => (
-              <div key={section.title} className=' md:flex-1'>
-                <h3 className='text-lg mb-2.5 text-[#999999]'>{section.title}</h3>
+              <div key={section.title} className='flex-1'>
+                <h3 className='text-[16px] mb-2.5 text-[#999999]'>{section.title}</h3>
                 <ul className='list-none p-0'>
                   {section.items.map((item) => (
-                    <li key={item} className='text-white no-underline mb-2.5 block text-base"'>{item}</li>
+                    <li key={item} className='text-white no-underline mb-2.5 block text-base'>{item}</li>
                   ))}
                 </ul>
               </div>
             ))}
 
           </div>
+          <div className='w-full gap-3 grid grid-cols-2 md:hidden'>
+            <div>
+              <h3 className='text-[16px] mb-2.5 text-[#999999]'>Home</h3>
+              <ul className='list-none p-0'>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Hero Section</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Features</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Properties</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Testimonials</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>FAQs</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className='text-[16px] mb-2.5 text-[#999999]'>About Us</h3>
+              <ul>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Our Story</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Our Works</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>How It Works</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Our Team</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Our Clients</li>
+              </ul>
+            </div>
+
+            <div className='grid gap-3'>
+              <div>
+                <h3 className='text-[16px] mb-2.5 text-[#999999]'>Properties</h3>
+                <ul>
+                  <li className='text-white no-underline mb-2.5 block text-[14px]'>Portfolio</li>
+                  <li className='text-white no-underline mb-2.5 block text-[14px]'>Categories</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className='text-[16px] mb-2.5 text-[#999999]'>Contact Us</h3>
+                <ul>
+                  <li className='text-white no-underline mb-2.5 block text-[14px]'>Contact Form</li>
+                  <li className='text-white no-underline mb-2.5 block text-[14px]'>Our Offices</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h3 className='text-[16px] mb-2.5 text-[#999999]'>Services</h3>
+              <ul>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Valuation Mastery</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Strategic Marketing</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Negotiation Wizardry</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Closing Success</li>
+                <li className='text-white no-underline mb-2.5 block text-[14px]'>Property Management</li>
+              </ul>
+            </div>
+          </div>
+
         </section>
         <section>
           <div className='w-full bg-[rgba(20,20,20,1)] text-center py-4 border-t border-[rgba(38,38,38,1)] text-[#999999] text-sm relative'>

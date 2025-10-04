@@ -127,14 +127,14 @@ export default function Home() {
   return (
       <>
         <main id='page-1' className='bg-[#141414] grid'>
-          <section className='relative'>
+          <section className='relative mt-31'>
             {/* Banner Tag */}
-            <div className='w-28 h-28 md:w-32 md:h-32 absolute top-[25%] md:top-48 left-[7%] md:left-1/2 z-10'>
+            <div className='w-28 h-28 md:w-32 md:h-32 absolute top-[25%] md:top-18 left-[7%] md:left-1/2 z-10 -translate-x-[4%]'>
               <BannerTag />
             </div>
 
           {/* Hero Section */}
-          <div className="w-full flex px-4 py-8 flex-col-reverse md:grid md:grid-cols-2 bg-[rgb(20,20,20)] md:pl-16 gap-14">
+          <div className="w-full flex px-4 py-8 flex-col-reverse md:grid md:grid-cols-2 bg-[rgb(20,20,20)] md:pl-16 md:pr-0 md:py-0 gap-14">
             {/* Banner Content Section */}
             <div className="flex flex-col justify-center gap-8">
               <div className="grid gap-3 md:gap-5">
@@ -169,16 +169,16 @@ export default function Home() {
               </div>
 
                 {/* Features */}
-                <div className='grid grid-cols-1 md:grid-cols-3 gap-5 text-white'>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-2.5 md:gap-5 text-white'>
                   {stats.map((stat, index) => (
                     <div
                       key={index}
                       className="grid gap-0.5 px-3 py-3.5 bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] rounded-lg"
                     >
-                      <h6 className="font-bold text-center text-[30px] leading-[150%] tracking-normal">
+                      <h6 className="font-bold text-center md:text-start text-[30px] leading-[150%] tracking-normal">
                         {stat.key === "customer" ? customer : stat.value}+
                       </h6>
-                      <p className="text-[#999999] text-center font-medium text-base leading-[150%] tracking-normal">
+                      <p className="text-[#999999] text-center md:text-start font-medium text-base leading-[150%] tracking-normal">
                         {stat.label}
                       </p>
                     </div>
@@ -188,7 +188,7 @@ export default function Home() {
 
             {/* Banner Image */}
             <div>
-              <div className="rounded-lg w-full hero-image p-[1px]">
+              <div className="rounded-lg md:rounded-none w-full hero-image p-[1px]">
                 <Image src={HomeBanner} alt="Banner" />
               </div>
             </div>
@@ -222,11 +222,11 @@ export default function Home() {
                     </p>
                   </aside>
 
-                  <aside className="flex items-center gap-3">
+                  <aside className="w-full md:w-auto flex items-center gap-3">
                     <Button asChild>
                       <Link
                         href="/about"
-                        className="border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal"
+                        className="w-full md:w-auto border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal"
                       >
                         {section.button}
                       </Link>

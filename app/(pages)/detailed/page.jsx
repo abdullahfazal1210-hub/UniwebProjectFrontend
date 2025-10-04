@@ -1,9 +1,13 @@
 'use client';
 import React, { useState, useEffect } from 'react'
+import Link from "next/link";
 import Image from "next/image";
 
 // Components
 import Slider from '@/app/components/web/common/Slider/page.jsx';
+
+// Shadcn components
+import { Button } from "@/components/ui/button";
 
 // Icons
 import StarIcon from '@/app/styles/svg/StarsIcon.jsx';
@@ -56,29 +60,39 @@ export default function Detailed() {
 
   return (
     <main id='page-detailed' className='bg-[#141414]'>
-        <section className='grid gap-5 py-10 px-16'>
+        <section className='grid gap-5 px-4 py-10 md:px-16'>
             <div className='grid gap-5'>
-                <header className='flex items-center justify-between gap-12'>
-                    <div className='flex gap-5'>
-                        <h1 className='text-white font-semibold text-[24px] leading-[150%] tracking-[0]'>Seaside Serenity Villa</h1>
-                        <p className='flex items-center gap-2 text-sm text-white border border-[rgba(38,38,38,1)] p-2 rounded-lg'>
+                <header className='grid md:flex md:items-center md:justify-between md:gap-12'>
+                    <div className='grid md:flex gap-5'>
+                        <h1 className='text-white font-semibold text-[20px] md:text-[24px] leading-[150%] tracking-[0]'>Seaside Serenity Villa</h1>
+                        <p className='hidden md:flex items-center gap-2 text-sm text-white border border-[rgba(38,38,38,1)] p-2 rounded-lg'>
                             <LocationIcon color='white'/>
                             Malibu, California
                         </p>
+                        <div className='grid grid-cols-2 md:hidden gap-0.5 text-left'>
+                            <p className='w-fit flex items-center gap-2 text-sm text-white border border-[rgba(38,38,38,1)] p-2 rounded-lg'>
+                                <LocationIcon color='white'/>
+                                Malibu, California
+                            </p>
+                            <div className='grid gap-0.5 text-right'>
+                                <span className='font-medium text-[14px] leading-[150%] tracking-[0] text-[rgba(153,153,153,1)]'>Price</span>
+                                <span className='font-semibold text-[20px] leading-[150%] tracking-[0] text-white'>$1,250,000</span>
+                            </div>
+                        </div>
                     </div>
-                    <div className='grid gap-0.5 text-left'>
+                    <div className='hidden md:grid gap-0.5 text-left'>
                         <span className='font-medium text-[14px] leading-[150%] tracking-[0] text-[rgba(153,153,153,1)]'>Price</span>
                         <span className='font-semibold text-[20px] leading-[150%] tracking-[0] text-white'>$1,250,000</span>
                     </div>
                 </header>
-                <div className='grid grid-cols-2 gap-5'>
+                <div className='grid md:grid-cols-2 gap-5'>
                     <Image src={houseImage} alt='house image' className='w-full rounded-lg'/>
-                    <article className='grid gap-5 border border-[rgba(38,38,38,1)] p-10 rounded-lg h-fit'>
+                    <article className='grid gap-5 border border-[rgba(38,38,38,1)] p-4 md:p-10 rounded-lg h-fit'>
                     <div className='grid gap-2.5'>
-                        <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0] text-white'>Description</h6>
-                        <p className='font-medium text-[16px] leading-[150%] tracking-[0] text-[rgba(153,153,153,1)]'>Discover your own piece of paradise with the Seaside Serenity Villa. T With an open floor plan, breathtaking ocean views from every room, and direct access to a pristine sandy beach, this property is the epitome of coastal living.</p>
+                        <h6 className='font-semibold text-[18px] md:text-[20px] leading-[150%] tracking-[0] text-white'>Description</h6>
+                        <p className='font-medium text-[14px] md:text-[16px] leading-[150%] tracking-[0] text-[rgba(153,153,153,1)]'>Discover your own piece of paradise with the Seaside Serenity Villa. T With an open floor plan, breathtaking ocean views from every room, and direct access to a pristine sandy beach, this property is the epitome of coastal living.</p>
                     </div>
-                    <div className='border-t border-t-[rgba(38,38,38,1)] pt-4 flex gap-2.5 justify-evenly'>
+                    <div className='border-t border-t-[rgba(38,38,38,1)] pt-4 grid grid-cols-2 md:flex gap-3 justify-evenly'>
                         <div className='grid gap-2 '>
                             <span className='flex items-center gap-1 text-[rgba(153,153,153,1)] font-medium text-[14px] leading-[150%] tracking-[0]'>
                                 <BedroomIcon color='rgba(153,153,153,1)' /> 
@@ -86,7 +100,7 @@ export default function Detailed() {
                             </span>
                             <p className='text-[rgba(255,255,255,1)] font-semibold text-[20px] leading-[150%] tracking-[0]'>04</p>
                         </div>
-                        <span className='h-full border border-[rgba(38,38,38,1)]'></span>
+                        <span className='hidden md:block h-full border border-[rgba(38,38,38,1)]'></span>
                         <div className='grid gap-2 '>
                            <span className='flex items-center gap-1 text-[rgba(153,153,153,1)] font-medium text-[14px] leading-[150%] tracking-[0]'>
                                 <BathroomIcon color='rgba(153,153,153,1)' />
@@ -94,8 +108,8 @@ export default function Detailed() {
                             </span>
                             <p className='text-[rgba(255,255,255,1)] font-semibold text-[20px] leading-[150%] tracking-[0]'>03</p>
                         </div>
-                        <span className='h-full border border-[rgba(38,38,38,1)]'></span>
-                        <div className='grid gap-2 '>
+                        <span className='hidden md:block h-full border border-[rgba(38,38,38,1)]'></span>
+                        <div className='grid gap-2 col-span-2 md:col-auto'>
                             <span className='flex items-center gap-1 text-[rgba(153,153,153,1)] font-medium text-[14px] leading-[150%] tracking-[0]'>
                                 <AreaIcon />
                                 Area
@@ -106,15 +120,17 @@ export default function Detailed() {
                 </article>
                 </div>
             </div>
-            <article className='grid gap-5 border border-[rgba(38,38,38,1)] p-10 rounded-lg'>
+            <article className='grid gap-5 border border-[rgba(38,38,38,1)] p-4 md:p-10 rounded-lg'>
                     <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0] text-white'>Key Features and Amenities</h6>
                     <div className='grid gap-3'>
                         {keys.map((item, idx) => (
                             <span
                             key={idx}
-                            className="flex items-center gap-[10px] border-l border-l-[rgba(112,59,247,1)] pt-[14px] pr-[16px] pb-[14px] pl-[16px] bg-[linear-gradient(90deg,#1A1A1A_0%,rgba(26,26,26,0)_100%)] text-[rgba(153,153,153,1)] font-medium text-[16px] leading-[150%] tracking-[0]"
+                            className="flex items-center gap-[10px] border-l border-l-[rgba(112,59,247,1)] pt-[14px] pr-[16px] pb-[14px] pl-[16px] bg-[linear-gradient(90deg,#1A1A1A_0%,rgba(26,26,26,0)_100%)] text-[rgba(153,153,153,1)] font-medium text-[14px] md:text-[16px] leading-[150%] tracking-[0]"
                             >
-                            <Lightning />
+                                <span>
+                                    <Lightning />
+                                </span>
                             {item.points}
                             </span>
                         ))}
@@ -123,16 +139,16 @@ export default function Detailed() {
         </section>
 
 
-        <section className="w-full grid grid-cols-[40%_1fr] bg-[rgb(20,20,20)] gap-20 px-16 py-10">
+        <section className="w-full grid md:grid-cols-[40%_1fr] bg-[rgb(20,20,20)] gap-6 md:gap-20 px-4 md:px-16 py-6 md:py-10">
             <div className="w-full grid h-fit">
                 {/* Header */}
                 <StarIcon />
                 <div className="w-full flex items-center justify-between">
-                <aside className="grid gap-1 max-w-5xl">
-                    <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white p">
+                <aside className="grid gap-1 md:max-w-5xl">
+                    <h1 className="font-semibold text-[28px] md:text-[38px] leading-[150%] tracking-normal text-white p">
                     Inquire About Seaside Serenity Villa
                     </h1>
-                    <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                    <p className="text-[#999999] font-medium text-[14px] md:text-base leading-[150%] tracking-normal">
                     Interested in this property? Fill out the form below, and our real estate experts will get back to you with more details, including scheduling a viewing and answering any questions you may have.
                     </p>
                 </aside>
@@ -141,10 +157,10 @@ export default function Detailed() {
 
         <form 
             // onSubmit={handleSubmit(onSubmit)}
-            className='grid gap-6 border border-[rgba(38,38,38,1)] p-10 rounded-lg'
+            className='grid gap-6 border border-[rgba(38,38,38,1)] p-6 md:p-10 rounded-lg'
         >
             {/* Row 1 */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
                 <label className="font-semibold text-[16px] text-white">First Name</label>
                 <input
@@ -169,7 +185,7 @@ export default function Detailed() {
             </div>
 
             {/* Row 2 */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
                 <label className="font-semibold text-[16px] text-white">Email</label>
                 <input
@@ -198,7 +214,9 @@ export default function Detailed() {
                 <label className="font-semibold text-[16px] text-white">Selected Property</label>
                 <span className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(26,26,26,1)] text-gray-200 flex items-center justify-between">
                 Seaside Serenity Villa Malibu, California
-                <LocationIcon color='white' />
+                    <span>
+                        <LocationIcon color='white' />
+                    </span>
                 </span>
             </div>
 
@@ -215,7 +233,7 @@ export default function Detailed() {
 
             {/* Submit */}
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                        <label className="flex items-center gap-2 text-gray-400 text-sm">
+                        <label className="flex items-center gap-0.5 md:gap-2 text-gray-400 text-[13px] md:text-sm">
                           <input
                             type="checkbox"
                             required
@@ -226,7 +244,7 @@ export default function Detailed() {
                         </label>
                         <button
                           type="submit"
-                          className="px-6 py-2 rounded-lg bg-[#703bf7] text-white font-medium hover:bg-[#5b2fd6] transition"
+                          className="w-full md:w-auto px-6 py-2 rounded-lg bg-[#703bf7] text-white font-medium hover:bg-[#5b2fd6] transition"
                         >
                           Send your Message
                         </button>
@@ -235,14 +253,14 @@ export default function Detailed() {
 
         </section>
         
-        <section className='w-full px-16 py-10 grid gap-6'>
+        <section className='w-full px-4 md:px-16 py-10 grid gap-6'>
             <div className='w-full'>
                 <StarIcon />
-                <aside className="grid gap-1 max-w-5xl">
-                    <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white">
+                <aside className="grid gap-1 md:max-w-5xl">
+                    <h1 className="font-semibold text-[28px] md:text-[38px] leading-[150%] tracking-normal text-white">
                     Comprehensive Pricing Details
                     </h1>
-                    <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                    <p className="text-[#999999] font-medium text-[14px] md:text-base leading-[150%] tracking-normal">
                         At Estatein, transparency is key. We want you to have a clear understanding of all costs associated with your property investment. Below, we break down the pricing for Seaside Serenity Villa to help you make an informed decision
                     </p>
                 </aside>
@@ -250,35 +268,36 @@ export default function Detailed() {
 
             <div className='w-full grid gap-10'>
 
-                <aside className='w-full flex py-5 px-10 border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] rounded-lg items-center gap-5'>
-                    <h6 className='text-white font-semibold text-[20px] leading-[150%] tracking-[0]'>Note</h6>
+                <aside className='w-full grid md:flex px-4 py-3 gap-2.5 md:py-5 md:px-10 border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] rounded-lg items-center md:gap-5'>
+                    <h6 className='text-white font-semibold text-[18px] md:text-[20px] leading-[150%] tracking-[0]'>Note</h6>
                     <span className='h-full border border-[rgba(38,38,38,1)]'></span>
                     <p className='text-[#999999] font-medium text-[14px] leading-[150%] tracking-[0]'>The figures provided above are estimates and may vary depending on the property, location, and individual circumstances.</p>
                 </aside>
 
-                <section className='w-full flex gap-10'>
-                    <aside className='w-fit h-fit grid gap-0.5'>
-                        <span className='text-[#999999] font-medium text-[16px] leading-[150%] tracking-[0]'>Listing Price</span>
-                        <p className='text-white font-semibold text-[30px] leading-[150%] tracking-[0]'>$1,250,000</p>
+                <section className='w-full grid md:flex gap-5 md:gap-10'>
+                    <aside className='w-full md:w-fit h-fit grid gap-0.5'>
+                        <span className='text-[#999999] font-medium text-[14px] md:text-[16px] leading-[150%] tracking-[0]'>Listing Price</span>
+                        <p className='text-white font-semibold text-[24px] md:text-[30px] leading-[150%] tracking-[0]'>$1,250,000</p>
                     </aside>
                     
-                    <section className='w-full grid gap-10'>
+                    <section className='w-full grid gap-5 md:gap-10'>
 
-                        <div className='w-full grid gap-7.5 p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
+                        <div className='w-full grid gap-4 md:gap-7.5 p-4 md:p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
 
                             <div className='w-full flex items-center justify-between text-white'>
-                                <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0]'>Additional Fees</h6>
+                                <h6 className='font-semibold text-[18px] md:text-[20px] leading-[150%] tracking-[0]'>Additional Fees</h6>
                                 <button className='rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] px-4 py-2'>Learn More</button>
                             </div>
                             <hr className='border border-[rgba(38,38,38,1)]' />
-                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
-                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                            <div className='w-full grid md:grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 md:border-r md:border-r-[rgba(38,38,38,1)]'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Property Transfer Tax</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
                                         $25,000 
                                         <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Based on the sale price and local regulations</span>
                                     </p>
                                 </div>
+                                <hr className='md:hidden border border-[rgba(38,38,38,1)]' />
                                 <div className='grid gap-3'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Legal Fees</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
@@ -288,14 +307,16 @@ export default function Detailed() {
                                 </div>
                             </div>
                             <hr className='border border-[rgba(38,38,38,1)]' />
-                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
-                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                            <div className='w-full grid md:grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 md:border-r md:border-r-[rgba(38,38,38,1)]'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Home Inspection</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
                                         $500 
                                         <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>Recommended for due diligence</span>
                                     </p>
                                 </div>
+                                <hr className='md:hidden border border-[rgba(38,38,38,1)]' />
+
                                 <div className='grid gap-3'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Property Insurance</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
@@ -316,9 +337,9 @@ export default function Detailed() {
                             </div>
 
                         </div>
-                        <div className='w-full grid gap-7.5 p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
+                        <div className='w-full grid gap-4 md:gap-7.5 p-4 md:p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
                             <div className='w-full flex items-center justify-between text-white'>
-                                <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0]'>Monthly Costs</h6>
+                                <h6 className='font-semibold text-[18px] md:text-[20px] leading-[150%] tracking-[0]'>Monthly Costs</h6>
                                 <button className='rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] px-4 py-2'>Learn More</button>
                             </div>
                             <hr className='border border-[rgba(38,38,38,1)]' />
@@ -343,20 +364,21 @@ export default function Detailed() {
                             </div>
 
                         </div>
-                        <div className='w-full grid gap-7.5 p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
+                        <div className='w-full grid gap-4 md:gap-7.5 p-4 md:p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
 
                             <div className='w-full flex items-center justify-between text-white'>
-                                <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0]'>Total Initial Costs</h6>
+                                <h6 className='font-semibold text-[18px] md:text-[20px] leading-[150%] tracking-[0]'>Total Initial Costs</h6>
                                 <button className='rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] px-4 py-2'>Learn More</button>
                             </div>
                             <hr className='border border-[rgba(38,38,38,1)]' />
-                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
-                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                            <div className='w-full grid md:grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 md:border-r md:border-r-[rgba(38,38,38,1)]'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Listing Price</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
                                         $1,250,000 
                                     </p>
                                 </div>
+                                <hr className='md:hidden border border-[rgba(38,38,38,1)]' />
                                 <div className='grid gap-3'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Additional Fees</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
@@ -366,14 +388,15 @@ export default function Detailed() {
                                 </div>
                             </div>
                             <hr className='border border-[rgba(38,38,38,1)]' />
-                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
-                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                            <div className='w-full grid md:grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 md:border-r md:border-r-[rgba(38,38,38,1)]'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Down Payment</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
                                         $250,000 
                                         <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>20%</span>
                                     </p>
                                 </div>
+                                <hr className='md:hidden border border-[rgba(38,38,38,1)]' />
                                 <div className='grid gap-3'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Mortgage Amount</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
@@ -384,20 +407,21 @@ export default function Detailed() {
                             </div>
 
                         </div>
-                        <div className='w-full grid gap-7.5 p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
+                        <div className='w-full grid gap-4 md:gap-7.5 p-4 md:p-7.5 border border-[rgba(38,38,38,1)] rounded-xl'>
 
                             <div className='w-full flex items-center justify-between text-white'>
-                                <h6 className='font-semibold text-[20px] leading-[150%] tracking-[0]'>Monthly Expenses</h6>
+                                <h6 className='font-semibold text-[18px] md:text-[20px] leading-[150%] tracking-[0]'>Monthly Expenses</h6>
                                 <button className='rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] px-4 py-2'>Learn More</button>
                             </div>
                             <hr className='border border-[rgba(38,38,38,1)]' />
-                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
-                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                            <div className='w-full grid md:grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 md:border-r md:border-r-[rgba(38,38,38,1)]'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Property Taxes</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
                                         $1,250 
                                     </p>
                                 </div>
+                                <hr className='md:hidden border border-[rgba(38,38,38,1)]' />
                                 <div className='grid gap-3'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Homeowners` Association Fee</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
@@ -406,14 +430,15 @@ export default function Detailed() {
                                 </div>
                             </div>
                             <hr className='border border-[rgba(38,38,38,1)]' />
-                            <div className='w-full grid grid-cols-2 text-[#999999] gap-5'>
-                                <div className='grid gap-3 pr-1.5 border-r border-r-[rgba(38,38,38,1)]'>
+                            <div className='w-full grid md:grid-cols-2 text-[#999999] gap-5'>
+                                <div className='grid gap-3 pr-1.5 md:border-r md:border-r-[rgba(38,38,38,1)]'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Mortgage Payment</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
                                         Varies based on terms and interest rate
                                         <span className='border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]'>If applicable</span>
                                     </p>
                                 </div>
+                                <hr className='md:hidden border border-[rgba(38,38,38,1)]' />
                                 <div className='grid gap-3 h-fit'>
                                     <span className='font-medium text-[14px] leading-[150%] tracking-[0]'>Property Insurance</span>
                                     <p className='text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center'>
@@ -433,19 +458,30 @@ export default function Detailed() {
         </section>
 
         {content.map((section, idx) => (
-              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-16 py-10">
+              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-4 py-6 md:px-16 md:py-10">
                 <div className='w-full grid'>
 
                 {/* Header */}
                 <StarIcon />
-                <div className="w-full  flex items-center justify-between">
-                  <aside className="grid gap-1 max-w-5xl">
-                    <h1 className="font-semibold text-[38px] leading-[150%] tracking-normal text-white">
+                <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
+                  <aside className="w-full grid gap-1 md:max-w-5xl">
+                    <h1 className="font-semibold text-[28px] md:text-[38px] leading-[150%] tracking-normal text-white">
                       {section.title}
                     </h1>
-                    <p className="text-[#999999] font-medium text-base leading-[150%] tracking-normal">
+                    <p className="text-[#999999] font-medium text-[14px] md:text-base leading-[150%] tracking-normal">
                       {section.desc}
                     </p>
+                  </aside>
+
+                  <aside className="flex items-center gap-3">
+                    <Button asChild>
+                      <Link
+                        href="/about"
+                        className="border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal"
+                      >
+                        {section.button}
+                      </Link>
+                    </Button>
                   </aside>
                 </div>
                 </div>

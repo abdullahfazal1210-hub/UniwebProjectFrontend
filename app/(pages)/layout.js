@@ -5,10 +5,12 @@ import Footer from "../components/web/common/Footer/page";
 
 export default function Weblayout({ children }) {
   return (
-    <>
+    <div className="relative">
       <Header />
-      <main>{children}</main>
+      <main>
+        {children}
+      </main>
       <Footer />  
-    </>
+    </div>
   );
 }

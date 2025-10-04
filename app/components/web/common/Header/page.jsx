@@ -49,7 +49,7 @@ export default function Header() {
     const links = [
       { href: "/", label: "Home" },
       { href: "/about", label: "About Us" },
-      { href: "/detailed", label: "Properties" },
+      { href: "/properties", label: "Properties" },
       { href: "/service", label: "Services" },
       { href: "/contact", label: "Contact Us" },
     ];
@@ -57,7 +57,7 @@ export default function Header() {
     const moblinks = [
       { href: "/", label: "Home" },
       { href: "/about", label: "About Us" },
-      { href: "/detailed", label: "Properties" },
+      { href: "/properties", label: "Properties" },
       { href: "/service", label: "Services" },
       { href: "/contact", label: "Contact Us" },
       { href: "/Login", label: "Sign In" },
@@ -65,7 +65,7 @@ export default function Header() {
 
   return (
     <>
-    <header className='w-full'> 
+    <header className='w-full fixed z-100'> 
       {toggle ? <div 
                   style={{
                     backgroundImage: headerBg ? `url(${headerBg.src})` : 'none',
@@ -81,7 +81,7 @@ export default function Header() {
           </div>
         </div> : "" }
         
-        <nav className='w-full relative flex px-4 py-5 md:px-16 md:py-4 bg-[rgba(26,26,26,1)] text-white'>
+        <nav className='w-full relative flex px-4 py-3 md:px-16 md:py-4 bg-[rgba(26,26,26,1)] text-white'>
           <div className='w-1/2 md:w-1/4 flex items-center justify-start'>
             <Logo />
           </div>
