@@ -36,16 +36,6 @@ export default function Header() {
         border: '1px solid transparent',
     };
 
-    const activeButton = {
-        backgroundColor: '#8f64fa',
-        border: '1px solid #703bf7'
-    };
-
-    const inactiveButton = {
-        backgroundColor: '#703bf7',
-        border: '1px solid #703bf7'
-    };
-
     const links = [
       { href: "/", label: "Home" },
       { href: "/about", label: "About Us" },
@@ -103,8 +93,7 @@ export default function Header() {
             <Button asChild>
               <Link 
                 href="/Login"
-                style={pathname === "/Login" ? activeButton : inactiveButton}
-                className='text-sm text-white px-5 rounded-b-md font-medium'
+                className='text-sm text-white px-5 rounded-b-md font-medium bg-[#703bf7] hover:bg-[#895ef7] transition-all border border-[#703bf7]'
               >Sign In</Link>
             </Button>
           </div>

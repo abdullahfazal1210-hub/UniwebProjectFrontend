@@ -153,7 +153,7 @@ export default function Home() {
                 <Button asChild>
                   <Link
                     href="/about"
-                    className="border border-[rgba(38,38,38,1)] text-white px-5 py-5 md:py-3.5 font-medium text-sm leading-[150%] tracking-normal"
+                    className="border border-[rgba(38,38,38,1)] text-white px-5 py-5 md:py-3.5 font-medium text-sm leading-[150%] tracking-normal duration-300 hover:bg-[#703bf7] transition-all hover:border-[#703bf7]"
                   >
                     Learn More
                   </Link>
@@ -161,7 +161,7 @@ export default function Home() {
                 <Button asChild>
                   <Link
                     href="/properties"
-                    className="font-medium text-sm leading-[150%] tracking-normal bg-[#703bf7] border border-[#703bf7] text-white px-5 py-5 md:py-3.5"
+                    className="font-medium text-sm leading-[150%] tracking-normal bg-[#703bf7] border border-[#703bf7] text-white px-5 py-5 md:py-3.5 transition-colors duration-300 hover:bg-[#141414] hover:border-[rgba(38,38,38,1)]"
                   >
                     Browse Properties
                   </Link>
@@ -226,7 +226,7 @@ export default function Home() {
                     <Button asChild>
                       <Link
                         href="/about"
-                        className="w-full md:w-auto border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal"
+                        className="w-full md:w-auto border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal duration-300 transition-all hover:bg-[#3d3d3d]"
                       >
                         {section.button}
                       </Link>

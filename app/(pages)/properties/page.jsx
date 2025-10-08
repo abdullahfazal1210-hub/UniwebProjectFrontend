@@ -185,8 +185,10 @@ export default function Properties() {
                   placeholder="Search For A Property" 
                   className="w-full text-[#666666] outline-none font-medium text-[16px] md:text-[20px] leading-[150%] tracking-[0]" />
 
-          <Button className="hidden md:block px-3 bg-[#703bf7] text-white cursor-pointer">
+          <Button className="hidden md:flex px-3 bg-[#703bf7] text-white cursor-pointer">
+            <span>
             <SearchIcon />
+            </span>
             Find Property
           </Button>
           <Button className="md:hidden px-3 bg-[#703bf7] text-white cursor-pointer">

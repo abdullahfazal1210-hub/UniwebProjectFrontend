@@ -52,18 +52,20 @@ export default function Footer() {
           <Button asChild >
               <Link 
                 href="/properties"
-                className='w-full md:w-auto bg-[#703bf7] border border-[#703bf7] text-sm text-white px-5 py-3 rounded-b-md font-medium z-30'
+                className='w-full md:w-auto bg-[#703bf7] border border-[#703bf7] text-sm text-white px-5 py-3 rounded-b-md font-medium z-30 duration-300 hover:bg-[#895ef7] transition-all'
               >Explore Properties</Link>
             </Button>
         </div>
       </section>
-      <section className='w-full grid py-12 px-4 gap-10 bg-[rgba(20,20,20)] md:px-16 md:py-14 md:flex md:justify-between md:gap-16 border-t border-[rgba(38,38,38,1)] relative'>
+      <section className='w-full grid py-12 px-4 gap-10 bg-[rgba(20,20,20)] lg:px-16 lg:py-14 lg:flex lg:justify-between lg:gap-16 border-t border-[rgba(38,38,38,1)] relative'>
           <div className="flex flex-col gap-4">
             <div>
               <Logo />
             </div>
             <form className="flex items-center justify-evenly gap-2 rounded-lg px-3.5 py-3 bg-[rgba(20,20,20,1)] border border-[rgba(38,38,38,1)]">
-              <Message />
+              <span>
+                <Message />
+              </span>
               <input type="email" placeholder="Enter Your Email" className='w-full text-[#999999] outline-0'/>
               <button type="submit">
                 <Send />
@@ -138,8 +140,13 @@ export default function Footer() {
 
         </section>
         <section>
-          <div className='w-full bg-[rgba(20,20,20,1)] text-center py-4 border-t border-[rgba(38,38,38,1)] text-[#999999] text-sm relative'>
-            <p>© 2024 Estatein. All rights reserved. | Privacy Policy | Terms of Service</p>
+          <div className='hidden lg:block w-full bg-[rgba(20,20,20,1)] text-center py-4 border-t border-[rgba(38,38,38,1)] text-[#999999] text-sm relative'>
+            <p>© 2024 Estatein. All rights reserved.
+               | Privacy Policy | Terms of Service</p>
+          </div>
+          <div className='w-full bg-[rgba(20,20,20,1)] text-center py-4 border-t border-[rgba(38,38,38,1)] text-[#999999] text-sm relative grid lg:hidden'>
+            <p className='text-center'>© 2024 Estatein. All rights reserved. </p>
+            <p className='text-center'> Privacy Policy | Terms of Service</p>
           </div>
         </section>
     </footer>

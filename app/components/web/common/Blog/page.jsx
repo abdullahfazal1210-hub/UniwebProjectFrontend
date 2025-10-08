@@ -16,7 +16,7 @@ export default function Blogs(props) {
             <Button asChild>
                 <Link 
                     href="/about"
-                    className='border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal'
+                    className='border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal transition-all hover:bg-[#3d3d3d] duration-300'
                 >Learn More</Link>
             </Button>
         </div>
