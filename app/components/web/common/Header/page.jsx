@@ -2,9 +2,12 @@
 import React, { useState } from 'react'
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from 'next/image';
+
+// Logo
+import Logo from '@/public/img/Logo.png';
 
 // icons
-import Logo from '@/app/styles/svg/Logo.jsx';
 import Cancel from '@/app/styles/svg/Cancel.jsx'
 import Menu from '@/app/styles/svg/Menu.jsx';
 import Close from '@/app/styles/svg/MainMenuClose.jsx';
@@ -72,8 +75,9 @@ export default function Header() {
         </div> : "" }
         
         <nav className='w-full relative flex px-4 py-3 md:px-16 md:py-4 bg-[rgba(26,26,26,1)] text-white'>
-          <div className='w-1/2 md:w-1/4 flex items-center justify-start'>
-            <Logo />
+          <div className='w-1/2 md:w-1/4 flex items-center justify-start gap-4 font-semibold '>
+            <Image className='w-[48px] h-[48px] mix-blend-color' src={Logo} alt='Logo' />
+            Talha Builders
           </div>
           <ul className='hidden w-1/2 md:flex items-center gap-5 justify-center'>
             {links.map((link) => (
