@@ -58,7 +58,7 @@ export default function Header() {
 
   return (
     <>
-    <header className='w-full fixed z-100'> 
+    <header className='w-full z-100'> 
       {toggle ? <div 
                   style={{
                     backgroundImage: headerBg ? `url(${headerBg.src})` : 'none',

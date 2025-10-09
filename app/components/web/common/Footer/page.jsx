@@ -1,12 +1,15 @@
 "use client";
 import React from 'react'
 import Link from "next/link";
+import Image from 'next/image.js';
 
 // shadcn comps
 import { Button } from "@/components/ui/button"
 
+// logo
+import Logo from '@/public/img/logo.png';
+
 // icons
-import Logo from '../../../../styles/svg/Logo.jsx';
 import Send from '../../../../styles/svg/Send.jsx';
 import Message from '../../../../styles/svg/Message.jsx';
 
@@ -59,8 +62,9 @@ export default function Footer() {
       </section>
       <section className='w-full grid py-12 px-4 gap-10 bg-[rgba(20,20,20)] lg:px-16 lg:py-14 lg:flex lg:justify-between lg:gap-16 border-t border-[rgba(38,38,38,1)] relative'>
           <div className="flex flex-col gap-4">
-            <div>
-              <Logo />
+            <div className='flex items-center justify-start gap-4 font-semibold text-white'>
+              <Image className='w-[48px] h-[48px] mix-blend-color' src={Logo} alt='Logo' />
+              Talha Builders
             </div>
             <form className="flex items-center justify-evenly gap-2 rounded-lg px-3.5 py-3 bg-[rgba(20,20,20,1)] border border-[rgba(38,38,38,1)]">
               <span>

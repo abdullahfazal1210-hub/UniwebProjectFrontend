@@ -93,7 +93,7 @@ export default function Home() {
       icon: <PropertyIcon />,
     },
     {
-      title: "Smart Investments, Decisions",
+      title: "Smart Investments, Decisions Making",
       icon: <SunriseIcon />,
     },
   ];
@@ -127,7 +127,7 @@ export default function Home() {
   return (
       <>
         <main id='page-1' className='bg-[#141414] grid'>
-          <section className='relative mt-31'>
+          <section className='relative  '>
             {/* Banner Tag */}
             <div className='w-28 h-28 md:w-32 md:h-32 absolute top-[25%] md:top-18 left-[7%] md:left-1/2 z-10 -translate-x-[4%]'>
               <BannerTag />
