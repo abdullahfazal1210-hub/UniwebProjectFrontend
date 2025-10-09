@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Image from 'next/image';
 
 // Logo
-import Logo from '@/public/img/Logo.png';
+import Logo from '@/public/img/logo.png';
 
 // icons
 import Cancel from '@/app/styles/svg/Cancel.jsx'
