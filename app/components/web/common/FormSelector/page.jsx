@@ -14,7 +14,12 @@ import {
 // icons
 import Dropdown from '@/app/styles/svg/Dropdown.jsx';
 
-export default function FormSelector({ title, options, value, onChange }) {
+export default function FormSelector({   
+    title = "Select Option",
+    options = [],
+    value = "",
+    onChange = () => {}, 
+  }) {
   return (
     <div className="flex flex-col gap-2">
       <label className="font-semibold text-[16px] leading-[150%] tracking-[0px] text-[rgba(255,255,255,1)]">
