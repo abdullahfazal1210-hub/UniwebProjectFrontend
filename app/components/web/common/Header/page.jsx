@@ -75,7 +75,7 @@ export default function Header() {
         </div> : "" }
         
         <nav className='w-full relative flex px-4 py-3 md:px-16 md:py-4 bg-[rgba(26,26,26,1)] text-white'>
-          <div className='w-1/2 md:w-1/4 flex items-center justify-start gap-4 font-semibold '>
+          <div className='w-3/4 md:w-1/4 flex items-center justify-start gap-2 lg:gap-4 font-semibold '>
             <Image className='w-[48px] h-[48px] mix-blend-color' src={Logo} alt='Logo' />
             Talha Builders
           </div>
@@ -101,7 +101,7 @@ export default function Header() {
               >Sign In</Link>
             </Button>
           </div>
-          <div className='md:hidden flex w-1/2 justify-end'>
+          <div className='md:hidden flex w-1/4 justify-end'>
             <button onClick={() => setIsOpen(!isOpen)} className='p-2 rounded-md hover:bg-[rgba(38,38,38,1)]'>
               <Menu />
             </button>

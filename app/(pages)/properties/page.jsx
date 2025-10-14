@@ -36,6 +36,8 @@ import TypeIcon from '@/app/styles/svg/PropertyType.jsx';
 export default function Properties() {
   
   const [propertyData, setPropertyData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchedData, setSearchedData] = useState([]);
   const [filterData, setFilterData] = useState({
     locations: [],
     sizes: [],
@@ -67,6 +69,15 @@ export default function Properties() {
     });
   }, [propertyData, selectedValues]);
 
+  // const filteredProperties = useMemo(() => {
+  //   return allProperties.filter((property) =>
+  //     [property.title, property.type, property.location]
+  //       .join(" ")
+  //       .toLowerCase()
+  //       .includes(searchTerm.toLowerCase())
+  //   );
+  // }, [searchTerm, allProperties]);
+
   const content = [
     {
       title: "Find Your Dream Property",
@@ -79,12 +90,11 @@ export default function Properties() {
       title: "Discover a World of Possibilities", 
       desc: "Our portfolio of properties is as diverse as your dreams. Explore the following categories to find the perfect property that resonates with your vision of home.",
       type: "property",
-      data: filteredData
+      data: searchedData.length > 0 ? searchedData : filteredData
     },
     { 
       title: "What Our Clients Say", 
       desc: "Read the success stories and heartfelt testimonials from our valued clients. Discover why they chose Estatein for their real estate needs.",
-      button: "View All Testimonials",
       type: "form",
     },
   ];
@@ -95,29 +105,6 @@ export default function Properties() {
     { icon: <PriceIcon />, title: "Pricing Range", options: filterData.prices || [] },
     { icon: <AreaIcon />, title: "Property Size", options: filterData.sizes || [] },
     { icon: <CalendarIcon />, title: "Build Year", options: filterData.buildYears || [] },
-  ];
-
-  const formSelectors = [
-    {
-      title: "Preferred Location",
-      options: ["Volvo", "Saab", "Mercedes", "Audi"], 
-    },
-    {
-      title: "Property Type",
-      options: ["Apartment", "House", "Villa"],
-    },
-    {
-      title: "No. of Bathrooms",
-      options: [1, 2, 3, 4],
-    },
-    {
-      title: "No. of Bedrooms",
-      options: [1, 2, 3, 4],
-    },
-    {
-      title: "Budget",
-      options: ["< $100k", "$100k - $300k", "$300k - $500k", ">$500k"],
-    },
   ];
 
 
@@ -174,6 +161,25 @@ export default function Properties() {
   const handleSelect = (title, value) => {
     setSelectedValues((prev) => ({ ...prev, [title]: value }));
   };
+
+  const handleSearch = () => {
+    // if empty, reset to filteredData (so it still applies dropdown filters)
+    if (!searchTerm.trim()) {
+      setSearchedData(filteredData);
+      return;
+    }
+
+    // filter within the already filtered data (so filters + search stack together)
+    const results = filteredData.filter((property) =>
+      [property.title]
+        .join(" ")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
+
+    setSearchedData(results);
+  };
+
   
   return (
     <main id='page-3'>
@@ -182,16 +188,25 @@ export default function Properties() {
       <aside className="w-full px-4 md:px-16 md:py-10 grid place-items-center absolute top-full -translate-y-[15%] left-1/2 -translate-x-[50%] md:top-full md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
         <div className="w-full md:w-2/4 flex items-center rounded-lg overflow-hidden p-4 bg-[#141414] border border-[#262626] shadow-[0_0_0_10px_#191919]">
           <input type="text" 
-                  placeholder="Search For A Property" 
-                  className="w-full text-[#666666] outline-none font-medium text-[16px] md:text-[20px] leading-[150%] tracking-[0]" />
+                  placeholder="Search For A Property"
+                  value={searchTerm}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full text-white outline-none font-medium text-[16px] md:text-[20px] leading-[150%] tracking-[0]" />
 
-          <Button className="hidden md:flex px-3 bg-[#703bf7] text-white cursor-pointer">
+          <Button 
+            className="hidden md:flex px-3 bg-[#703bf7] text-white cursor-pointer"
+            onClick={handleSearch}
+          >
             <span>
             <SearchIcon />
             </span>
             Find Property
           </Button>
-          <Button className="md:hidden px-3 bg-[#703bf7] text-white cursor-pointer">
+          <Button 
+            className="md:hidden px-3 bg-[#703bf7] text-white cursor-pointer"
+            onClick={handleSearch}
+          >
             <SearchIcon />
           </Button>
         </div>
