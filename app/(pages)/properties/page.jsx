@@ -162,7 +162,7 @@ export default function Properties() {
 
     // filter within the already filtered data (so filters + search stack together)
     const results = filteredData.filter((property) =>
-      [property.title, property.description]
+      [property.title]
         .join(" ")
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
