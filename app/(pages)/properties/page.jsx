@@ -69,15 +69,6 @@ export default function Properties() {
     });
   }, [propertyData, selectedValues]);
 
-  // const filteredProperties = useMemo(() => {
-  //   return allProperties.filter((property) =>
-  //     [property.title, property.type, property.location]
-  //       .join(" ")
-  //       .toLowerCase()
-  //       .includes(searchTerm.toLowerCase())
-  //   );
-  // }, [searchTerm, allProperties]);
-
   const content = [
     {
       title: "Find Your Dream Property",
@@ -171,7 +162,7 @@ export default function Properties() {
 
     // filter within the already filtered data (so filters + search stack together)
     const results = filteredData.filter((property) =>
-      [property.title]
+      [property.title, property.description]
         .join(" ")
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
