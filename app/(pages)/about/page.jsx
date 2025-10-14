@@ -148,8 +148,8 @@ function About() {
       <div className="main-container">
  <div className="sec-one grid grid-cols-1 py-4 px-4 lg:grid-cols-2 md:grid-cols-2">
   <div className="left  relative md:h-[80vh]  flex justify-center items-center order-2 md:order-1">
-    <div className="grid gap-4 md:w-[90%] md:h-[60%]">
-        <StarsIcon />
+    <div className="grid  gap-4 md:w-[90%] md:h-[60%]">
+      <span className="relative top-4 md:top-7 "><StarsIcon /></span>
       <h1 className="md:text-4xl ms-2 md:ms-3 text-2xl font-semibold text-white">
         Our Journey
       </h1>
