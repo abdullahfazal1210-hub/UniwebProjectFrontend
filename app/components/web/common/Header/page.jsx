@@ -41,7 +41,7 @@ export default function Header() {
 
     const links = [
       { href: "/", label: "Home" },
-      { href: "/about", label: "About Us" },
+      { href: "/About", label: "About Us" },
       { href: "/properties", label: "Properties" },
       { href: "/service", label: "Services" },
       { href: "/contact", label: "Contact Us" },
@@ -49,7 +49,7 @@ export default function Header() {
 
     const moblinks = [
       { href: "/", label: "Home" },
-      { href: "/about", label: "About Us" },
+      { href: "/About", label: "About Us" },
       { href: "/properties", label: "Properties" },
       { href: "/service", label: "Services" },
       { href: "/contact", label: "Contact Us" },

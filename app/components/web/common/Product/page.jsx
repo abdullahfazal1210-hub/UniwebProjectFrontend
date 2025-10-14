@@ -64,20 +64,20 @@ export default function ProductCard(props) {
         </div>
 
         {/* Price + Button */}
-        <footer className="w-full grid md:flex md:flex-row md:justify-between gap-2 md:gap-0">
+        <div className="w-full grid md:flex md:flex-row md:justify-between gap-2 md:gap-0">
           <div className="w-full md:w-[25%] flex items-center gap-2 md:grid md:grid-cols-1 md:gap-0.5">
             <span className="text-[#999999] font-medium text-sm">Price</span>
             <p className="text-white font-semibold text-[20px]">${price}</p>
           </div>
           <Button asChild className="w-full md:w-[65%] h-full">
             <Link
-              href="/properties"
+              href={`/properties/detailed/${_id}`}
               className="w-full font-medium text-sm bg-[#703bf7] border border-[#703bf7] text-white hover:bg-[#895ef7] transition-all"
             >
               View Properties Details
             </Link>
           </Button>
-        </footer>
+        </div>
       </div>
     </article>
   );

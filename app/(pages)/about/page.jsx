@@ -146,7 +146,7 @@ function About() {
   return (
     <div className="bg-[#141414] ">
       <div className="main-container">
- <div className="sec-one grid grid-cols-1 px-4 lg:grid-cols-2 md:grid-cols-2">
+ <div className="sec-one grid grid-cols-1 py-4 px-4 lg:grid-cols-2 md:grid-cols-2">
   <div className="left  relative md:h-[80vh]  flex justify-center items-center order-2 md:order-1">
     <div className="grid gap-4 md:w-[90%] md:h-[60%]">
         <StarsIcon />
@@ -335,7 +335,7 @@ function About() {
                   />
                 </div>
 
-                <div className="twitter-icon p-2 px-5 rounded-full top-65 absolute left-1/2 transform -translate-x-1/2 border bg-[#703BF7] z-10">
+                <div className="twitter-icon p-2 px-5 rounded-full top-65 absolute left-1/2 transform -translate-x-1/2  bg-[#703BF7] z-10">
                     <Twitter/>
                   
                 </div>
@@ -347,14 +347,18 @@ function About() {
                     {card.designation}
                   </p>
 
-                  <div className="inp relative mt-3">
+                  {/* <div className="inp relative mt-3"> */}
+                  <div className="border border-gray-700 bg-[#1A1A1A] rounded-4xl  flex justify-between items-center mt-3 relative">
+                  
                     <input
                       type="text"
                       placeholder="Say Hello 👋"
-                      className="p-3 pl-3 border border-gray-700 bg-[#1A1A1A] rounded-4xl w-full"
+                      className="p-3 pl-3 w-full"
                     />
                  
-                    <button className="border p-1  bg-[#703BF7] me-1 rounded-full absolute top-[12px] md:top-[10px] right-1.5">
+                    <button className="p-2 bg-[#703BF7] me-1 rounded-full">
+                    {/* <button className="p-2 bg-[#703BF7] me-1 rounded-full absolute top-[12px] md:top-[10px] right-1.5"> */}
+                      
                       <Send />
 
                     </button>
