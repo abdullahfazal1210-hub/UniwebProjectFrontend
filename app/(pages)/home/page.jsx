@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import Link from "next/link";
 import Image from "next/image";
 
+import dynamic from 'next/dynamic';
+
 // components
 import ServiceCard from "@/app/components/web/common/ServiceCard/page.jsx";
 
@@ -20,8 +22,11 @@ import StarIcon from '@/app/styles/svg/StarsIcon.jsx';
 import HomeBanner from '@/public/img/home-banner.png';
 import BannerTag from '@/app/styles/svg/BannerTag.jsx';
 
-// import slider
-import Slider from '@/app/components/web/common/Slider/page';
+// Lazy load Slider for performance
+const Slider = dynamic(() => import('@/app/components/web/common/Slider/page'), {
+  ssr: false,
+  loading: () => <div className="w-full h-64 bg-gray-900 animate-pulse rounded-xl" />
+});
 
 // fetch data
 import getProperty from '@/app/action/getProperty.js';
@@ -37,22 +42,22 @@ export default function Home() {
 
 
   const content = [
-    { 
-      title: "Featured Properties", 
+    {
+      title: "Featured Properties",
       desc: "Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional homes and investments available through Estatein. Click 'View Details' for more information.",
       button: "View All Properties",
       type: "property",
       data: propertyData
     },
-    { 
-      title: "What Our Clients Say", 
+    {
+      title: "What Our Clients Say",
       desc: "Read the success stories and heartfelt testimonials from our valued clients. Discover why they chose Estatein for their real estate needs.",
       button: "View All Testimonials",
       type: "review",
       data: reviewData
     },
-    { 
-      title: "Frequently Asked Questions", 
+    {
+      title: "Frequently Asked Questions",
       desc: "Find answers to common questions about Estatein’s services, property listings, and the real estate process. We're here to provide clarity and assist you every step of the way.",
       button: "View All FAQ's",
       type: "blog",
@@ -77,8 +82,8 @@ export default function Home() {
       label: "Years of Experience",
     },
   ];
-  
-  
+
+
   const services = [
     {
       title: "Find Your Dream Home",
@@ -97,7 +102,7 @@ export default function Home() {
       icon: <SunriseIcon />,
     },
   ];
-  
+
   useEffect(() => {
     if (customer < 200) {
       const timer = setTimeout(() => setCustomer(customer + 1), 20);
@@ -108,14 +113,17 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resProperty = await getProperty();
-        setPropertyData(resProperty.data || resProperty);
-        
-        const resReview = await getReview();
-        setReviewData(resReview.data || resReview);
+        // Fetch all data in parallel
+        const [resProperty, resReview, resBlog] = await Promise.all([
+          getProperty(),
+          getReview(),
+          getBlog()
+        ]);
 
-        const resBlog = await getBlog(); // 👈 make sure you have this API function
+        setPropertyData(resProperty.data || resProperty);
+        setReviewData(resReview.data || resReview);
         setBlogData(resBlog.data || resBlog);
+
       } catch (err) {
         console.error("Error fetching data:", err);
       }
@@ -125,13 +133,13 @@ export default function Home() {
   }, []);
 
   return (
-      <>
-        <main id='page-1' className='bg-[#141414] grid'>
-          <section className='relative  '>
-            {/* Banner Tag */}
-            <div className='w-28 h-28 md:w-32 md:h-32 absolute top-[25%] md:top-18 left-[7%] md:left-1/2 z-10 -translate-x-[4%]'>
-              <BannerTag />
-            </div>
+    <>
+      <main id='page-1' className='bg-[#141414] grid'>
+        <section className='relative  '>
+          {/* Banner Tag */}
+          <div className='w-28 h-28 md:w-32 md:h-32 absolute top-[25%] md:top-18 left-[7%] md:left-1/2 z-10 -translate-x-[4%]'>
+            <BannerTag />
+          </div>
 
           {/* Hero Section */}
           <div className="w-full flex px-4 py-8 flex-col-reverse md:grid md:grid-cols-2 bg-[rgb(20,20,20)] md:pl-16 md:pr-0 md:py-0 gap-14">
@@ -168,23 +176,23 @@ export default function Home() {
                 </Button>
               </div>
 
-                {/* Features */}
-                <div className='grid grid-cols-1 md:grid-cols-3 gap-2.5 md:gap-5 text-white'>
-                  {stats.map((stat, index) => (
-                    <div
-                      key={index}
-                      className="grid gap-0.5 px-3 py-3.5 bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] rounded-lg"
-                    >
-                      <h6 className="font-bold text-center md:text-start text-[30px] leading-[150%] tracking-normal">
-                        {stat.key === "customer" ? customer : stat.value}+
-                      </h6>
-                      <p className="text-[#999999] text-center md:text-start font-medium text-base leading-[150%] tracking-normal">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+              {/* Features */}
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-2.5 md:gap-5 text-white'>
+                {stats.map((stat, index) => (
+                  <div
+                    key={index}
+                    className="grid gap-0.5 px-3 py-3.5 bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] rounded-lg"
+                  >
+                    <h6 className="font-bold text-center md:text-start text-[30px] leading-[150%] tracking-normal">
+                      {stat.key === "customer" ? customer : stat.value}+
+                    </h6>
+                    <p className="text-[#999999] text-center md:text-start font-medium text-base leading-[150%] tracking-normal">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
               </div>
+            </div>
 
             {/* Banner Image */}
             <div>
@@ -204,47 +212,47 @@ export default function Home() {
               </div>
             );
           })}
+        </section>
+
+        {content.map((section, idx) => (
+          <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-4 py-6 md:px-16 md:py-10">
+            <div className='w-full grid'>
+
+              {/* Header */}
+              <StarIcon />
+              <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
+                <aside className="w-full grid gap-1 md:max-w-5xl">
+                  <h1 className="font-semibold text-[28px] md:text-[38px] leading-[150%] tracking-normal text-white">
+                    {section.title}
+                  </h1>
+                  <p className="text-[#999999] font-medium text-[14px] md:text-base leading-[150%] tracking-normal">
+                    {section.desc}
+                  </p>
+                </aside>
+
+                <aside className="w-full md:w-auto flex items-center gap-3">
+                  <Button asChild>
+                    <Link
+                      href="/about"
+                      className="w-full md:w-auto border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal duration-300 transition-all hover:bg-[#3d3d3d]"
+                    >
+                      {section.button}
+                    </Link>
+                  </Button>
+                </aside>
+              </div>
+            </div>
+
+            {/* Slider */}
+            <div className="w-full grid grid-cols-3">
+              <Slider type={section.type} data={section.data} />
+            </div>
           </section>
+        ))}
 
-          {content.map((section, idx) => (
-              <section key={idx} className="w-full grid bg-[rgb(20,20,20)] gap-6 px-4 py-6 md:px-16 md:py-10">
-                <div className='w-full grid'>
 
-                {/* Header */}
-                <StarIcon />
-                <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
-                  <aside className="w-full grid gap-1 md:max-w-5xl">
-                    <h1 className="font-semibold text-[28px] md:text-[38px] leading-[150%] tracking-normal text-white">
-                      {section.title}
-                    </h1>
-                    <p className="text-[#999999] font-medium text-[14px] md:text-base leading-[150%] tracking-normal">
-                      {section.desc}
-                    </p>
-                  </aside>
 
-                  <aside className="w-full md:w-auto flex items-center gap-3">
-                    <Button asChild>
-                      <Link
-                        href="/about"
-                        className="w-full md:w-auto border border-[rgba(38,38,38,1)] text-white px-5 py-3.5 font-medium text-sm leading-[150%] tracking-normal duration-300 transition-all hover:bg-[#3d3d3d]"
-                      >
-                        {section.button}
-                      </Link>
-                    </Button>
-                  </aside>
-                </div>
-                </div>
-
-                {/* Slider */}
-                <div className="w-full grid grid-cols-3">
-                  <Slider type={section.type} data={section.data} />
-                </div>
-              </section>
-          ))}
-          
-        
-
-        </main>
-      </>
+      </main>
+    </>
   )
 }

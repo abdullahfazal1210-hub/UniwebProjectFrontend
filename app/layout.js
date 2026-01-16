@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={OpenSans.className} suppressHydrationWarning>
+      <body className={OpenSans.className}>
         {/* <NextAuthSessionProvider session={session ?? undefined}>
           <TanstackProvider>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>*/}

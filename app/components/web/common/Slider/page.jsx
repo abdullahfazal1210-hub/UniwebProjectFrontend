@@ -1,4 +1,5 @@
 "use client";
+import React, { memo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,7 +10,7 @@ import ProductCard from "../Product/page.jsx";
 import ReviewCard from "../Review/page.jsx";
 import BlogCard from "../Blog/page.jsx";
 
-export default function Slider({ type, data }) {
+const Slider = memo(({ type, data }) => {
   return (
     <Swiper
       breakpoints={{
@@ -52,4 +53,6 @@ export default function Slider({ type, data }) {
       ))}
     </Swiper>
   );
-}
+});
+
+export default Slider;

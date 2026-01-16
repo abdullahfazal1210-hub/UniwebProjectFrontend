@@ -2,9 +2,18 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams, useRouter } from "next/navigation";
+import axios from "axios";
+import LoginModal from "@/app/components/web/common/LoginModal";
+import { toast } from "sonner";
+import { isUserLoggedIn } from "@/app/utils/authHelper";
+import dynamic from "next/dynamic";
+
 // Components
-import Slider from "@/app/components/web/common/Slider/page.jsx";
+const Slider = dynamic(() => import("@/app/components/web/common/Slider/page.jsx"), {
+  ssr: false,
+  loading: () => <div className="w-full h-64 bg-gray-900 animate-pulse rounded-xl" />
+});
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Shadcn components
@@ -24,13 +33,155 @@ import houseImage from "@/public/img/house-image.png";
 // fetch data
 import getBlog from "@/app/action/getBlogs.js";
 import getPropertys from "@/app/action/getProperty";
+import { getProperty } from "@/app/(pages)/api/hello";
 
 export default function Detailed() {
   const { id } = useParams();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [blogData, setBlogData] = useState([]);
   const [property, setProperty] = useState([]);
 
-  console.log("id : ", id);
+  // Initialize from URL params if available
+  const [purchaseType, setPurchaseType] = useState(searchParams.get("type") || "");
+  const [rentDuration, setRentDuration] = useState(searchParams.get("duration") || "");
+
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [propertyStatus, setPropertyStatus] = useState({ status: "Available" });
+
+  useEffect(() => {
+
+    const fetchStatus = async () => {
+      try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/property/status/${id}`);
+        setPropertyStatus(res.data);
+      } catch (error) {
+        console.error("Failed to fetch property status", error);
+      }
+    };
+    if (id) fetchStatus();
+  }, [id]);
+
+  const checkLogin = () => {
+
+    const hasCookie = document.cookie.split(';').some(c => c.trim().startsWith('authToken='));
+    const hasUser = localStorage.getItem("userName");
+    return hasCookie || hasUser;
+  };
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Restore form data
+  useEffect(() => {
+    const savedRequest = localStorage.getItem("savedPropertyRequest");
+    if (savedRequest) {
+      try {
+        const parsed = JSON.parse(savedRequest);
+
+        if (parsed.propertyId === id) {
+          setFormData(prev => ({
+            ...prev,
+            firstName: parsed.firstName || "",
+            lastName: parsed.lastName || "",
+            email: parsed.email || "",
+            phone: parsed.phone || "",
+            message: parsed.message || ""
+          }));
+          if (parsed.purchaseType) setPurchaseType(parsed.purchaseType);
+          if (parsed.rentDuration) setRentDuration(parsed.rentDuration);
+
+          localStorage.removeItem("savedPropertyRequest");
+          localStorage.removeItem("returnUrl");
+          toast.success("Welcome back! Restoring your request.");
+        }
+      } catch (e) {
+        console.error("Failed to restore request", e);
+      }
+    }
+  }, [id]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      ...formData,
+      purchaseType,
+      rentDuration: purchaseType === 'rent' ? rentDuration : null,
+      propertyId: id,
+      propertyTitle: property[0]?.title || "Unknown Property",
+    };
+
+    // 🔹 Phone Number Validation (11 digits)
+    const phoneRegex = /^[0-9]{11}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      toast.error("Phone number must be exactly 11 digits.");
+      return;
+    }
+
+    if (!isUserLoggedIn()) {
+      // Save data
+      localStorage.setItem("savedPropertyRequest", JSON.stringify(payload));
+      localStorage.setItem("returnUrl", `/properties/detailed/${id}`);
+
+
+      toast.info("Please login to send request. Data saved.");
+      router.push("/Login");
+      return;
+    }
+
+    try {
+      if (!purchaseType) {
+        console.log("Purchase type missing");
+        return;
+      }
+
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/requestProperty`, payload, {
+        withCredentials: true
+      });
+      if (res.status === 200) {
+        toast.success("Request sent successfully!");
+        setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" });
+        setPurchaseType("");
+        setRentDuration("");
+      }
+    } catch (error) {
+      console.error(error);
+      if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+
+        localStorage.setItem("savedPropertyRequest", JSON.stringify(payload));
+        localStorage.setItem("returnUrl", `/properties/detailed/${id}`);
+
+        localStorage.removeItem("userName");
+        document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+        toast.error("Session expired. Please login again.");
+        router.push("/Login");
+      } else {
+        toast.error("Failed to send request");
+      }
+    }
+  };
+
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    const savedPrice = localStorage.getItem("rent_duration_price");
+    if (savedPrice) {
+      setPrice(Number(savedPrice));
+    }
+  }, []);
+
 
   const keys = [
     { points: "Expansive oceanfront terrace for outdoor entertaining" },
@@ -53,28 +204,53 @@ export default function Detailed() {
     },
   ];
 
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resBlog = await getBlog(); // ✅ fetch blog data
+        const [resBlog, resProperties] = await Promise.all([
+          getBlog(),
+          getPropertys()
+        ]);
+
         setBlogData(resBlog.data || resBlog);
 
-        const res = await getPropertys(); // ✅ fetch properties
-
-        if (res) {
-          const data = res.filter((item) => item._id == id);
+        if (resProperties) {
+          const data = resProperties.filter((item) => item._id == id);
           setProperty(data);
         }
-        //   console.log("res:", res);/
       } catch (err) {
-        console.error("Error fetching data:", err);
+        // console.error("Error fetching data:", err);
       }
     };
 
-    fetchData(); // ✅ call async function
-  }, []);
+    fetchData();
+  }, [id]);
 
-  console.log(property, "property");
+  // console.log(property, "property");
+
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    if (property[0]?.images?.length > 0) {
+      setSelectedImage(property[0].images[0]);
+    }
+  }, [property]);
+
+  const getMimeType = (filename) => {
+    const ext = filename?.split('.').pop()?.toLowerCase();
+    if (ext === 'png') return 'image/png';
+    if (ext === 'webp') return 'image/webp';
+    if (ext === 'svg') return 'image/svg+xml';
+    return 'image/jpeg';
+  };
+
+  const imageSrc = selectedImage
+    ? `data:${getMimeType(selectedImage.name)};base64,${selectedImage.data}`
+    : (property[0]?.images && property[0]?.images.length > 0
+      ? `data:${getMimeType(property[0].images[0].name)};base64,${property[0].images[0].data}`
+      : houseImage);
 
   return (
     <main id="page-detailed" className="bg-[#141414]">
@@ -82,7 +258,7 @@ export default function Detailed() {
         <div className="grid gap-5">
           <header className="grid md:flex md:items-center md:justify-between md:gap-12">
             <div className="grid md:flex gap-5">
-              <h1 className="text-white font-semibold text-[20px] md:text-[24px] leading-[150%] tracking-[0]">
+              <h1 className="text-white   font-semibold text-[20px] md:text-[24px] leading-[150%] tracking-[0]">
                 {property[0]?.title || <Skeleton className="h-4 w-[200px]" />}
               </h1>
               <p className="hidden md:flex items-center gap-2 text-sm text-white border border-[rgba(38,38,38,1)] p-2 rounded-lg">
@@ -103,7 +279,7 @@ export default function Detailed() {
                     Price
                   </span>
                   <span className="font-semibold text-[20px] leading-[150%] tracking-[0] text-white">
-                    $1,250,000
+                    PKR {price ? Number(price).toLocaleString() : <Skeleton className="h-4 w-[100px]" />}
                   </span>
                 </div>
               </div>
@@ -112,19 +288,46 @@ export default function Detailed() {
               <span className="font-medium text-[14px] leading-[150%] tracking-[0] text-[rgba(153,153,153,1)]">
                 Price
               </span>
-              <span className="font-semibold text-[20px] leading-[150%] tracking-[0] text-white">
-                $ {property[0]?.price || (
-                    <Skeleton className="h-4 w-[200px]" />
-                  )}
+              <span className="font-semibold  text-[20px] leading-[150%] tracking-[0] text-white">
+                PKR {price ? Number(price).toLocaleString() : (
+                  <Skeleton className="h-4 w-[200px]" />
+                )}
               </span>
             </div>
           </header>
           <div className="grid md:grid-cols-2 gap-5">
-            <Image
-              src={houseImage}
-              alt="house image"
-              className="w-full rounded-lg"
-            />
+            <div className="flex flex-col gap-4">
+              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-[12px]">
+                <Image
+                  src={imageSrc}
+                  alt="house image"
+                  className="object-cover"
+                  fill
+                />
+              </div>
+              {/* Thumbnail Gallery */}
+              {property[0]?.images?.length > 1 && (
+                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                  {property[0].images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedImage(img)}
+                      className={`relative w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-lg overflow-hidden border-2 transition-all ${selectedImage === img
+                        ? "border-[#703bf7]"
+                        : "border-transparent hover:border-gray-500"
+                        }`}
+                    >
+                      <Image
+                        src={`data:${getMimeType(img.name)};base64,${img.data}`}
+                        alt={`View ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <article className="grid gap-5 border border-[rgba(38,38,38,1)] p-4 md:p-10 rounded-lg h-fit">
               <div className="grid gap-2.5">
                 <h6 className="font-semibold text-[18px] md:text-[20px] leading-[150%] tracking-[0] text-white">
@@ -144,8 +347,8 @@ export default function Detailed() {
                   </span>
                   <p className="text-[rgba(255,255,255,1)] font-semibold text-[20px] leading-[150%] tracking-[0]">
                     {property[0]?.no_of_bedroom || (
-                    <Skeleton className="h-4 w-[200px]" />
-                  )}
+                      <Skeleton className="h-4 w-[200px]" />
+                    )}
                   </p>
                 </div>
                 <span className="hidden md:block h-full border border-[rgba(38,38,38,1)]"></span>
@@ -155,9 +358,9 @@ export default function Detailed() {
                     Bathroom
                   </span>
                   <p className="text-[rgba(255,255,255,1)] font-semibold text-[20px] leading-[150%] tracking-[0]">
-                      {property[0]?.no_of_bathroom || (
-                    <Skeleton className="h-4 w-[200px]" />
-                  )}
+                    {property[0]?.no_of_bathroom || (
+                      <Skeleton className="h-4 w-[200px]" />
+                    )}
                   </p>
                 </div>
                 <span className="hidden md:block h-full border border-[rgba(38,38,38,1)]"></span>
@@ -168,9 +371,9 @@ export default function Detailed() {
                   </span>
                   <p className="text-[rgba(255,255,255,1)] font-semibold text-[20px] leading-[150%] tracking-[0]">
                     {property[0]?.size || (
-                    <Skeleton className="h-4 w-[200px]" />
-                  )} Square Feet
-                  
+                      <Skeleton className="h-4 w-[200px]" />
+                    )} Square Feet
+
                   </p>
                 </div>
               </div>
@@ -216,113 +419,194 @@ export default function Detailed() {
           </div>
         </div>
 
-        <form
-          // onSubmit={handleSubmit(onSubmit)}
-          className="grid gap-6 border border-[rgba(38,38,38,1)] p-6 md:p-10 rounded-lg"
-        >
-          {/* Row 1 */}
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-[16px] text-white">
-                First Name
-              </label>
-              <input
-                // {...register("firstName")}
-                type="text"
-                placeholder="Enter First Name"
-                required
-                className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999]"
-              />
+        {/* Note For User */}
+        <section className="w-full flex flex-col gap-4 border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] p-6 md:p-10 rounded-xl">
+          {propertyStatus.status === "Occupied" ? (
+            <div className="w-full bg-red-500/10 border border-red-500 text-red-500 p-4 rounded-lg flex flex-col gap-2">
+              <h3 className="font-bold text-lg">Property Unavailable</h3>
+              <p>
+                This property is currently <strong>Rented</strong> for {propertyStatus.duration} months.
+              </p>
             </div>
+          ) : propertyStatus.status === "Pending" ? (
+            <div className="w-full bg-yellow-500/10 border border-yellow-500 text-yellow-500 p-4 rounded-lg flex flex-col gap-2">
+              <h3 className="font-bold text-lg">High Demand</h3>
+              <p>
+                This property currently has <strong>{propertyStatus.count} pending request(s)</strong>. You can still submit an inquiry.
+              </p>
+            </div>
+          ) : null}
 
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-[16px] text-white">
-                Last Name
-              </label>
-              <input
-                // {...register("lastName")}
-                type="text"
-                placeholder="Enter Last Name"
-                required
-                className="w-full px-3 py-2 rounded-lg border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999] bg-[rgba(26,26,26,1)]"
-              />
-            </div>
+          <div className="w-full flex flex-col gap-2">
+            <h1 className="text-[1.25rem] font-bold text-white">
+              Inquire About {property[0]?.title}
+            </h1>
           </div>
+        </section>
 
-          {/* Row 2 */}
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-[16px] text-white">
-                Email
-              </label>
-              <input
-                // {...register("email")}
-                type="email"
-                placeholder="Enter your Email"
-                required
-                className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999]"
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-[16px] text-white">
-                Phone Number
-              </label>
-              <input
-                // {...register("phone")}
-                type="tel"
-                placeholder="Enter Phone Number"
-                required
-                className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999]"
-              />
-            </div>
-          </div>
-
-          {/* Row 3 - Selected Property */}
+        <form onSubmit={handleSubmit} className="grid gap-6 border border-[rgba(38,38,38,1)] p-6 md:p-10 rounded-lg">
+          {/* First Name */}
           <div className="flex flex-col gap-2">
             <label className="font-semibold text-[16px] text-white">
-              Selected Property
+              First Name
             </label>
-            <span className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(26,26,26,1)] text-gray-200 flex items-center justify-between">
-              Seaside Serenity Villa Malibu, California
-              <span>
-                <LocationIcon color="white" />
-              </span>
-            </span>
+            <input
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              placeholder="Enter First Name"
+              required
+              className="w-full px-3 py-2 rounded-lg 
+      bg-[rgba(26,26,26,1)] 
+      border border-[rgba(38,38,38,1)] 
+      text-gray-400 placeholder-gray-500 
+      focus:outline-none focus:border-[#999999]"
+            />
           </div>
 
-          {/* Row 4 - Message */}
+          {/* Last Name */}
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold text-[16px] text-white">
+              Last Name
+            </label>
+            <input
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              placeholder="Enter Last Name"
+              required
+              className="w-full px-3 py-2 rounded-lg 
+      bg-[rgba(26,26,26,1)] 
+      border border-[rgba(38,38,38,1)] 
+      text-gray-400 placeholder-gray-500 
+      focus:outline-none focus:border-[#999999]"
+            />
+          </div>
+
+          {/* Email */}
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold text-[16px] text-white">
+              Email
+            </label>
+            <input
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Enter Email"
+              type="email"
+              required
+              className="w-full px-3 py-2 rounded-lg 
+      bg-[rgba(26,26,26,1)] 
+      border border-[rgba(38,38,38,1)] 
+      text-gray-400 placeholder-gray-500 
+      focus:outline-none focus:border-[#999999]"
+            />
+          </div>
+
+          {/* Phone */}
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold text-[16px] text-white">
+              Phone Number
+            </label>
+            <input
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleInputChange}
+              placeholder="Enter Phone"
+              required
+              minLength={11}
+              maxLength={11}
+              pattern="[0-9]{11}"
+              className="w-full px-3 py-2 rounded-lg 
+      bg-[rgba(26,26,26,1)] 
+      border border-[rgba(38,38,38,1)] 
+      text-gray-400 placeholder-gray-500 
+      focus:outline-none focus:border-[#999999]"
+            />
+          </div>
+
+          {/* Buy / Rent */}
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold text-[16px] text-white">
+              Buy or Rent
+            </label>
+            <select
+              value={purchaseType}
+              onChange={(e) => setPurchaseType(e.target.value)}
+              required
+              disabled={!!searchParams.get("type")} // Disable if came from URL
+              className={`w-full px-3 py-2 rounded-lg 
+      bg-[rgba(26,26,26,1)] 
+      border border-[rgba(38,38,38,1)] 
+      text-gray-400 
+      focus:outline-none focus:border-[#999999]
+      ${searchParams.get("type") ? "cursor-not-allowed opacity-70" : ""}`}
+            >
+              <option value="">Select Option</option>
+              <option value="buy">Buy</option>
+              <option value="rent">Rent</option>
+            </select>
+          </div>
+
+          {/* Rent Duration */}
+          {purchaseType === "rent" && (
+            <div className="flex flex-col gap-2">
+              <label className="font-semibold text-[16px] text-white">
+                Rent Duration
+              </label>
+              <select
+                value={rentDuration}
+                onChange={(e) => setRentDuration(e.target.value)}
+                required
+                className={`w-full px-3 py-2 rounded-lg 
+        bg-[rgba(26,26,26,1)] 
+        border border-[rgba(38,38,38,1)] 
+        text-gray-400 
+        focus:outline-none focus:border-[#999999]
+        ${searchParams.get("duration") ? "cursor-not-allowed opacity-70" : ""}`}
+                disabled={!!searchParams.get("duration")} // Disable if came from URL
+              >
+                <option value="">Select Duration</option>
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">1 Year</option>
+              </select>
+            </div>
+          )}
+
+          {/* Message */}
           <div className="flex flex-col gap-2">
             <label className="font-semibold text-[16px] text-white">
               Message
             </label>
             <textarea
-              // {...register("message")}
-              placeholder="Enter Your Message Here.."
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
               rows="4"
-              className="w-full px-3 py-2 rounded-lg bg-[rgba(26,26,26,1)] border border-[rgba(38,38,38,1)] text-gray-400 placeholder-gray-500 focus:outline-none focus:border-[#999999]"
-            ></textarea>
+              placeholder="Enter Your Message"
+              className="w-full px-3 py-2 rounded-lg 
+      bg-[rgba(26,26,26,1)] 
+      border border-[rgba(38,38,38,1)] 
+      text-gray-400 placeholder-gray-500 
+      focus:outline-none focus:border-[#999999]"
+            />
           </div>
 
           {/* Submit */}
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <label className="flex items-center gap-0.5 md:gap-2 text-gray-400 text-[13px] md:text-sm">
-              <input
-                type="checkbox"
-                required
-                className="w-4 h-4 rounded border-[#262626] bg-[#141414] accent-[#703bf7]"
-              />
-              I agree with <span className="underline">Terms of Use</span> and{" "}
-              <span className="underline">Privacy Policy</span>
-            </label>
-            <button
-              type="submit"
-              className="w-full md:w-auto px-6 py-2 rounded-lg bg-[#703bf7] text-white font-medium hover:bg-[#5b2fd6] transition"
-            >
-              Send your Message
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={propertyStatus.status === "Occupied"}
+            className={`w-full md:w-auto px-6 py-3 rounded-lg font-medium transition
+              ${propertyStatus.status === "Occupied"
+                ? "bg-gray-600 cursor-not-allowed text-gray-400"
+                : "bg-[#703bf7] text-white hover:bg-[#5b2fd6]"}`}
+          >
+            {propertyStatus.status === "Occupied" ? "Unavailable" : "Send Message"}
+          </button>
         </form>
+
       </section>
 
       <section className="w-full px-4 md:px-16 py-10 grid gap-6">
@@ -420,7 +704,7 @@ export default function Detailed() {
                       Property Insurance
                     </span>
                     <p className="text-white font-semibold text-[20px] leading-[150%] tracking-[0] flex gap-3 items-center">
-                      $1,200
+                      PKR 350,000
                       <span className="border border-[rgba(38,38,38,1)] bg-[rgba(26,26,26,1)] text-[#999999] py-1 px-3 rounded-3xl font-medium text-[14px]">
                         Annual cost for comprehensive property insurance
                       </span>
@@ -639,6 +923,10 @@ export default function Detailed() {
           </div>
         </section>
       ))}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+      />
     </main>
   );
 }
