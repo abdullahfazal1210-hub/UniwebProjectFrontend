@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react'
 import Link from "next/link";
+import axios from 'axios';
 import { usePathname } from "next/navigation";
 import Image from 'next/image';
 
@@ -60,18 +61,27 @@ export default function Header() {
     }
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/logout`, {}, {
+        withCredentials: true
+      });
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+
+    // Clear Client State
     localStorage.removeItem("userName");
     localStorage.removeItem("userImage");
     localStorage.removeItem("returnUrl");
     localStorage.removeItem("savedClientNeed");
     localStorage.removeItem("savedPropertyRequest");
 
-    // Expire cookie
-    document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setUser(null);
     setUserImage(null);
-    window.location.reload();
+
+    // Force Redirect to Login Page
+    window.location.href = "/Login";
   };
 
   const handleCancelClick = () => {
