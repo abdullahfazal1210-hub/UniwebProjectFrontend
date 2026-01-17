@@ -55,11 +55,18 @@ export default function HistoryPage() {
                                             {item.propertyTitle || "Unknown Property"}
                                         </Link>
                                     </td>
-                                    <td className="p-4 capitalize">{item.purchaseType}</td>
+                                    <td className="p-4 capitalize">
+                                        {item.purchaseType}
+                                        {item.purchaseType === 'rent' && item.rentDuration && (
+                                            <span className="block text-xs text-gray-500 mt-1">
+                                                {item.rentDuration} Month{item.rentDuration > 1 ? 's' : ''}
+                                            </span>
+                                        )}
+                                    </td>
                                     <td className="p-4">
                                         <span className={`px-2 py-1 rounded text-xs font-bold ${item.status === 'Accepted' ? 'bg-green-500/20 text-green-500' :
-                                                item.status === 'Rejected' ? 'bg-red-500/20 text-red-500' :
-                                                    'bg-yellow-500/20 text-yellow-500'
+                                            item.status === 'Rejected' ? 'bg-red-500/20 text-red-500' :
+                                                'bg-yellow-500/20 text-yellow-500'
                                             }`}>
                                             {item.status}
                                         </span>
