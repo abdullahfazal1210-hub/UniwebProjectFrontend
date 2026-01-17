@@ -37,7 +37,7 @@ export default function ProductCard(props) {
   const words = description?.split(" ") || [];
   const truncatedText = words.slice(0, 10).join(" ");
 
-  const isUnavailable = availabilityStatus === "Rented" || availabilityStatus === "Sold";
+  const isUnavailable = availabilityStatus === "Rented" || availabilityStatus === "Sold" || availabilityStatus === "Occupied";
   const statusColor = availabilityStatus === "Sold" ? "bg-red-500" : "bg-yellow-600";
   const formattedDate = availableDate ? new Date(availableDate).toLocaleDateString() : "";
 
@@ -45,6 +45,9 @@ export default function ProductCard(props) {
   React.useEffect(() => {
     let currentPrice = 0;
     if (purchaseType === "buy") currentPrice = buy_price ?? 0;
+    // ...
+    // ...
+    // (Assuming context allows jumping down, but to be safe I'll replace the block)
     if (purchaseType === "rent") {
       if (rentDuration === "3") currentPrice = rent_price_3_months ?? 0;
       if (rentDuration === "6") currentPrice = rent_price_6_months ?? 0;
@@ -117,8 +120,8 @@ export default function ProductCard(props) {
         {/* Status Overlay / Select */}
         {isUnavailable ? (
           <div className={`w-full px-3 py-2 rounded-lg border border-[rgba(38,38,38,1)] text-white font-medium text-center ${statusColor}`}>
-            {availabilityStatus === "Sold" ? "Sold Out" : `Rented (${rentedDuration} Months)`}
-            {availabilityStatus === "Rented" && <div className="text-xs text-white/80">Available: {formattedDate}</div>}
+            {availabilityStatus === "Sold" ? "Sold Out" : `Rented (${rentedDuration || "N/A"} Months)`}
+            {availabilityStatus !== "Sold" && formattedDate && <div className="text-xs text-white/80">Until: {formattedDate}</div>}
           </div>
         ) : (
           <select
