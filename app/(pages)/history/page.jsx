@@ -45,6 +45,7 @@ export default function HistoryPage() {
                                 <th className="p-4">Type</th>
                                 <th className="p-4">Status</th>
                                 <th className="p-4">Date</th>
+                                <th className="p-4">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,6 +74,16 @@ export default function HistoryPage() {
                                     </td>
                                     <td className="p-4 text-gray-400">
                                         {new Date(item.date).toLocaleDateString()}
+                                    </td>
+                                    <td className="p-4">
+                                        {item.status === 'Accepted' && (
+                                            <Link
+                                                href={`/history/invoice/${item._id}`}
+                                                className="bg-[#703bf7] hover:bg-[#5b2fd6] text-white text-xs px-3 py-1.5 rounded transition-colors"
+                                            >
+                                                View Contract
+                                            </Link>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
