@@ -150,6 +150,47 @@ export default function InvoicePage() {
                     </table>
                 </div>
 
+                {/* Installment Plan */}
+                <div className="mb-12">
+                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 border-b pb-2">3-Month Installment Plan</h3>
+                    <table className="w-full text-left">
+                        <thead>
+                            <tr className="text-gray-500 text-sm">
+                                <th className="pb-4 pt-2">Installment #</th>
+                                <th className="pb-4 pt-2">Due Date</th>
+                                <th className="pb-4 pt-2 text-right">Amount (PKR)</th>
+                            </tr>
+                        </thead>
+                        <tbody className="text-gray-800 font-medium">
+                            <tr className="border-b border-gray-100">
+                                <td className="py-3">1st Installment (Down Payment)</td>
+                                <td className="py-3">Immediate (Upon Signing)</td>
+                                <td className="py-3 text-right">
+                                    {Math.round(Number(displayPrice) / 3).toLocaleString()}
+                                </td>
+                            </tr>
+                            <tr className="border-b border-gray-100">
+                                <td className="py-3">2nd Installment</td>
+                                <td className="py-3">
+                                    {new Date(new Date(request.date).setMonth(new Date(request.date).getMonth() + 1)).toLocaleDateString()}
+                                </td>
+                                <td className="py-3 text-right">
+                                    {Math.round(Number(displayPrice) / 3).toLocaleString()}
+                                </td>
+                            </tr>
+                            <tr className="border-b border-gray-100">
+                                <td className="py-3">3rd Installment</td>
+                                <td className="py-3">
+                                    {new Date(new Date(request.date).setMonth(new Date(request.date).getMonth() + 2)).toLocaleDateString()}
+                                </td>
+                                <td className="py-3 text-right">
+                                    {Math.round(Number(displayPrice) / 3).toLocaleString()}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 {/* Payment Instructions */}
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-12">
                     <h3 className="text-sm font-bold text-gray-900 uppercase mb-4 flex items-center gap-2">
@@ -196,6 +237,17 @@ export default function InvoicePage() {
                     <p>For inquiries, please contact support@talhabuilders.com</p>
                 </div>
             </div>
+
+            <style jsx global>{`
+                @media print {
+                    @page { margin: 0; }
+                    body { background: white; }
+                    nav, footer, header, .sidebar, button, .no-print { display: none !important; }
+                    .print\\:hidden { display: none !important; }
+                    .print\\:w-full { width: 100% !important; max-width: none !important; box-shadow: none !important; padding: 20px !important; }
+                    .bg-gray-100 { background-color: white !important; }
+                }
+            `}</style>
         </div>
     );
 }
