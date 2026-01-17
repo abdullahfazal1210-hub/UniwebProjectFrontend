@@ -52,7 +52,7 @@ export default function InvoicePage() {
             displayPrice = property.rent_price_6_months;
             period = "Semi-Annually (6 Months)";
         } else if (request.rentDuration === "12") {
-            displayPrice = property.rent_price_annual; // or rent_price_Annual based on schema naming
+            displayPrice = property.rent_price_annual;
             period = "Annually (1 Year)";
         }
     } else {
@@ -73,76 +73,76 @@ export default function InvoicePage() {
             </div>
 
             {/* Document Paper */}
-            <div className="max-w-3xl mx-auto bg-white shadow-xl p-12 md:p-16 rounded-lg print:shadow-none print:w-full print:max-w-none">
+            <div className="max-w-3xl mx-auto bg-white shadow-lg p-8 md:p-10 rounded-lg print:shadow-none print:w-full print:max-w-none print:p-8 border border-gray-100">
 
                 {/* Contract Header */}
-                <header className="border-b-2 border-gray-800 pb-8 mb-8 flex justify-between items-start">
+                <header className="border-b border-gray-200 pb-6 mb-6 flex justify-between items-start">
                     <div>
-                        <h1 className="text-4xl font-bold text-gray-900 tracking-tight">INVOICE & CONTRACT</h1>
-                        <p className="text-gray-500 mt-2 text-lg">Property Agreement</p>
+                        <h1 className="text-3xl font-bold text-gray-900 tracking-tight text-transform uppercase">Invoice</h1>
+                        <p className="text-gray-500 text-sm mt-1 uppercase tracking-wider">Property Agreement</p>
                     </div>
                     <div className="text-right">
-                        <div className="text-2xl font-bold text-[#703bf7]">Talha Builders</div>
-                        <p className="text-sm text-gray-500">Estatein Real Estate</p>
-                        <p className="text-sm text-gray-500">Invoice #{id.slice(-6).toUpperCase()}</p>
-                        <p className="text-sm text-gray-500">Date: {new Date(request.date).toLocaleDateString()}</p>
+                        <div className="text-xl font-bold text-[#703bf7]">Talha Builders</div>
+                        <p className="text-xs text-gray-400">Estatein Real Estate</p>
+                        <p className="text-xs text-gray-500 mt-1">Ref: {id.slice(-6).toUpperCase()}</p>
+                        <p className="text-xs text-gray-500">Date: {new Date(request.date).toLocaleDateString()}</p>
                     </div>
                 </header>
 
                 {/* Info Grid */}
-                <div className="grid grid-cols-2 gap-12 mb-12">
+                <div className="grid grid-cols-2 gap-8 mb-8 bg-gray-50/50 p-4 rounded-md border border-gray-100">
                     <div>
-                        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Client Details</h3>
-                        <div className="text-gray-800 font-medium">
-                            <p className="text-lg">{request.firstName} {request.lastName}</p>
+                        <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Client Details</h3>
+                        <div className="text-gray-800 text-sm font-medium leading-relaxed">
+                            <p className="text-base font-bold text-gray-900">{request.firstName} {request.lastName}</p>
                             <p>{request.email}</p>
                             <p>{request.phone}</p>
                         </div>
                     </div>
                     <div className="text-right">
-                        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Property Details</h3>
-                        <div className="text-gray-800 font-medium">
-                            <p className="text-lg">{property?.Name || request.propertyTitle}</p>
-                            <p>{property?.Location}</p>
-                            <p>{property?.type} | {property?.Rooms} Rooms</p>
+                        <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Property Details</h3>
+                        <div className="text-gray-800 text-sm font-medium leading-relaxed">
+                            <p className="text-base font-bold text-gray-900">{property?.Name || request.propertyTitle}</p>
+                            <p className="text-gray-500">{property?.Location}</p>
+                            <p>{property?.type} • {property?.Rooms} Rooms</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Agreement Details */}
-                <div className="mb-12">
-                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 border-b pb-2">Agreement Summary</h3>
-                    <table className="w-full text-left">
+                <div className="mb-8">
+                    <h3 className="text-xs font-bold text-gray-800 uppercase tracking-wider mb-3 pb-1 border-b border-gray-200">Agreement Summary</h3>
+                    <table className="w-full text-left text-sm">
                         <thead>
-                            <tr className="text-gray-500 text-sm">
-                                <th className="pb-4 pt-2">Description</th>
-                                <th className="pb-4 pt-2 text-right">Term / Duration</th>
-                                <th className="pb-4 pt-2 text-right">Amount (PKR)</th>
+                            <tr className="text-gray-400 text-xs uppercase tracking-wider">
+                                <th className="pb-2 font-medium">Description</th>
+                                <th className="pb-2 text-right font-medium">Term</th>
+                                <th className="pb-2 text-right font-medium">Amount</th>
                             </tr>
                         </thead>
-                        <tbody className="text-gray-800 font-medium text-lg">
-                            <tr className="border-b border-gray-100">
-                                <td className="py-4">
-                                    {isRent ? "Property Rental Agreement" : "Property Sale Agreement"}
-                                    <div className="text-sm text-gray-400 font-normal mt-1">{property?.Name}</div>
+                        <tbody className="text-gray-700">
+                            <tr className="border-b border-gray-50">
+                                <td className="py-3 font-medium">
+                                    {isRent ? "Property Rental" : "Property Purchase"}
+                                    <span className="block text-xs text-gray-400 font-normal">{property?.Name}</span>
                                 </td>
-                                <td className="py-4 text-right">
+                                <td className="py-3 text-right">
                                     {request.rentDuration ? `${request.rentDuration} Months` : "Ownership Transfer"}
                                 </td>
-                                <td className="py-4 text-right font-bold">
-                                    {Number(displayPrice).toLocaleString()}
+                                <td className="py-3 text-right font-bold text-gray-900">
+                                    PKR {Number(displayPrice).toLocaleString()}
                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colSpan="2" className="pt-6 text-right font-bold text-gray-500">Total Payable:</td>
-                                <td className="pt-6 text-right font-bold text-2xl text-[#703bf7]">
-                                    PKR {Number(displayPrice).toLocaleString()}
+                                <td colSpan="2" className="pt-4 text-right font-bold text-gray-500 text-xs uppercase">Total Payable:</td>
+                                <td className="pt-4 text-right font-bold text-xl text-[#703bf7]">
+                                    {Number(displayPrice).toLocaleString()}
                                 </td>
                             </tr>
-                            <tr className="text-sm text-gray-400">
-                                <td colSpan="3" className="text-right pt-2 font-normal italic">
+                            <tr className="text-xs text-gray-400">
+                                <td colSpan="3" className="text-right pt-1 font-normal italic">
                                     {period}
                                 </td>
                             </tr>
@@ -151,63 +151,65 @@ export default function InvoicePage() {
                 </div>
 
                 {/* Installment Plan */}
-                <div className="mb-12">
-                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 border-b pb-2">3-Month Installment Plan</h3>
-                    <table className="w-full text-left">
-                        <thead>
-                            <tr className="text-gray-500 text-sm">
-                                <th className="pb-4 pt-2">Installment #</th>
-                                <th className="pb-4 pt-2">Due Date</th>
-                                <th className="pb-4 pt-2 text-right">Amount (PKR)</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-gray-800 font-medium">
-                            <tr className="border-b border-gray-100">
-                                <td className="py-3">1st Installment (Down Payment)</td>
-                                <td className="py-3">Immediate (Upon Signing)</td>
-                                <td className="py-3 text-right">
-                                    {Math.round(Number(displayPrice) / 3).toLocaleString()}
-                                </td>
-                            </tr>
-                            <tr className="border-b border-gray-100">
-                                <td className="py-3">2nd Installment</td>
-                                <td className="py-3">
-                                    {new Date(new Date(request.date).setMonth(new Date(request.date).getMonth() + 1)).toLocaleDateString()}
-                                </td>
-                                <td className="py-3 text-right">
-                                    {Math.round(Number(displayPrice) / 3).toLocaleString()}
-                                </td>
-                            </tr>
-                            <tr className="border-b border-gray-100">
-                                <td className="py-3">3rd Installment</td>
-                                <td className="py-3">
-                                    {new Date(new Date(request.date).setMonth(new Date(request.date).getMonth() + 2)).toLocaleDateString()}
-                                </td>
-                                <td className="py-3 text-right">
-                                    {Math.round(Number(displayPrice) / 3).toLocaleString()}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div className="mb-8">
+                    <h3 className="text-xs font-bold text-gray-800 uppercase tracking-wider mb-3 pb-1 border-b border-gray-200">Payment Schedule</h3>
+                    <div className="border border-gray-100 rounded-lg overflow-hidden">
+                        <table className="w-full text-left text-sm">
+                            <thead className="bg-gray-50">
+                                <tr className="text-gray-500 text-xs uppercase tracking-wider">
+                                    <th className="px-4 py-2 font-medium">Installment</th>
+                                    <th className="px-4 py-2 font-medium">Due Date</th>
+                                    <th className="px-4 py-2 text-right font-medium">Amount (PKR)</th>
+                                </tr>
+                            </thead>
+                            <tbody className="text-gray-700 divide-y divide-gray-50">
+                                <tr>
+                                    <td className="px-4 py-2.5">1st (Down Payment)</td>
+                                    <td className="px-4 py-2.5 text-gray-500">Immediate</td>
+                                    <td className="px-4 py-2.5 text-right font-medium">
+                                        {Math.round(Number(displayPrice) / 3).toLocaleString()}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="px-4 py-2.5">2nd Installment</td>
+                                    <td className="px-4 py-2.5 text-gray-500">
+                                        {new Date(new Date(request.date).setMonth(new Date(request.date).getMonth() + 1)).toLocaleDateString()}
+                                    </td>
+                                    <td className="px-4 py-2.5 text-right font-medium">
+                                        {Math.round(Number(displayPrice) / 3).toLocaleString()}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="px-4 py-2.5">3rd Installment</td>
+                                    <td className="px-4 py-2.5 text-gray-500">
+                                        {new Date(new Date(request.date).setMonth(new Date(request.date).getMonth() + 2)).toLocaleDateString()}
+                                    </td>
+                                    <td className="px-4 py-2.5 text-right font-medium">
+                                        {Math.round(Number(displayPrice) / 3).toLocaleString()}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 {/* Payment Instructions */}
-                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-12">
-                    <h3 className="text-sm font-bold text-gray-900 uppercase mb-4 flex items-center gap-2">
-                        💳 Payment Instructions
+                <div className="bg-[#703bf7]/5 p-5 rounded-lg border border-[#703bf7]/20 mb-10">
+                    <h3 className="text-xs font-bold text-[#703bf7] uppercase mb-3 flex items-center gap-2">
+                        Payment Details
                     </h3>
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
                         <div>
-                            <p className="text-sm text-gray-500 mb-1">Bank Name</p>
-                            <p className="font-bold text-gray-800 text-lg">Bank Alfalah</p>
+                            <p className="text-xs text-gray-400 uppercase tracking-wider mb-0.5">Bank</p>
+                            <p className="font-bold text-gray-800">Bank Alfalah</p>
                         </div>
                         <div>
-                            <p className="text-sm text-gray-500 mb-1">Account Title</p>
-                            <p className="font-bold text-gray-800 text-lg">Abdullah</p>
+                            <p className="text-xs text-gray-400 uppercase tracking-wider mb-0.5">Account Title</p>
+                            <p className="font-bold text-gray-800">Abdullah</p>
                         </div>
-                        <div className="md:col-span-2">
-                            <p className="text-sm text-gray-500 mb-1">Account Number (IBAN)</p>
-                            <p className="font-mono font-bold text-gray-800 text-xl tracking-wider">
+                        <div className="col-span-2 mt-1">
+                            <p className="text-xs text-gray-400 uppercase tracking-wider mb-0.5">IBAN</p>
+                            <p className="font-mono font-bold text-gray-800 text-lg tracking-wider">
                                 PK36 ALFH 5566 7788 9900 1122
                             </p>
                         </div>
@@ -215,26 +217,25 @@ export default function InvoicePage() {
                 </div>
 
                 {/* Signatures */}
-                <div className="grid grid-cols-2 gap-16 mt-20">
+                <div className="grid grid-cols-2 gap-12 mt-12 pt-8">
                     <div>
-                        <div className="border-t border-gray-400 pt-4">
-                            <p className="font-bold text-gray-900">Abdullah</p>
-                            <p className="text-sm text-gray-500">Authorized Signature</p>
-                            <p className="text-xs text-gray-400 mt-1">Talha Builders</p>
+                        <div className="border-t border-gray-300 pt-3">
+                            <p className="font-bold text-gray-900 text-sm">Abdullah</p>
+                            <p className="text-xs text-gray-500 uppercase tracking-wider mt-0.5">Authorized Signature</p>
                         </div>
                     </div>
                     <div>
-                        <div className="border-t border-gray-400 pt-4">
-                            <p className="font-bold text-gray-900">{request.firstName} {request.lastName}</p>
-                            <p className="text-sm text-gray-500">Client Signature</p>
+                        <div className="border-t border-gray-300 pt-3">
+                            <p className="font-bold text-gray-900 text-sm">{request.firstName} {request.lastName}</p>
+                            <p className="text-xs text-gray-500 uppercase tracking-wider mt-0.5">Client Signature</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Footer */}
-                <div className="mt-16 text-center text-xs text-gray-400 border-t pt-8">
-                    <p>This document serves as an official proof of agreement pending bank confirmation.</p>
-                    <p>For inquiries, please contact support@talhabuilders.com</p>
+                <div className="mt-8 text-center text-[10px] text-gray-400 border-t border-gray-100 pt-4">
+                    <p>This document is electronically generated and pending bank confirmation.</p>
+                    <p>Talha Builders • support@talhabuilders.com</p>
                 </div>
             </div>
 
