@@ -428,6 +428,13 @@ export default function Detailed() {
                 This property is currently <strong>Rented</strong> for {propertyStatus.duration} months.
               </p>
             </div>
+          ) : propertyStatus.status === "Sold" ? (
+            <div className="w-full bg-red-600/10 border border-red-600 text-red-600 p-4 rounded-lg flex flex-col gap-2">
+              <h3 className="font-bold text-lg">Property Sold</h3>
+              <p>
+                This property has been <strong>Sold Out</strong>.
+              </p>
+            </div>
           ) : propertyStatus.status === "Pending" ? (
             <div className="w-full bg-yellow-500/10 border border-yellow-500 text-yellow-500 p-4 rounded-lg flex flex-col gap-2">
               <h3 className="font-bold text-lg">High Demand</h3>
@@ -595,15 +602,20 @@ export default function Detailed() {
           </div>
 
           {/* Submit */}
+          {/* Submit */}
           <button
             type="submit"
-            disabled={propertyStatus.status === "Occupied"}
+            disabled={propertyStatus.status === "Occupied" || propertyStatus.status === "Sold"}
             className={`w-full md:w-auto px-6 py-3 rounded-lg font-medium transition
-              ${propertyStatus.status === "Occupied"
+              ${propertyStatus.status === "Occupied" || propertyStatus.status === "Sold"
                 ? "bg-gray-600 cursor-not-allowed text-gray-400"
                 : "bg-[#703bf7] text-white hover:bg-[#5b2fd6]"}`}
           >
-            {propertyStatus.status === "Occupied" ? "Unavailable" : "Send Message"}
+            {propertyStatus.status === "Occupied"
+              ? "Unavailable (Rented)"
+              : propertyStatus.status === "Sold"
+                ? "Unavailable (Sold)"
+                : "Send Message"}
           </button>
         </form>
 
