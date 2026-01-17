@@ -54,7 +54,7 @@ export default function Detailed() {
 
     const fetchStatus = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/property/status/${id}`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/property/status/${id}`, { withCredentials: true });
         setPropertyStatus(res.data);
       } catch (error) {
         console.error("Failed to fetch property status", error);

@@ -22,7 +22,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/dashboard-stats`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/dashboard-stats`, { withCredentials: true });
         setStats(res.data);
       } catch (error) {
         console.error("Error loading stats:", error);

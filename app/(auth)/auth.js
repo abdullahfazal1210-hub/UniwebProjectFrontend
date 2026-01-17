@@ -8,7 +8,7 @@ export const UserRegister = async (full_name, email, password) => {
       full_name,
       email,
       password
-    });
+    }, { withCredentials: true });
 
     console.log("Success:", res.data);
     return res.data;

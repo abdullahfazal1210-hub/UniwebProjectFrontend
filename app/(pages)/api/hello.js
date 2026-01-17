@@ -37,7 +37,7 @@ export const uploadProperty = async (formData) => {
 // Fetch properties
 export const getProperty = async () => {
   try {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/property/detail`);
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/property/detail`, { withCredentials: true });
     return res.data; // sirf data return
   } catch (error) {
     console.error("Error fetching properties:", error);

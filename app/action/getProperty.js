@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default async function getPropertys() {
   try {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/property/detail`);
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/property/detail`, { withCredentials: true });
 
     // Axios throws an error for non-2xx status codes, so no need for res.ok check here.
     // If an error occurs, it will be caught by the catch block.

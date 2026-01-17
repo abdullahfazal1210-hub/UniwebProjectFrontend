@@ -23,8 +23,8 @@ const InquiryTable = () => {
       try {
         // Parallelize marking as read and fetching messages
         const [, res] = await Promise.all([
-          axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/notifications/mark-read/message`),
-          axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/getmessage`)
+          axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/notifications/mark-read/message`, {}, { withCredentials: true }),
+          axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/getmessage`, { withCredentials: true })
         ]);
 
         setInquiries(res.data.data);

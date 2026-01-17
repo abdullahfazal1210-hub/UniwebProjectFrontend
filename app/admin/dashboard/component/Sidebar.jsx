@@ -16,7 +16,7 @@ export default function Sidebar() {
   // Fetch counts
   const fetchCounts = async () => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/notifications/counts`);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/notifications/counts`, { withCredentials: true });
       setCounts(res.data);
     } catch (error) {
       console.error("Failed to fetch notification counts", error);

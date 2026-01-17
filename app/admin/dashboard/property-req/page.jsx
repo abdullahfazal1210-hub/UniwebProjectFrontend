@@ -10,8 +10,8 @@ export default function PropertyRequests() {
         try {
             // Parallelize marking as read and fetching requests
             const [, res] = await Promise.all([
-                axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/notifications/mark-read/property-req`),
-                axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/propertyRequests`)
+                axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/notifications/mark-read/property-req`, {}, { withCredentials: true }),
+                axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/propertyRequests`, { withCredentials: true })
             ]);
             setRequests(res.data);
         } catch (error) {
@@ -25,7 +25,7 @@ export default function PropertyRequests() {
 
     const updateStatus = async (id, status) => {
         try {
-            await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/propertyRequest/${id}`, { status });
+            await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/propertyRequest/${id}`, { status }, { withCredentials: true });
             // Refresh list
             fetchRequests();
         } catch (error) {

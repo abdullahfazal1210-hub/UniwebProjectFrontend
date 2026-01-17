@@ -52,8 +52,9 @@ export default function Header() {
     const userName = localStorage.getItem("userName");
     const userImg = localStorage.getItem("userImage");
     // Check cookie existence roughly
-    const hasCookie = document.cookie.split(';').some(c => c.trim().startsWith('authToken='));
-    if (userName && hasCookie) {
+    // Cookie is httpOnly so we can't check it in JS. 
+    // We rely on localStorage for UI state.
+    if (userName) {
       setUser(userName);
       setUserImage(userImg);
     }

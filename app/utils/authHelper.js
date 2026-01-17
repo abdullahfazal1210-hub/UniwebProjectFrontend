@@ -10,12 +10,8 @@ export const isUserLoggedIn = () => {
     const userName = localStorage.getItem("userName");
     const hasValidName = !!userName && userName !== "null" && userName !== "undefined";
 
-    const hasToken = document.cookie.split(';').some(c => {
-        const trimmed = c.trim();
-        if (!trimmed.startsWith('authToken=')) return false;
-        const value = trimmed.split('=')[1];
-        return value && value.trim().length > 0;
-    });
-
-    return hasValidName && hasToken;
+    // We cannot check document.cookie for httpOnly cookies.
+    // The server will enforce auth via 401 responses.
+    // Client-side, we just check if we have the user state.
+    return hasValidName;
 };

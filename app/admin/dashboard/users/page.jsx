@@ -24,7 +24,7 @@ export default function UsersPage() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/allusers`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/allusers`, { withCredentials: true });
         setUsers(res.data.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -43,7 +43,7 @@ export default function UsersPage() {
     setUserHistory([]);
 
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/user-history/${user._id}`);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/user-history/${user._id}`, { withCredentials: true });
       setUserHistory(res.data.data);
     } catch (error) {
       console.error("Error fetching user history:", error);

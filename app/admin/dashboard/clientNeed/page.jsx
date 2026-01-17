@@ -32,8 +32,8 @@ const ClientNeedTable = () => {
             try {
                 // Parallelize marking as read and fetching requests
                 const [, res] = await Promise.all([
-                    axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/notifications/mark-read/client-need`),
-                    axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/client-need`)
+                    axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/notifications/mark-read/client-need`, {}, { withCredentials: true }),
+                    axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/client-need`, { withCredentials: true })
                 ]);
                 setInquiries(res.data.data);
                 setLoading(false);
