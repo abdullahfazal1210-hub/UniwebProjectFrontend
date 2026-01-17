@@ -435,7 +435,7 @@ export default function Detailed() {
                 This property has been <strong>Sold Out</strong>.
               </p>
             </div>
-          ) : propertyStatus.status === "Pending" ? (
+          ) : propertyStatus.count > 0 ? (
             <div className="w-full bg-yellow-500/10 border border-yellow-500 text-yellow-500 p-4 rounded-lg flex flex-col gap-2">
               <h3 className="font-bold text-lg">High Demand</h3>
               <p>
